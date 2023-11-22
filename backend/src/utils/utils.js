@@ -204,6 +204,9 @@ function spaceCleaner(object) {
 
 const bodyMapper = (body) => {
 
+    if (body.getMapperList) 
+        return {getMapperList : true}
+
     if (body.adapterID) body.mapID = body.adapterID
 
     let sourceData = {
