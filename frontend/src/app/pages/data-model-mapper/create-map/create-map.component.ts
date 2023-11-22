@@ -75,7 +75,7 @@ export class CreateMapComponent implements OnInit {
 
   selectFiltered(property, id) {
     try {
-      return this[property].filter(filteredProperty => filteredProperty.id == id)[0]
+      return this[property].filter(filteredProperty => filteredProperty._id == id)[0]
     }
     catch (error) {
       console.error(error)
@@ -165,9 +165,6 @@ export class CreateMapComponent implements OnInit {
       description = this.description,
       status = this.status
 
-    if (adapterId == '' || adapterId == null)
-      throw new Error("Adapter ID must be set");
-
     if (await this.sourceIdAlreadyExists()) {
       //errors = true
       //this.errorHandle("source", { error: "id already exists", status: 400 })
@@ -184,8 +181,8 @@ export class CreateMapComponent implements OnInit {
     if (!errors)
       try {
 
-        while (adapterId[0] == " ") adapterId = adapterId.substring(1)
-        while (adapterId[adapterId.length - 1] == " ") adapterId = adapterId.substring(0, adapterId.length - 1)
+        //while (adapterId[0] == " ") adapterId = adapterId.substring(1)
+        //while (adapterId[adapterId.length - 1] == " ") adapterId = adapterId.substring(0, adapterId.length - 1)
 
         if (this.save) {
           await this.dmmService.saveMap({
@@ -314,7 +311,7 @@ export class CreateMapComponent implements OnInit {
       this.errorService.openErrorDialog({
         error: 'EDITOR_VALIDATION_ERROR', validationErrors: [
           {
-            "path": "root.Id",
+            "path": "root._id",
             "property": "minLength",
             "message": "Value required",
             "errorcount": 1
@@ -330,7 +327,7 @@ export class CreateMapComponent implements OnInit {
         this.errorService.openErrorDialog({
           error: 'EDITOR_VALIDATION_ERROR', validationErrors: [
             {
-              "path": "root.id",
+              "path": "root._id",
               "property": "minLength",
               "message": "A " + entity + " with map ID < " + this.adapterId + " > already exists",
               "errorcount": 1

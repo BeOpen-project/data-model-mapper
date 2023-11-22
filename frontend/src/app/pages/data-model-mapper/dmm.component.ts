@@ -571,7 +571,7 @@ export class DMMComponent implements OnInit, OnChanges {
 
   selectFilteredSchema() {
     try {
-      return this.schemas.filter(filteredSchema => filteredSchema.id == this.selectedSchema)[0].dataModel
+      return this.schemas.filter(filteredSchema => filteredSchema._id == this.selectedSchema)[0].dataModel
     }
     catch (error) {
       this.handleError(error, false, false)
@@ -581,7 +581,7 @@ export class DMMComponent implements OnInit, OnChanges {
   }
 
   source() {
-    return this.sources.filter(filteredSource => filteredSource.id == this.selectedSource)[0].source || this.sources.filter(filteredSource => filteredSource.id == this.selectedSource)[0].sourceCSV
+    return this.sources.filter(filteredSource => filteredSource._id == this.selectedSource)[0].source || this.sources.filter(filteredSource => filteredSource._id == this.selectedSource)[0].sourceCSV
   }
 
   async loadMapperList() {
@@ -1010,18 +1010,18 @@ export class DMMComponent implements OnInit, OnChanges {
 
     this.dialogService.open(ExportFileComponent).onClose.subscribe((content) => {
       if (content == "file")
-        this.saveFile(JSON.stringify(this.bodyBuilder(source)));
+        this.saveFile(JSON.stringify(this.bodyBuilder(source)), "json");
       else if (content == "snippet")
-        this.saveFile(this.buildSnippet());
+        this.saveFile(this.buildSnippet(), "bash");
     })
   }
 
   download() {
-    this.saveFile(this.outputEditor.getText())
+    this.saveFile(this.outputEditor.getText(), "json")
   }
 
-  async saveFile(model): Promise<void> {
-    const filename = "exportedFile.json",
+  async saveFile(model, type): Promise<void> {
+    const filename = (this.name || this.adapter.name || "exportedFile") + "." + type,
       blob = new Blob([model], {
         type: 'application/json;charset=utf-8',
       });
@@ -1195,7 +1195,7 @@ export class DMMComponent implements OnInit, OnChanges {
       let mapSettings
 
       if ($event && $event != "---select map---") {
-        mapSettings = this.maps.filter(filteredMap => filteredMap.id == $event)[0]
+        mapSettings = this.maps.filter(filteredMap => filteredMap._id == $event)[0]
 
         try {
           this.savedSource = await this.dmmService.getSource($event)
@@ -1297,7 +1297,7 @@ export class DMMComponent implements OnInit, OnChanges {
       this.map = mapSettings.map || mapSettings.mapData
       mapGl = this.map
       this.adapter = {}
-      if (mapSettings.id) this.adapter.adapterId = mapSettings.id
+      if (mapSettings._id) this.adapter.adapterId = mapSettings._id
       if (mapSettings.name) this.name = mapSettings.name
       if (mapSettings.description) this.adapter.description = mapSettings.description
       if (mapSettings.status) this.adapter.status = mapSettings.status

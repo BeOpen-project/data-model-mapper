@@ -13,7 +13,7 @@
       </p>
       <nb-select placeholder="Select mapper record" size="small" [(ngModel)]="selectMap"
         (ngModelChange)="mapChanged($event)">
-        <nb-option *ngFor="let map of maps" value={{map.id}}>{{map.name}}</nb-option>
+        <nb-option *ngFor="let map of maps" value={{map._id}}>{{map.name}}</nb-option>
       </nb-select>
       <div style="margin-top: 30px;"></div>
       <div *ngIf="backendDown">Unable to reach server</div>
@@ -75,7 +75,7 @@
                 <nb-select placeholder="Select source file" size="small" [(ngModel)]="selectedSource"
                   (ngModelChange)="sourceChanged($event)" (click)="fixBrokenPageBug()">
                   <!--<nb-option value="">---select source---</nb-option>-->
-                  <nb-option *ngFor="let source of sources" value={{source.id}}>{{source.name}}</nb-option>
+                  <nb-option *ngFor="let source of sources" value={{source._id}}>{{source.name}}</nb-option>
                 </nb-select>
                 &nbsp;
                 <button nbButton class="mr-2" shape="rectangle" size="small" (click)="import('source','json')">
@@ -106,7 +106,7 @@
                 <br><br>
                 <nb-select placeholder="Select source file" size="small" [(ngModel)]="selectedSource"
                   (ngModelChange)="sourceChanged($event)" (click)="fixBrokenPageBug()">
-                  <nb-option *ngFor="let source of sources" value={{source.id}}>{{source.name}}</nb-option>
+                  <nb-option *ngFor="let source of sources" value={{source._id}}>{{source.name}}</nb-option>
                 </nb-select>&nbsp;
                 <button nbButton class="mr-2" shape="rectangle" size="small" (click)="import('source','csv')">
                   {{ 'general.editor.upload' | translate }}
@@ -150,7 +150,7 @@
               <p *ngIf="schemaRef!==''&&schemaRefFormat==='file'">File: <i>{{schemaRef}}</i></p>
               <nb-select placeholder="Select Json Schema" size="small" [(ngModel)]="selectedSchema"
                 (ngModelChange)="schemaChanged($event, 'DB')">
-                <nb-option *ngFor="let schema of schemas" value={{schema.id}}>{{schema.name}}</nb-option>
+                <nb-option *ngFor="let schema of schemas" value={{schema._id}}>{{schema.name}}</nb-option>
               </nb-select>&nbsp;
               <!--<br><br><br>
               <div style="padding-top:10px"></div>-->
