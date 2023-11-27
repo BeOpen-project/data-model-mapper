@@ -8,7 +8,7 @@ RUN mkdir -p ./frontend/node_modules
 RUN npm install --prefix ./frontend
 
 COPY . /app
-RUN bash -xc "\
+RUN bash "\
 pushd ./frontend; \
 npm run build -- --prod --aot --base-href $BASE_HREF; \
 popd; \
