@@ -8,7 +8,7 @@ RUN mkdir -p ./frontend/node_modules
 RUN npm install --prefix ./frontend
 
 COPY . /app
-RUN npm run build --prefix ./frontend -- --prod --aot --base-href $BASE_HREF
+RUN npm run --prefix ./frontend build -- --prod --aot --base-href $BASE_HREF
 
 FROM nginx
 EXPOSE 80
