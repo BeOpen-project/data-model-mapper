@@ -19,7 +19,7 @@ COPY . /app
 RUN chmod u+r+x /app/build.sh
 RUN chmod u+r+x build.sh
 
-RUN dos2unix app/build.sh
+RUN dos2unix ./app/build.sh
 
 FROM nginx
 EXPOSE 80
