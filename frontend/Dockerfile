@@ -21,7 +21,7 @@ RUN chmod u+r+x build.sh
 
 RUN dos2unix /app/build.sh
 
-FROM nginx
-EXPOSE 80
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=builder /app/dist /usr/share/nginx/html
+#FROM nginx
+#EXPOSE 80
+#COPY nginx.conf /etc/nginx/conf.d/default.conf
+#COPY --from=builder /app/dist /usr/share/nginx/html
