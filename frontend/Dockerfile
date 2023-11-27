@@ -8,6 +8,14 @@ RUN mkdir -p ./frontend/node_modules
 RUN npm install --prefix ./frontend
 
 COPY . /app
+
+FROM debian
+RUN bash -xc "\
+pushd /frontend; \
+npm run build -- --prod --aot --base-href $BASE_HREF;
+popd; \
+";
+RUN pwd
 #RUN bash "\
 #pushd ./frontend; \
 #npm run build -- --prod --aot --base-href $BASE_HREF; \
@@ -16,8 +24,8 @@ COPY . /app
 
 #RUN pushd frontend && npm run build -- --prod --aot --base-href $BASE_HREF && popd
 #RUN popd
-RUN chmod u+r+x /app/build.sh
-RUN chmod u+r+x build.sh
+#RUN chmod u+r+x /app/build.sh
+#RUN chmod u+r+x build.sh
 
 RUN dos2unix /app/build.sh
 
