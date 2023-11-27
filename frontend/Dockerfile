@@ -14,7 +14,7 @@ npm run build -- --prod --aot --base-href $BASE_HREF; \
 popd; \
 ";
 
-RUN npm run build -- --prod --aot --base-href $BASE_HREF
+#RUN npm run build -- --prod --aot --base-href $BASE_HREF
 #RUN popd
 
 FROM nginx
