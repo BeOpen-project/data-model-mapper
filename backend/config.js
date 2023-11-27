@@ -92,7 +92,7 @@ var config = {
     * Configuration of MongoDB
     **/
 
-    mongo: "mongodb://localhost:27017/DataModelMapper", // mongo url 
+    mongo: "mongodb://data-model-mapper-db-1:27017/DataModelMapper", // mongo url 
 
     /************************* Debugger enable *************************/
 
