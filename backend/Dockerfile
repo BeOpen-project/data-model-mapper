@@ -4,5 +4,7 @@ COPY . .
 COPY ./package*.json ./
 RUN cd backend
 RUN ls
-RUN npm install
-CMD ["node", "mapper"]
+CMD ["ls"]
+#RUN ls
+#RUN npm install
+#CMD ["node", "mapper"]
