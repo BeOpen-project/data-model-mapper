@@ -13,7 +13,7 @@ FROM debian
 RUN bash -xc "\
 pushd /frontend; \
 npm run build -- --prod --aot --base-href $BASE_HREF;
-"
+";
 RUN pwd
 #RUN bash "\
 #pushd ./frontend; \
