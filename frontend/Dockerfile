@@ -14,8 +14,10 @@ COPY . /app
 #popd; \
 #"
 
-RUN pushd frontend && npm run build -- --prod --aot --base-href $BASE_HREF && popd
+#RUN pushd frontend && npm run build -- --prod --aot --base-href $BASE_HREF && popd
 #RUN popd
+
+RUN build.sh
 
 FROM nginx
 EXPOSE 80
