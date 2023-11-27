@@ -92,7 +92,7 @@ var config = {
     * Configuration of MongoDB
     **/
 
-    mongo: "mongodb://host.docker.internal:27017/DataModelMapper", // mongo url 
+    mongo: "mongodb://localhost:27017/DataModelMapper", // mongo url 
 
     /************************* Debugger enable *************************/
 
@@ -102,7 +102,7 @@ var config = {
     /*************** ORION Context Broker CONFIGURATION **********************/
     orionWriter: {
 
-        orionUrl: "http://host.docker.internal:1026", // The Context Broker endpoint (baseUrl) where mapped entities will be stored (/v2/entities POST)
+        orionUrl: "http://localhost:1026", // The Context Broker endpoint (baseUrl) where mapped entities will be stored (/v2/entities POST)
         orionAuthHeaderName: "", // Authorization Header name (e.g. X-Auth-Token or Authorization) for Orion request // Leave blank if any
         orionAuthToken: "", // Authorization token name for Orion request (e.g. Bearer XXX) // Leave blank if any
         fiwareService: "", // Fiware-Service header to be put in the Orion request
