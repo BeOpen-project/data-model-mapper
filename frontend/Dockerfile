@@ -8,9 +8,14 @@ RUN mkdir -p ./frontend/node_modules
 RUN npm install --prefix ./frontend
 
 COPY . /app
-RUN pushd ./frontend
+RUN bash -xc "\
+pushd ./frontend; \
+npm run build -- --prod --aot --base-href $BASE_HREF; \
+popd; \
+";
+
 RUN npm run build -- --prod --aot --base-href $BASE_HREF
-RUN popd
+#RUN popd
 
 FROM nginx
 EXPOSE 80
