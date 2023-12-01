@@ -36,8 +36,8 @@ var config = {
     * File Paths can be either absolute or relative
     **/
 
-    sourceDataPath: "input/", // "input/",
-    mapPath: "input/", // "input/",
+    sourceDataPath: "/", // "input/",
+    mapPath: "/", // "input/",
     targetDataModel: "Data Model name, according to the related Schema contained in the DataModels folder",
 
     /************************** Rows/Objects proccesing range *************
@@ -92,7 +92,7 @@ var config = {
     * Configuration of MongoDB
     **/
 
-    mongo: "mongodb://data-model-mapper-db-1:27017/DataModelMapper", // mongo url 
+    mongo: "mongodb://localhost:27017/DataModelMapper", // mongo url 
 
     /************************* Debugger enable *************************/
 
