@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const map = mongoose.Schema({
   name: String,
-  //id: String,
+  id: String,
   status: String,
   description: String,
   map: {},
@@ -17,7 +17,9 @@ const map = mongoose.Schema({
   sourceDataURL : String,
   sourceDataID : String,
   config : {},
-  path: String
+  sourceDataMinio : {},
+  path: String,
+  user: String
 }, { versionKey: false });
 
 module.exports = mongoose.model("map", map);

@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  mongo:
+    image: mongo:4.4
+    command: --nojournal
+    ports:
+      - "27077:27017"
+  
+  orion:
+    image: fiware/orion-ld
+    depends_on:
+      - mongo
+    command: -dbhost mongo
+    ports:
+      - "1026:1026"
+    labels:
+      - traefik.http.routers.context-broker.rule=Host(`orion.localhost`) 
+      - traefik.http.routers.context-broker.tls=true
+      - traefik.http.routers.context-broker.tls.certresolver=lets-encrypt
+      - traefik.port=1026

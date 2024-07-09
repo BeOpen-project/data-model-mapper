@@ -1,0 +1,25 @@
+{
+  "system": {
+    "checkConsentAtOperator": false,
+    "dmmGuiUrl": "https://platform.beopen-dep.it/data-model-mapper-gui",
+    "auth": {
+      "idmHost": "https://platform.beopen-dep.it/auth",
+      "clientId": "beopen-dashboard",
+      "disableAuth": "false",
+      "authProfile": "oidc",
+      "authRealm": "master"
+    },
+    "mailTo":"antonio.filograna@eng.it",
+    "detailedErrors" : true
+  },
+  "data_model_mapper" : {
+    "default_mapper_url":"https://platform.beopen-dep.it/api/map/transform",
+    "default_mapper_base_url":"https://platform.beopen-dep.it/api",
+    "minioCache" : false,
+    "minioBuckets" : []
+  },
+  "i18n": {
+    "locale": "en",
+    "languages": ["it","en"]
+  }
+}

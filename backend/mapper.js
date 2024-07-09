@@ -15,29 +15,41 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
+const log = require('./src/utils/logger')
+//const {trace, debug, info, warn, err} = log
+//const e = log.error
+//function logger(fn, ...msg) { fn(__filename, ...msg) }
 
-const config = require('./config');
+const {Logger} = log
+const logger = new Logger(__filename)
 
-process.env.NODE_ENV = config.env; // 'debug' or 'production' for the logger
-process.env.LOG = config.logLevel;
-process.env.MODE = config.mode; // 'commandLine' or 'server'
-process.env.SUPPRESS_NO_CONFIG_WARNING = 'y';
+try {
+    const config = require('./config');
+    config.NODE_ENV = config.env; // 'debug' or 'production' for the logger
+    config.LOG = config.logLevel;
+    config.MODE = config.mode; // 'commandLine' or 'server'
+    config.SUPPRESS_NO_CONFIG_WARNING = 'y';
 
-if (config.mode === 'commandLine') {
-    const cli = require('./src/cli/setup');
-    return cli();
-} else if (config.mode === 'server') {
-    const server = require('./src/server/server');
-    return server();
-}
-
-
-module.exports = (sourceDataIn, mapPathIn, dataModelIn) => {
     if (config.mode === 'commandLine') {
         const cli = require('./src/cli/setup');
-        return cli(sourceDataIn, mapPathIn, dataModelIn);
+        return cli();
     } else if (config.mode === 'server') {
         const server = require('./src/server/server');
         return server();
     }
-};
+
+
+    module.exports = (sourceDataIn, mapPathIn, dataModelIn) => {
+        if (config.mode === 'commandLine') {
+            const cli = require('./src/cli/setup');
+            return cli(sourceDataIn, mapPathIn, dataModelIn);
+        } else if (config.mode === 'server') {
+            const server = require('./src/server/server');
+            return server();
+        }
+    };
+}
+catch (error) {
+    logger.error(error)
+    //logger.error( error)
+}

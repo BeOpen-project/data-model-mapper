@@ -12,10 +12,10 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { NbAuthService, NbOAuth2AuthStrategy, NbOAuth2ClientAuthMethod, NbOAuth2GrantType, NbOAuth2ResponseType } from '@nebular/auth';
 import { AppConfig } from './model/appConfig';
-//import { OidcJWTToken } from './auth/model/oidc';
 import { v4 as uuidv4 } from 'uuid';
-//import { LoginService } from './auth/login/login.service';
+import { LoginService } from './auth/login/login.service';
 import { ErrorDialogService } from './pages/error-dialog/error-dialog.service';
+import { OidcJWTToken } from './auth/model/oidc';
 
 @Component({
   selector: 'ngx-app',
@@ -28,7 +28,7 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(
     private iconLibraries: NbIconLibraries,
     private menuService: NbMenuService,
-    //private loginService: LoginService,
+    private loginService: LoginService,
     private errorDialogService: ErrorDialogService,
     private translateService: TranslateService,
     private configService: NgxConfigureService,
@@ -65,7 +65,7 @@ export class AppComponent implements OnInit, OnDestroy {
       token: {
         endpoint: `/realms/${this.appConfig.system.auth.authRealm}/protocol/openid-connect/token`,
         redirectUri: `${this.appConfig.system.dmmGuiUrl}/login/loginPopup`,
-        //class: OidcJWTToken,
+        class: OidcJWTToken,
         key: 'access_token',
       },
       authorize: {
@@ -89,7 +89,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   onContecxtItemSelection(title: string): void {
     if (title === this.translateService.instant('login.logout_button')) {
-      //this.loginService.logout().catch((error) => this.errorDialogService.openErrorDialog(error));
+      this.loginService.logout().catch((error) => this.errorDialogService.openErrorDialog(error));
     }
   }
 

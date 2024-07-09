@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { NbDialogRef } from '@nebular/theme';
 import { Location } from '@angular/common';
-//import { LoginService } from '../../auth/login/login.service';
 import { AppConfig } from '../../model/appConfig';
 import { NgxConfigureService } from 'ngx-configure';
 @Component({

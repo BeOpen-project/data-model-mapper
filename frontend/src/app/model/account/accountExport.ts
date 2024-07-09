@@ -9,15 +9,11 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ServiceLinkRecordDoubleSigned } from '../service-linking/serviceLinkRecordDoubleSigned';
 import { EventLog, AuditLog } from '../auditlogs/auditlogs.model';
-import { ConsentRecordSigned } from '../consents/consentRecordSigned';
 import { AccountInfo } from './account.model';
 
 export interface AccountExport {
   accountInfo?: AccountInfo;
-  serviceLinks?: Array<ServiceLinkRecordDoubleSigned>;
-  consentRecords?: Array<ConsentRecordSigned>;
   eventLogs?: Array<EventLog>;
   auditLog?: AuditLog;
 }

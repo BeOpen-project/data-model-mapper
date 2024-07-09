@@ -1,6 +1,6 @@
-export interface AdapterEntry {
+export interface MapperRecordEntry {
   id: string;
-  adapterId: string;
+  mapperRecordId: string;
   url: string,
 	name: string,
 	description: string,
@@ -9,5 +9,5 @@ export interface AdapterEntry {
   context,
   sourceDataType
   //mapper
-  //adapterModel
+  //mapperRecordModel
 }

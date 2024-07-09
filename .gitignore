@@ -17,7 +17,7 @@ backend/node_modules/
 frontend/node_modules/
 backend/reports/
 backend/logs/
-#backend/config.js
+backend/config.js
 backend/result.json
 backend/dataModels/DataModelTemp.json
 backend/testing/
@@ -46,3 +46,8 @@ logs/
 reports/
 frontend/src/assets/bikeCiclabili.json
 backend/examples/
+backend/src/validation.log
+backend/log*.json
+backend/src/utils/threads.js
+minio-storage/
+minio.yml

@@ -5,18 +5,35 @@ module.exports = () => {
   const cors = require('cors');
   const config = require('../../config')
   const swaggerUi = require('swagger-ui-express');
-  let swaggerDocument = require('./swagger.json');
-  const log = require('../utils/logger').app(module)
+  let swaggerDocument = require('./swagger/swagger.json');
+  let minioDocument = require('./swagger/minio.json');
+  const service = require("./api/services/service.js")
+  const log = require('../utils/logger')//.app(module);
+  //const {trace, debug, info, warn, err} = log
+  //const e = log.error
+  //function logger(fn, ...msg) { fn(__filename, ...msg) }
 
-  const app = express();
+  const { Logger } = log
+  const logger = new Logger(__filename)
 
-  swaggerDocument.host = swaggerDocument.host + (config.httpPort || 5000)
+  const dmmServer = express();
 
-  app.use(cors());
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: false }));
-  app.use("/api", routes);
-  app.use(
+  swaggerDocument.host = config.host + (config.externalPort ? ":" + (config.externalPort || 5500) : "")
+  if (config.basePath)
+    swaggerDocument.basePath = config.basePath
+  /*
+    for (let path in minioDocument.paths)
+      swaggerDocument.paths[path] = minioDocument.paths[path]
+  */
+  let path = "/minio/getObject/{bucketName}/{objectName}"
+  swaggerDocument.paths[path] = minioDocument.paths[path]
+
+  dmmServer.use(cors());
+  dmmServer.use(express.json());
+  dmmServer.use(express.urlencoded({ extended: false }));
+  dmmServer.use(service.resetConfig)
+  dmmServer.use(config.basePath || "/api", routes);
+  dmmServer.use(
     '/api-docs',
     swaggerUi.serve,
     swaggerUi.setup(swaggerDocument)
@@ -26,11 +43,18 @@ module.exports = () => {
     mongoose
       .connect(config.mongo, { useNewUrlParser: true })
       .then(() => {
-        app.listen(config.httpPort || 5000, () => {
-          log.info("Server has started!");
-          log.info("listening on port: " + config.httpPort || 5000);
+        dmmServer.listen(config.httpPort || 5500, () => {
+          logger.info("Server has started!");
+          logger.info("listening on port: " + config.httpPort || 5500);
+          config.backup = JSON.parse(JSON.stringify(config))
+          logger.info({ test: "test new logger" })
 
+          /*if (config.writers.filter(writer => writer == "minioWriter")[0]) {
+            const minioWriter = require('../writers/minioWriter')
+            logger.info("Minio connection enabled")
+          }*/
         });
+
       })
   }
 

@@ -36,7 +36,8 @@ import { DMMComponent } from './data-model-mapper/dmm.component';
     TranslateModule.forChild({}),
     FormsModule,
     ReactiveFormsModule,
-    NbAutocompleteModule
+    NbAutocompleteModule,
+    NbSpinnerModule
   ],
   declarations: [PagesComponent, HomeComponent],
   providers: [],

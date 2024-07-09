@@ -1,7 +1,8 @@
 <nb-card *ngIf="!message">
+
   <nb-card-header class="d-flex align-content-center justify-content-between">
     <div> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </div>
-    <div *ngIf="!save || updateAdapter">
+    <div *ngIf="!save">
       <h3>{{ 'general.dmm.edit' | translate }}</h3>
     </div>
     <div *ngIf="save">
@@ -14,19 +15,21 @@
   <nb-card-body class="m-2 p-4">
     <h6>
       <form>
-        <label for="name" fullWidth>{{ 'general.adapters.name' | translate }}</label>
+        <label for="name" fullWidth>{{ 'general.mapperRecords.name' | translate }}</label>
         <br>
-        <input [(ngModel)]="name" nbInput type="text" fullWidth placeholder="{{ 'general.adapters.name' | translate }}"
-          [ngModelOptions]="{standalone: true}" />
+        <input *ngIf="save" [(ngModel)]="name" nbInput type="text" fullWidth
+          placeholder="{{ 'general.mapperRecords.name' | translate }}" [ngModelOptions]="{standalone: true}" />
+        <input *ngIf="!save" [(ngModel)]="name" nbInput type="text" fullWidth
+          placeholder="{{ 'general.mapperRecords.name' | translate }}" [ngModelOptions]="{standalone: true}" disabled="true"/>
         <br>
         <br>
-        <label for="description" fullWidth>{{ 'general.adapters.description' | translate }}</label>
+        <label for="description" fullWidth>{{ 'general.mapperRecords.description' | translate }}</label>
         <br>
         <input [(ngModel)]="description" nbInput type="text" fullWidth
-          placeholder="{{ 'general.adapters.description' | translate }}" [ngModelOptions]="{standalone: true}" />
+          placeholder="{{ 'general.mapperRecords.description' | translate }}" [ngModelOptions]="{standalone: true}" />
         <br>
         <br>
-        <label for="status" fullWidth>{{ 'general.adapters.status' | translate }}</label>
+        <label for="status" fullWidth>{{ 'general.mapperRecords.status' | translate }}</label>
         <br>
         <nb-select fullWidth placeholder="Under development" [(ngModel)]="status" (click)="fixBrokenPageBug()"
           [ngModelOptions]="{standalone: true}">
@@ -35,18 +38,20 @@
         </nb-select>
         <br>
         <br>
-        <nb-checkbox *ngIf="schema" [(ngModel)]="saveSchema" [ngModelOptions]="{standalone: true}">{{ schemaSaved ?
+        <nb-checkbox *ngIf="unsaved.schema" [(ngModel)]="saveSchema" [ngModelOptions]="{standalone: true}">{{
+          schemaSaved ?
           ('general.dmm.update_schema' | translate) : ('general.dmm.save_schema' | translate) }} </nb-checkbox>
         <br>
         <br>
-        <nb-checkbox *ngIf="sourceData" [(ngModel)]="saveSource" [ngModelOptions]="{standalone: true}">{{ sourceSaved?
+        <nb-checkbox *ngIf="unsaved.source" [(ngModel)]="saveSource" [ngModelOptions]="{standalone: true}">{{
+          sourceSaved?
           ('general.dmm.update_source' | translate) : ('general.dmm.save_source' | translate) }} </nb-checkbox>
         <br>
         <br>
         <h3>
           <br>
-          <button *ngIf="!name" disabled nbButton appearance="outline" shape="semi-round" size="medium"
-            status="info" (click)="confirm()">
+          <button *ngIf="!name" disabled nbButton appearance="outline" shape="semi-round" size="medium" status="info"
+            (click)="confirm()">
             <i class="mx-1">{{ (save) ? ('general.dmm.confirmSave' | translate) : ('general.dmm.confirmEdit' |
               translate) }}</i>
           </button>

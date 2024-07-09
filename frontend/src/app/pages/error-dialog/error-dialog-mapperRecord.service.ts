@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { ErrorDialogAdapterComponent } from './error-dialog-adapter.component';
+import { ErrorDialogMapperRecordComponent } from './error-dialog-mapperRecord.component';
 import { NbDialogService } from '@nebular/theme';
 
 @Injectable()
-export class ErrorDialogAdapterService {
+export class ErrorDialogMapperRecordService {
   constructor(private modalService: NbDialogService) { }
 
   openErrorDialog(error: unknown): void {
-    this.modalService.open(ErrorDialogAdapterComponent, {
+    this.modalService.open(ErrorDialogMapperRecordComponent, {
       context: {
         error: error,
       },

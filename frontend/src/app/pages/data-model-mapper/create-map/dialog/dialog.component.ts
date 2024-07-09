@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NbDialogRef, NbDialogService } from '@nebular/theme';
 import { CreateMapComponent } from '../create-map.component';
-import { ErrorDialogAdapterService } from '../../../error-dialog/error-dialog-adapter.service';
+import { ErrorDialogMapperRecordService } from '../../../error-dialog/error-dialog-mapperRecord.service';
 
 @Component({
   selector: 'dialog',
@@ -12,7 +12,7 @@ export class DialogComponent implements OnInit {
 message
   constructor(
     protected ref: NbDialogRef<DialogComponent>,
-    private errorService: ErrorDialogAdapterService,
+    private errorService: ErrorDialogMapperRecordService,
     protected dialogService: NbDialogService,
 
   ) { }

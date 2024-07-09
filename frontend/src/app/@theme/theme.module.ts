@@ -23,8 +23,13 @@ import { CORPORATE_THEME } from './styles/theme.corporate';
 import { DARK_THEME } from './styles/theme.dark';
 import { DMM_THEME } from './styles/theme.dmm';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { createTranslateLoader } from '../app.module';
+//import { createTranslateLoader } from '../app.module';
 import { HttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http, '../../assets/i18n/', '.json');
+}
 
 const NB_MODULES = [
   NbLayoutModule,

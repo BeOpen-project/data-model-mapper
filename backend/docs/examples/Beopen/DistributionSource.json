@@ -1,0 +1,17 @@
+{
+  "id": "KJVK:30944472",
+  "title": "Distribution example CSV",
+  "description": "Distribution of open data portals in csv",
+  "accessUrl": [
+    "https://www.example.com/page.html"
+  ],
+  "downloadURL": "urn:ngsi-ld:DistributionDCAT-AP:items:ICPI:30944472",
+  "format": "text/csv",
+  "byteSize": 43503,
+  "checksum": "H3FR.",
+  "rights": "copyleft",
+  "mediaType": "text/csv",
+  "license": "CC-BY",
+  "releaseDate": "1997-05-06T05:04:10Z",
+  "modifiedDate": "1986-03-28T19:56:43Z"
+}

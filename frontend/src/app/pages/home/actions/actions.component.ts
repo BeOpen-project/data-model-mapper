@@ -4,7 +4,7 @@ import { NbMenuItem, NbMenuService, NbDialogService, NbToastrService, NbComponen
 import { TranslateService } from '@ngx-translate/core';
 import { Subject } from 'rxjs';
 import { takeUntil, filter } from 'rxjs/operators';
-import { AdapterEntry } from '../../../model/adapter/adapterEntry';
+import { MapperRecordEntry } from '../../../model/mapperRecord/mapperRecordEntry';
 import { ErrorDialogService } from '../../error-dialog/error-dialog.service';
 import { DMMService } from '../../data-model-mapper/dmm.service';
 import { StatusComponent } from '../status/status.component';
@@ -32,8 +32,8 @@ export class ActionsComponent implements OnInit, OnDestroy {
   dialogRef
   service;
   services: any[]
-  adapters: AdapterEntry[]
-  adaptersTypeModel: AdapterEntry[] = []
+  mapperRecords: MapperRecordEntry[]
+  mapperRecordsTypeModel: MapperRecordEntry[] = []
 
   private unsubscribe: Subject<void> = new Subject();
   actions: NbMenuItem[];
@@ -195,7 +195,7 @@ export class ActionsComponent implements OnInit, OnDestroy {
   onRegister = async (): Promise<void> => {
     try {
       this.value.status = this.value.status == "Completed" ? "Under development" : "Completed";
-      this.value = await this.dmmService.updateMap({ status: this.value.status, description: this.description, name: this.name, adapterId: this.value._id }, this.value.status, this.description, this.value.map, this.value.dataModel, this.value.sourceDataType, this.value.config, this.value.sourceDataURL, this.value.dataModelURL, this.value.dataModelID, this.value.sourceData, this.value.sourceDataID, this.value.path)
+      this.value = await this.dmmService.updateMap(this.value._id, this.name, this.value.status, this.description, this.value.map, this.value.dataModel, this.value.sourceDataType, this.value.config, this.value.sourceDataURL, this.value.dataModelURL, this.value.dataModelID, this.value.sourceData, this.value.sourceDataID, this.value.minioObjName, this.value.bucket, this.value.etag, this.value.path)
       this.showToast('primary', this.translate.instant('general.dmm.record_registered_message', { recordName: this.value.name }), '');
       this.updateResult.emit(this.value);
     } catch (error) {
@@ -206,7 +206,7 @@ export class ActionsComponent implements OnInit, OnDestroy {
   onDeRegister = async (): Promise<void> => {
     try {
       this.value.status = this.value.status == "Completed" ? "Under development" : "Completed";
-      this.value = await this.dmmService.updateMap({ status: this.value.status, description: this.description, name: this.name, adapterId: this.value._id }, this.value.status, this.description, this.value.map, this.value.dataModel, this.value.sourceDataType, this.value.config, this.value.sourceDataURL, this.value.dataModelURL, this.value.dataModelID, this.value.sourceData, this.value.sourceDataID, this.value.path)
+      this.value = await this.dmmService.updateMap(this.value._id, this.name, this.value.status, this.description, this.value.map, this.value.dataModel, this.value.sourceDataType, this.value.config, this.value.sourceDataURL, this.value.dataModelURL, this.value.dataModelID, this.value.sourceData, this.value.sourceDataID, this.value.minioObjName, this.value.bucket, this.value.etag, this.value.path)
       this.showToast('primary', this.translate.instant('general.dmm.record_deregistered_message', { recordName: this.value.name }), '');
       this.updateResult.emit(this.value);
     } catch (error) {

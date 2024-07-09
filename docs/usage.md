@@ -46,6 +46,8 @@ In the *Output* accordion, you can transform your source input file by clicking 
 
 ![](images/transform-2.png)
 
+If in your config.js file you have enabled the *mappingReport*, your last element of the array output will contain a report of your mapping, such as skipping files and object written to orion if enabled in *witers*
+
 ## Mapper editor
 
 The section **Map editor** is where you can save or edit mapper settings.
@@ -241,6 +243,8 @@ In this section you can see an ouptut preview (max 3 rows).
 
 Click **PREVIEW** and you'll see the output preview in an JSON editor similar to the ones mentioned for the *Source* and *Mapper* accordion, but this time the available view options are **View** and **Preview**.
 
+If in your config.js file you have enabled the *mappingReport*, your last element of the array output will contain a report of your mapping, such as skipping files and object written to orion if enabled in *witers*
+
 ![](images/output-2.png)
 
 ## Saving
@@ -273,6 +277,18 @@ and an update dialog will appear.
 
 The Map ID is can't be touched, but you can edit the other fields. 
 After finished, click **UPDATE** button.
+
+## Server endpoint
+
+If you want to use call the API endpoint with CURL, you can go to *Server endpoint* accordion and click the *UPDATE* button. You'll see the CURL snippet in a code view.
+
+![](images/curl.png)
+
+## Example payload
+
+If you just need an example payload, you can go to *example payload* accordion and click the *UPDATE* button. You'll see the body example in a read-only json editor.
+
+![](images/body.png)
 
 ## Config accordion
 

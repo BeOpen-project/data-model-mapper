@@ -24,21 +24,24 @@ const geoParser = require("../parsers/geoJsonParser.js");
 const jsonParser = require("../parsers/jsonParser.js");
 const orionWriter = require("../writers/orionWriter");
 const fileWriter = require("../writers/fileWriter");
-const log = require('../utils/logger').app(module);
+const log = require('../utils/logger')//.app(module);
+const { Logger } = log
+const logger = new Logger(__filename)
 const report = require('../utils/logger').report;
 const utils = require('../utils/utils.js');
+const common = require('../utils/common.js');
 const config = require("../../config.js");
-const service = require("../server/api/services/service");
+const { load } = require('nconf');
 
 
-process.env.validCount = 0;
-process.env.unvalidCount = 0;
-process.env.orionWrittenCount = 0;
-process.env.orionUnWrittenCount = 0;
-process.env.orionSkippedCount = 0;
-process.env.fileWrittenCount = 0;
-process.env.fileUnWrittenCount = 0;
-process.env.rowNumber = 0;
+config.validCount = 0;
+config.unvalidCount = 0;
+config.orionWrittenCount = 0;
+config.orionUnWrittenCount = 0;
+config.orionSkippedCount = 0;
+config.fileWrittenCount = 0;
+config.fileUnWrittenCount = 0;
+config.rowNumber = 0;
 
 var promises = [];
 
@@ -48,16 +51,16 @@ const processSource = async (sourceData, sourceDataType, mapData, dataModelSchem
 
     if (dataModelSchemaPath && mapData) {
 
-        log.debug("dataModelSchemaPath && mapData")
+        logger.debug("dataModelSchemaPath && mapData")
 
         if (sourceData) {
 
-            log.debug("sourceData:");
-            log.debug(sourceData);
-            log.debug(typeof sourceData)
+            logger.debug("sourceData:");
+            logger.debug(sourceData);
+            logger.debug(typeof sourceData)
 
             if (typeof sourceData === 'object') sourceData = sourceData.toString()
-            log.debug(sourceData);
+            logger.debug(sourceData);
 
             if (typeof sourceData === 'string') {
 
@@ -70,34 +73,34 @@ const processSource = async (sourceData, sourceDataType, mapData, dataModelSchem
                 var extension = sourceData.ext;
                 if (!extension) {
                     // No file path provided nor dataType
-                    log.error('The provided url/file path does not have file extension');
+                    logger.error('The provided url/file path does not have file extension');
                     return Promise.reject('The provided url / file path does not have file extension');
                 }
 
             } else if (!sourceDataType) {
                 // No file path provided nor dataType
-                log.error('No file path provided nor dataType');
+                logger.error('No file path provided nor dataType');
                 return Promise.reject('No file path provided nor dataType');
             }
 
             if (typeof mapData === 'string' && !mapData.startsWith("{")) {
                 mapData = utils.parseFilePath(mapData);
-                log.debug("typeof mapData === 'string' && !mapData.startsWith({})");
+                logger.debug("typeof mapData === 'string' && !mapData.startsWith({})");
             }
 
             try {
                 // Load Map form file/url or directly as object
                 var map = await mapHandler.loadMap(mapData[1] == "mapData" ? mapData[0] : mapData); // map is the file map loaded
-                log.debug("map is the file map loaded")
+                logger.debug("map is the file map loaded")
             } catch (error) {
-                log.error('There was an error while loading Map: ');
-                console.log(error)
+                logger.error('There was an error while loading Map: ');
+                logger.error(error)
                 return Promise.reject('There was an error while loading Map: ' + error);
             }
 
 
             if (map) {
-                log.info('Map loaded');
+                logger.info('Map loaded');
 
                 try {
 
@@ -106,23 +109,25 @@ const processSource = async (sourceData, sourceDataType, mapData, dataModelSchem
                     if ((targetDataModel = map['targetDataModel']) !== undefined) {
                         /* Check if provided TargetDataModel is valid, otherwise return error */
                         if ((dataModelSchemaPath = utils.getDataModelPath(targetDataModel)) === undefined) {
-                            log.error("Incorrect target Data Model name: " + targetDataModel);
+                            logger.error("Incorrect target Data Model name: " + targetDataModel);
                             process.res?.status(400).json({ "error": "Incorrect target Data Model name: " + targetDataModel })
                             return Promise.reject("Incorrect target Data Model name");
                         }
                     }
                     delete map['targetDataModel'];
                     var loadedSchema = await schemaHandler.parseDataModelSchema(dataModelSchemaPath); // here schema is loaded
-                    console.debug(loadedSchema.allOf[0].properties)
-                    log.info('Data Model Schema loaded and dereferenced');
+                    logger.info('Data Model Schema loaded and dereferenced');
 
                 } catch (error) {
-                    log.error('There was an error while processing Data Model schema: ');
-                    console.log(error)
-                    return Promise.reject(error);
+                    logger.error('There was an error while processing Data Model schema: ');
+                    logger.error(error)
+                    if (common.schema)
+                        loadedSchema = JSON.parse(JSON.stringify(common.schema))
+                    else
+                        return Promise.reject(error);
                 }
 
-                log.info('Starting to Map Source Object');
+                logger.info('Starting to Map Source Object');
 
                 switch (extension || sourceDataType.toLowerCase()) {
 
@@ -148,20 +153,20 @@ const processSource = async (sourceData, sourceDataType, mapData, dataModelSchem
                 return await Promise.resolve("OK");
 
             } else {
-                log.error('There was an error while loading Map File');
+                logger.error('There was an error while loading Map File');
                 return await Promise.reject('There was an error while loading Map File');
             }
 
         } else {
-            log.error('The source Data is not a valid file nor a valid path/url: ');
+            logger.error('The source Data is not a valid file nor a valid path/url: ');
             return await Promise.reject('The source Data is not a valid file nor a valid path/url');
         }
 
     } else if (!dataModelSchemaPath) {
-        log.error('Data Model Schema path not specified');
+        logger.error('Data Model Schema path not specified');
         return await Promise.reject('Data Model Schema path not specified');
     } else {
-        log.error('Map path not specified');
+        logger.error('Map path not specified');
         return await Promise.reject('Map path not specified');
     }
 
@@ -175,20 +180,21 @@ const processRow = async (rowNumber, row, map, schema, mappedHandler) => {
      * set globally for each row of this mapping, otherwise use the ones initialized in the Global Vars 
      **/
 
-    process.env.idSite = map['idSite'] || process.env.idSite;
-    process.env.idService = map['idService'] || process.env.idService;
-    process.env.idGroup = map['idGroup'] || process.env.idGroup;
+    config.idSite = map['idSite'] || config.idSite;
+    config.idService = map['idService'] || config.idService;
+    config.idGroup = map['idGroup'] || config.idGroup;
     delete map['idSite'];
     delete map['idService'];
     delete map['idGroup'];
     try {
-        var result = mapHandler.mapObjectToDataModel(rowNumber, utils.cleanRow(row), map, schema, process.env.idSite, process.env.idService, process.env.idGroup, config.entityNameField);
+        var result = mapHandler.mapObjectToDataModel(rowNumber, utils.cleanRow(row), map, schema, config.idSite, config.idService, config.idGroup, config.entityNameField);
     }
     catch (error) {
-        log.error(error.message)
+        logger.error(error.message)
     }
 
-    log.debug("Row: " + rowNumber + " - Object mapped correctly ");
+    logger.debug("Row: " + rowNumber + " - Object mapped correctly ");
+    logger.debug("Result: " + JSON.stringify(result))
     await mappedHandler(rowNumber, result, schema);
 
 };
@@ -200,19 +206,27 @@ const processMappedObject = async (objNumber, obj, modelSchema) => {
             switch (writer) {
 
                 case 'orionWriter':
-                    promises.push(await orionWriter.writeObject(objNumber, obj, modelSchema));
+                    try {
+                        logger.debug("obj : " + JSON.stringify(obj))
+                        promises.push(await orionWriter.writeObject(objNumber, obj, modelSchema));
+                    }
+                    catch (error) {
+                        logger.error(error.toString())
+                        logger.debug(JSON.stringify(error))
+                    }
                     break;
                 case 'fileWriter':
                     promises.push(await fileWriter.writeObject(objNumber, obj, config.fileWriter.addBlankLine));
                     break;
                 default:
-                    promises.push(await utils.sleep(0));
+                    promises.push(await common.sleep(0));
                     break;
             }
         });
     }
     catch (error) {
-        console.error(error)
+        logger.error(error.toString())
+        logger.debug(JSON.stringify(error))
     }
 };
 
@@ -221,9 +235,10 @@ const finalizeProcess = async () => {
     try {
         await Promise.all(promises);
 
+        //WARNING: this indeed restore global env but brokes the orion request
         /* If server mode, restore current per request configuration to the default ones */
-        if (config.mode.toLowerCase() === 'server')
-            utils.restoreDefaultConfs();
+        //if (config.mode.toLowerCase() === 'server')
+        //utils.restoreDefaultConfs();
 
         // Wait until all promises resolve (defined and pushed in processMappedObject handler)
         if (utils.isFileWriterActive()) {
@@ -241,7 +256,7 @@ const finalizeProcess = async () => {
         return await Promise.resolve();
 
     } catch (error) {
-        console.log(error)
+        logger.error(error)
         return await Promise.reject(error);
     }
 };
@@ -251,14 +266,14 @@ const finalizeProcess = async () => {
  **/
 const reinitializeProcessStatus = () => {
 
-    process.env.validCount = 0;
-    process.env.unvalidCount = 0;
-    process.env.orionWrittenCount = 0;
-    process.env.orionUnWrittenCount = 0;
-    process.env.orionSkippedCount = 0;
-    process.env.fileWrittenCount = 0;
-    process.env.fileUnWrittenCount = 0;
-    process.env.rowNumber = 0;
+    config.validCount = 0;
+    config.unvalidCount = 0;
+    config.orionWrittenCount = 0;
+    config.orionUnWrittenCount = 0;
+    config.orionSkippedCount = 0;
+    config.fileWrittenCount = 0;
+    config.fileUnWrittenCount = 0;
+    config.rowNumber = 0;
     promises = [];
 
 };

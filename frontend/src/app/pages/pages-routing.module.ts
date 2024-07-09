@@ -1,7 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { PagesComponent } from './pages.component';
-//import { AuthGuard } from '../auth/services/auth.guard';
+import { AuthGuard } from '../auth/services/auth.guard';
 
 const routes: Routes = [
   {
@@ -12,22 +12,22 @@ const routes: Routes = [
         path: '',
         redirectTo: 'home',
         pathMatch: 'full',
-        //canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
       },
       {
         path: 'account',
         loadChildren: () => import('./account/account.module').then((m) => m.AccountModule),
-        //canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
       },
       {
         path: 'dmm-editor',
         loadChildren: () => import('./data-model-mapper/dmm.module').then((m) => m.DMMModule),
-        //canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
       },
       {
         path: 'home',
         loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
-        //canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
       }
     ],
   },

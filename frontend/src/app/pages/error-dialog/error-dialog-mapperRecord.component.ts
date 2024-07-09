@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { NbDialogRef } from '@nebular/theme';
 import { Location } from '@angular/common';
-//import { LoginService } from '../../auth/login/login.service';
 @Component({
   selector: 'error-dialog',
-  templateUrl: 'error-dialog-adapter.component.html',
+  templateUrl: 'error-dialog-mapperRecord.component.html',
   //changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./error-dialog.component.scss']
 })
-export class ErrorDialogAdapterComponent implements OnInit {
+export class ErrorDialogMapperRecordComponent implements OnInit {
   public error;
 
   constructor(public ref: NbDialogRef<unknown>, private _location: Location){}//, private loginService: LoginService) {}

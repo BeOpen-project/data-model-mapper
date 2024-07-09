@@ -20,7 +20,9 @@ const csv = require('csv-stream');
 const request = require('request');
 const fs = require('fs');
 const utils = require('../utils/utils.js');
-const log = require('../utils/logger').app(module);
+const log = require('../utils/logger')//.app(module);
+const {Logger} = log
+const logger = new Logger(__filename)
 const config = require('../../config');
 
 
@@ -37,19 +39,19 @@ var options = {
 
 function sourceDataToRowStream(sourceData, map, schema, rowHandler, mappedHandler, finalizeProcess) {
 
-    if (process.env.delimiter) options.delimiter = process.env.delimiter;
+    if (config.delimiter) options.delimiter = config.delimiter;
 
     // The Source Data is the File Stream
     if (sourceData && utils.isReadableStream(sourceData)) {
 
-        log.debug("The Source Data is the File Stream")
+        logger.debug("The Source Data is the File Stream")
 
         try {
             fileToRowStream(sourceData, map, schema, rowHandler, mappedHandler, finalizeProcess);
         }
         catch (err) {
-            log.error('There was an error while getting buffer from source data: ');
-            console.log(err)
+            logger.error('There was an error while getting buffer from source data: ');
+            logger.error(err)
         }
     }
 
@@ -59,8 +61,8 @@ function sourceDataToRowStream(sourceData, map, schema, rowHandler, mappedHandle
             urlToRowStream(sourceData, map, schema, rowHandler, mappedHandler, finalizeProcess);
         }
         catch (error) {
-            console.error('There was an error while getting buffer from source data: \n');
-            console.log(error)
+            logger.error('There was an error while getting buffer from source data: \n');
+            logger.error(error)
         }
 
     // The Source Data is the file path
@@ -69,31 +71,31 @@ function sourceDataToRowStream(sourceData, map, schema, rowHandler, mappedHandle
             fileToRowStream(fs.createReadStream(sourceData.absolute), map, schema, rowHandler, mappedHandler, finalizeProcess);
         }
         catch (err) {
-            console.error('There was an error while getting buffer from source data: \n');
-            console.log(err)
+            logger.error('There was an error while getting buffer from source data: \n');
+            logger.error(err)
         }
     else
-        log.error("No valid Source Data was provided");
+        logger.error("No valid Source Data was provided");
 }
 
 function urlToRowStream(url, map, schema, rowHandler, mappedHandler, finalizeProcess) {
 
     var csvStream = csv.createStream(options);
-    var rowNumber = Number(process.env.rowNumber);
-    var rowStart = Number(process.env.rowStart);
-    var rowEnd = Number(process.env.rowEnd);
+    var rowNumber = Number(config.rowNumber);
+    var rowStart = Number(config.rowStart);
+    var rowEnd = Number(config.rowEnd);
 
     request(url).pipe(csvStream)
         .on('error', function (err) {
-            console.error(err);
+            logger.error(err);
         })
         .on('header', function (columns) {
-            //  console.log('Columns: ' + columns);
+            //  logger.info('Columns: ' + columns);
         })
         .on('data', function (data) {
 
-            rowNumber = Number(process.env.rowNumber) + 1;
-            process.env.rowNumber = rowNumber;
+            rowNumber = Number(config.rowNumber) + 1;
+            config.rowNumber = rowNumber;
             // outputs an object containing a set of key/value pair representing a line found in the csv file.
             if (rowNumber >= rowStart && rowNumber <= rowEnd) {
 
@@ -102,15 +104,15 @@ function urlToRowStream(url, map, schema, rowHandler, mappedHandler, finalizePro
         })
         .on('column', function (key, value) {
             // outputs the column name associated with the value found
-            // console.log('#' + key + ' = ' + value);
+            // logger.info('#' + key + ' = ' + value);
         })
         .on('end', async function () {
             try {
                 await finalizeProcess();
 
             } catch (error) {
-                log.error("Error While finalizing the streaming process: ");
-                console.log(error)
+                logger.error("Error While finalizing the streaming process: ");
+                logger.error(error)
             }
         });
 }
@@ -119,21 +121,21 @@ function urlToRowStream(url, map, schema, rowHandler, mappedHandler, finalizePro
 function fileToRowStream(inputData, map, schema, rowHandler, mappedHandler, finalizeProcess) {
 
     var csvStream = csv.createStream(options);
-    var rowNumber = Number(process.env.rowNumber);
-    var rowStart = Number(process.env.rowStart);
-    var rowEnd = Number(process.env.rowEnd);
+    var rowNumber = Number(config.rowNumber);
+    var rowStart = Number(config.rowStart);
+    var rowEnd = Number(config.rowEnd);
 
     inputData.pipe(csvStream)
         .on('error', function (err) {
-            console.error(err);
+            logger.error(err);
         })
         .on('header', function (columns) {
-            // console.log(columns);
+            logger.debug(columns)
         })
         .on('data', function (row) {
 
             rowNumber++;
-            process.env.rowNumber = rowNumber;
+            config.rowNumber = rowNumber;
             // outputs an object containing a set of key/value pair representing a line found in the csv file.
             if (rowNumber >= rowStart && rowNumber <= rowEnd) {
 
@@ -143,15 +145,15 @@ function fileToRowStream(inputData, map, schema, rowHandler, mappedHandler, fina
         })
         .on('column', function (key, value) {
             // outputs the column name associated with the value found
-            //console.log('#' + key + ' = ' + value);
+            //logger.info('#' + key + ' = ' + value);
         })
         .on('end', async function () {
             try {
                 await finalizeProcess();
 
             } catch (error) {
-                log.error("Error While finalizing the streaming process: ");
-                console.log(error)
+                logger.error("Error While finalizing the streaming process: ");
+                logger.error(error)
             }
         });
 

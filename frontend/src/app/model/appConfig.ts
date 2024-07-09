@@ -34,6 +34,10 @@ export interface I18n {
 }
 
 export interface DataModelMapper {
+  alwaysPromptSaveSchema: any;
+  alwaysPromptSaveSource: any;
+  minioBuckets: any;
+  minioCache: any;
   default_mapper_base_url: string;
   default_mapper_url: string,
   default_map_ID: string,

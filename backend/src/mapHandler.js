@@ -25,7 +25,9 @@ const unorm = require('unorm');
 const staticPattern = /static:(.*)/;
 const dotPattern = /(.*)\.(.*)/;
 
-const log = require('./utils/logger').app(module);
+const log = require('./utils/logger')//.app(module);
+const { Logger } = log
+const logger = new Logger(__filename)
 const Debugger = require('./utils/debugger');
 const report = require('./utils/logger').report;
 const service = require("./server/api/services/service")
@@ -33,7 +35,7 @@ const service = require("./server/api/services/service")
 const loadMap = (mapData) => {
 
     if (typeof mapData === 'object' && mapData.absolute) {
-        log.info('Loading Map File');
+        logger.info('Loading Map File');
         return new Promise(function (resolve, reject) {
             resolve(JSON.parse(fs.readFileSync(mapData.absolute, 'utf8')));
         });
@@ -145,13 +147,12 @@ const objectHandler = (parsedSourceKey, normSourceKey, schemaDestKey, source) =>
 };
 
 const extractFromNestedField = (source, field) => {
-    console.debug(field)
     let layers
     try {
         layers = field.split('.')
     }
     catch (error) {
-        console.error(error.message)
+        logger.error(error.message)
     }
     let value = source
     for (let sublayer in layers) {
@@ -312,13 +313,19 @@ const mapObjectToDataModel = (rowNumber, source, map, modelSchema, site, service
 
             /********************* Perform actual mapping with parsed and normalized source key (parsedNorm) **/
 
+            if (typeof parsedSourceKey == "string")
+                parsedSourceKey = parsedSourceKey.replaceAll('"', '')
+
+            logger.debug(parsedSourceKey)
+            logger.debug(typeof parsedSourceKey)
+
             var converter = mapper.makeConverter({ [mapDestKey]: parsedSourceKey });
 
             try {
                 singleResult = converter(source);
             } catch (error) {
-                console.log(error)
-                log.error(`There was an error: ${error} while processing ${parsedSourceKey} field`);
+                //logger.error(error)
+                logger.error(`There was an error: ${error} while processing ${parsedSourceKey} field`);
                 continue;
             }
 
@@ -343,25 +350,37 @@ const mapObjectToDataModel = (rowNumber, source, map, modelSchema, site, service
             else if (config.ignoreValidation)
                 result[mapDestKey] = singleResult[mapDestKey];
             else {
-                log.debug(`Skipping source field: ${JSON.stringify(mapSourceKey)} because the value ${JSON.stringify(singleResult)} is not valid for mapped key: ${mapDestKey}`);
+                logger.debug(`Skipping source field: ${JSON.stringify(mapSourceKey)} because the value ${JSON.stringify(singleResult)} is not valid for mapped key: ${mapDestKey}`);
             }
 
         } else {
-            log.info(`The mapped key: ${mapDestKey} is not present in the selected Data Model Schema`);
+            logger.info(`The mapped key: ${mapDestKey} is not present in the selected Data Model Schema`);
         }
     }
 
-    if (((NGSI_entity() == undefined) && global.process.env.NGSI_entity || NGSI_entity()).toString() === 'true') {
+    if (((NGSI_entity() == undefined) && config.NGSI_entity || NGSI_entity()).toString() === 'true') {
 
         // Append type field, according to the Data Model Schema
         try {
-            result.type = modelSchema?.allOf ? modelSchema.allOf[0]?.properties?.type?.enum[0] : "Unknown Type";
+            logger.debug(result)
+            if (!result.type)
+                result.type = modelSchema?.allOf ? modelSchema.allOf ? modelSchema.allOf[0]?.properties?.type?.enum ? modelSchema.allOf[0]?.properties?.type?.enum[0] : modelSchema?.properties?.type?.enum ? modelSchema.properties.type.enum[0] || "Thing" : "Thing" : "Thing" : "Thing";
+            result.type = result.type.replaceAll(" ", "")
             // Generate unique id for the mapped object (according to Id Pattern)
-            result.id = utils.createSynchId(result ? result.type : "", site || "", service || "", group || "", result ? result[entityIdField] : "", isIdPrefix || "", rowNumber);
+            result.id = utils.createSynchId(
+                result ? result.type : "",
+                //"", 
+                site,// || "",
+                service,// || "",
+                group,// || "",
+                result ? result[entityIdField] : "",
+                isIdPrefix || "",
+                rowNumber);
             delete result[entityIdField];
+            result.id = result.id.replaceAll(" ", "")
         } catch (error) {
-            console.log(error)
-            log.error("UnknownEntity")
+            logger.error(error)
+            logger.error("UnknownEntity")
         }
     }
     else
@@ -371,9 +390,9 @@ const mapObjectToDataModel = (rowNumber, source, map, modelSchema, site, service
     * Despite single validations, the following one is mandatory to be successful
     **/
     if (checkResultWithDestModelSchema(result, mapDestKey, modelSchema, rowNumber)) {
-        log.debug('Mapped object, number: ' + rowNumber + ' is compliant with target Data Model');
+        logger.debug('Mapped object, number: ' + rowNumber + ' is compliant with target Data Model');
         report.info('Mapped object, number: ' + rowNumber + ' is compliant with target Data Model');
-        process.env.validCount++;
+        config.validCount++;
         return result;
 
     } else {
@@ -383,8 +402,8 @@ const mapObjectToDataModel = (rowNumber, source, map, modelSchema, site, service
             JSON.stringify(result) +
             '\n--------------------------------------------------------------------------------\n');
 
-        log.debug('Mapped object, number: ' + rowNumber + ', id: ' + result.id + ' is not compliant the target Data Model! Skipping!');
-        process.env.unvalidCount++;
+        logger.debug('Mapped object, number: ' + rowNumber + ', id: ' + result.id + ' is not compliant the target Data Model! Skipping!');
+        config.unvalidCount++;
         return undefined;
     }
 
@@ -394,8 +413,11 @@ const mapObjectToDataModel = (rowNumber, source, map, modelSchema, site, service
 *  and checks if constraints present in the destination Model object are met by the source value
 **/
 const checkPairWithDestModelSchema = (mappedObject, destKey, modelSchema, rowNumber) => {
-
+    
+    //if (config.noSchema)
+    //        return true
     var result = validator.validateSourceValue(mappedObject, modelSchema, true, rowNumber);
+    logger.debug("Validator result : ", result)
     return result;
 
 };
@@ -404,6 +426,8 @@ const checkPairWithDestModelSchema = (mappedObject, destKey, modelSchema, rowNum
  **/
 const checkResultWithDestModelSchema = (mappedObject, destKey, modelSchema, rowNumber) => {
 
+    //if (config.noSchema)
+    //    return true
     return validator.validateSourceValue(mappedObject, modelSchema, false, rowNumber);
 
 };

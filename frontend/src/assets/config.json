@@ -3,18 +3,22 @@
     "checkConsentAtOperator": false,
     "dmmGuiUrl": "http://localhost:12345/data-model-mapper-gui",
     "auth": {
-      "idmHost": "https://idm.cape-suite.eu/auth",
-      "clientId": "cape-service-sdk",
+      "idmHost": "https://platform.beopen-dep.it/auth",
+      "clientId": "beopen-dashboard",
       "disableAuth": "false",
       "authProfile": "oidc",
-      "authRealm": "Cape"
+      "authRealm": "master"
     },
-    "mailTo":"support@dmm.eu",
+    "mailTo":"antonio.filograna@eng.it",
     "detailedErrors" : true
   },
   "data_model_mapper" : {
     "default_mapper_url":"http://localhost:5500/api/map/transform",
-    "default_mapper_base_url":"http://localhost:5500/api"
+    "default_mapper_base_url":"http://localhost:5500/api",
+    "minioCache" : false,
+    "minioBuckets" : [],
+    "alwaysPromptSaveSource" : false,
+    "alwaysPromptSaveSchema" : false
   },
   "i18n": {
     "locale": "en",

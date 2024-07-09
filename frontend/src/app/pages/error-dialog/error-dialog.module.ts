@@ -4,14 +4,14 @@ import { NbCardModule,  NbAccordionModule } from '@nebular/theme';
 import { ErrorDialogService } from './error-dialog.service';
 import { CommonModule, Location } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { ErrorDialogAdapterComponent } from './error-dialog-adapter.component';
-import { ErrorDialogAdapterService } from './error-dialog-adapter.service';
+import { ErrorDialogMapperRecordComponent } from './error-dialog-mapperRecord.component';
+import { ErrorDialogMapperRecordService } from './error-dialog-mapperRecord.service';
 
 @NgModule({
   imports: [TranslateModule.forChild({}),NbAccordionModule, CommonModule, NbCardModule, TranslateModule.forChild()],
-  declarations: [ErrorDialogComponent,  ErrorDialogAdapterComponent,],
-  exports: [ErrorDialogComponent,  ErrorDialogAdapterComponent],
-  entryComponents: [ErrorDialogComponent,  ErrorDialogAdapterComponent],
-  providers: [ErrorDialogService, ErrorDialogAdapterService, Location],
+  declarations: [ErrorDialogComponent,  ErrorDialogMapperRecordComponent,],
+  exports: [ErrorDialogComponent,  ErrorDialogMapperRecordComponent],
+  entryComponents: [ErrorDialogComponent,  ErrorDialogMapperRecordComponent],
+  providers: [ErrorDialogService, ErrorDialogMapperRecordService, Location],
 })
 export class ErrorDialogModule {}

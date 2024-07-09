@@ -26,16 +26,15 @@ const isFileStream = require('is-file-stream');
 const extensionPattern = /\.[0-9a-z]+$/i;
 const httpPattern = /http:\/\//g;
 const filenameFromPathPattern = /^(.:)?\\(.+\\)*(.+)\.(.+)$/;
-const base64Encode = require('js-base64')
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
+const minioWriter = require("../writers/minioWriter")
+const { isMinioWriterActive, sleep } = require('./common')
+const log = require('./logger')
+const { Logger } = log
+const logger = new Logger(__filename)
 
 function ngsi() {
-    return (((apiOutput.NGSI_entity == undefined) && global.process.env.NGSI_entity || apiOutput.NGSI_entity).toString() === 'true')
+    return (((apiOutput.NGSI_entity == undefined) && config.NGSI_entity || apiOutput.NGSI_entity).toString() === 'true')
 }
-
 
 const cleanString = (string) => {
     var result = '';
@@ -144,7 +143,7 @@ const uuid = () => {
  */
 const createSynchId = (type, site, service, group, entityName, isIdPrefix, rowNumber) => {
     if (type === undefined)
-         type = "SomeType"
+        type = "SomeType"
     if (entityName) {
         if (isIdPrefix)
             entityName = ('' + entityName).replace(/\s/g, "") + "-" + rowNumber;
@@ -155,7 +154,7 @@ const createSynchId = (type, site, service, group, entityName, isIdPrefix, rowNu
     }
 
     // Group field is optional
-    return "urn:ngsi-ld:" + type + ":" + site + ":" + service + (group ? (":" + group) : "") + ":" + cleanIdString(entityName);
+    return "urn:ngsi-ld:" + type + ":" + (site ? site + ":" : "") + (service ? service + ":" : "") + (group ? group + ":" : "") + cleanIdString(entityName);
 };
 
 
@@ -204,13 +203,13 @@ function spaceCleaner(object) {
 
 const bodyMapper = (body) => {
 
-    if (body.getMapperList) 
-        return {getMapperList : true}
-
-    if (body.adapterID) body.mapID = body.adapterID
+    if (body.mapperRecordID || body.adapterID) body.mapID = body.mapperRecordID || body.adapterID
 
     let sourceData = {
         name: body.sourceDataIn,
+        minioObjName: body.sourceDataMinio?.name || body.prefix,
+        minioBucketName: body.sourceDataMinio?.bucket || body.bucketName,
+        //minioObjEtag: body.sourceDataMinio.etag,
         id: body.sourceDataID,
         type: body.sourceDataType,
         url: body.sourceDataURL,
@@ -225,16 +224,12 @@ const bodyMapper = (body) => {
         map = {
             id: body.mapID
         }
-        console.debug("body.mapID")
-        console.debug(body.mapID)
     }
-    else if (body.mapData){
+    else if (body.mapData) {
         map = [
             body.mapData,
             "mapData"
         ]
-        console.debug("body.mapData")
-        console.debug(body.mapData)
     }
 
     let dataModel = {
@@ -245,8 +240,6 @@ const bodyMapper = (body) => {
         schema_id: body.dataModel?.$id
     }
 
-    console.debug(map)
-
     return {
         sourceData,
         map,
@@ -254,49 +247,86 @@ const bodyMapper = (body) => {
     }
 };
 
-const sendOutput = () => {
+const sendOutput = async () => {
     if (config.deleteEmptySpaceAtBeginning) apiOutput.outputFile = spaceCleaner(apiOutput.outputFile)
-    if (parseInt((apiOutput.outputFile[apiOutput.outputFile.length - 1].MAPPING_REPORT.Mapped_and_NOT_Validated_Objects)[0].charAt(0))) process.res.status(400).send({ errors: apiOutput.outputFile.errors || "Validation errors", report: apiOutput.outputFile[apiOutput.outputFile.length - 1] })
-    else if (!config.mappingReport) process.res.send(apiOutput.outputFile.slice(0, apiOutput.outputFile.length - 1));
+    //if (parseInt((apiOutput.outputFile[apiOutput.outputFile.length - 1].MAPPING_REPORT.Mapped_and_NOT_Validated_Objects)[0].charAt(0))) process.res.status(400).send({ errors: apiOutput.outputFile.errors || "Validation errors", report: apiOutput.outputFile[apiOutput.outputFile.length - 1] })
+    //else 
+    if (!config.mappingReport) process.res.send(apiOutput.outputFile.slice(0, apiOutput.outputFile.length - 1));
     else process.res.send(apiOutput.outputFile);
     apiOutput.outputFile = [];
+    logger.debug("Processing time : ", Date.now() - process.env.start)
 };
 
-const printFinalReportAndSendResponse = async (logger) => {
+const printFinalReportAndSendResponse = async (loggerr) => {
 
     await logger.info('\n--------  MAPPING REPORT ----------\n' +
-        '\t Processed objects: ' + process.env.rowNumber + '\n' +
-        '\t Mapped and Validated Objects: ' + process.env.validCount + '/' + process.env.rowNumber + '\n' +
-        '\t Mapped and NOT Validated Objects: ' + process.env.unvalidCount + '/' + process.env.rowNumber + '\n' +
+        '\t Processed objects: ' + config.rowNumber + '\n' +
+        '\t Mapped and Validated Objects: ' + config.validCount + '/' + config.rowNumber + '\n' +
+        '\t Mapped and NOT Validated Objects: ' + config.unvalidCount + '/' + config.rowNumber + '\n' +
         '-----------------------------------------');
+
+    if (config.validCount + config.unvalidCount < config.rowNumber)
+        config.unvalidCount = config.rowNumber - config.validCount
 
     if (config.mode == 'server') {
         //Mapping report in output file
 
+        while (isOrionWriterActive() && (config.orionWrittenCount + config.orionUnWrittenCount < config.validCount)) {
+            await sleep(1)
+        }
+
         apiOutput.outputFile[apiOutput.outputFile.length] = {
             MAPPING_REPORT: {
-                Processed_objects: process.env.rowNumber,
-                Mapped_and_Validated_Objects: process.env.validCount + '-' + process.env.rowNumber,
-                Mapped_and_NOT_Validated_Objects: process.env.unvalidCount + '-' + process.env.rowNumber
-            }
+                Processed_objects: config.rowNumber,
+                Mapped_and_Validated_Objects: config.validCount + '-' + config.rowNumber,
+                Mapped_and_NOT_Validated_Objects: config.unvalidCount + '-' + config.rowNumber,
+            },
+            ORION_REPORT: isOrionWriterActive() ? {
+                "Object written to Orion Context Broker": config.orionWrittenCount.toString() + '/' + config.validCount.toString(),
+                "Object NOT written to Orion Context Broker": config.orionUnWrittenCount.toString() + '/' + config.validCount.toString(),
+                "Object SKIPPED": config.orionSkippedCount.toString() + '/' + config.validCount.toString()
+            } : "Orion writer not enabled"
         }
 
         try {
-            sendOutput();
+            /*if (isMinioWriterActive()) {
+                logger.debug("minio is enabled")
+                for (let obj of apiOutput.outputFile) {
+                    logger.debug("minio writing")
+                    try {
+                        logger.debug("apiOutput.minioObj.name")
+                        logger.debug(apiOutput.minioObj.name)
+                        let bucketName = apiOutput.minioObj.bucket || config.minioWriter.defaultOutputFolderName || "output"
+                        let objectName = (obj[apiOutput.minioObj.name]?.concat(obj[config.entityNameField] || obj.id || Date.now().toString()) || apiOutput.minioObj.name.concat("/output_processed_").concat(Date.now().toString()) || Date.now().toString())//.toLowerCase()
+                        logger.debug("bucket name")
+                        logger.debug(bucketName)
+                        logger.debug("object name")
+                        logger.debug(objectName)
+                        if (!obj.MAPPING_REPORT && !obj.ORION_REPORT)
+                            await minioWriter.stringUpload(bucketName, objectName, obj)
+                    }
+                    catch (error) {
+                        logger.error(error)
+                    }
+                    logger.debug("minio writing done")
+                }
+                logger.debug("written to minio")
+            }*/
+            await sendOutput();
         }
         catch (error) {
-            console.log(error.message)
+            logger.error(error.message)
             apiOutput.outputFile = [];
         }
     }
 };
 
 const addAuthenticationHeader = (headers) => {
-    if (process.env.OAUTH_TOKEN) {
-        headers.Authorization = ('Bearer ' + process.env.OAUTH_TOKEN);
+    if (config.OAUTH_TOKEN) {
+        headers.Authorization = ('Bearer ' + config.OAUTH_TOKEN);
     }
-    if (process.env.PAUTH_TOKEN) {
-        headers['x-auth-token'] = process.env.PAUTH_TOKEN;
+    if (config.PAUTH_TOKEN) {
+        headers['x-auth-token'] = config.PAUTH_TOKEN;
     }
 };
 
@@ -363,28 +393,25 @@ const promiseTimeout = (ms, promise) => {
  * Restore the default configurations, if any was ovverriden by the request ones
  */
 const restoreDefaultConfs = () => {
-    global.process.env.rowStart = global.process.env.old_rowStart;
-    global.process.env.rowEnd = global.process.env.old_rowEnd;
-    global.process.env.orionUrl = global.process.env.old_orionUrl;
-    global.process.env.updateMode = global.process.env.old_updateMode;
-    global.process.env.fiwareService = global.process.env.old_fiwareService;
-    global.process.env.fiwareServicePath = global.process.env.old_fiwareServicePath;
-    global.process.env.outFilePath = global.process.env.old_outFilePath;
-    global.process.env.idSite = global.process.env.old_idSite;
-    global.process.env.idService = global.process.env.old_idService;
-    global.process.env.idGroup = global.process.env.old_idGroup;
+    config.rowStart = config.old_rowStart;
+    config.rowEnd = config.old_rowEnd;
+    config.orionUrl = config.old_orionUrl;
+    config.updateMode = config.old_updateMode;
+    config.fiwareService = config.old_fiwareService;
+    config.fiwareServicePath = config.old_fiwareServicePath;
+    config.outFilePath = config.old_outFilePath;
+    config.idSite = config.old_idSite;
+    config.idService = config.old_idService;
+    config.idGroup = config.old_idGroup;
 };
 
 const encode = (encoding, value) => {
-    console.log("------------------------------------------------")
-    console.log(value)
     if (encoding == "base64")
-        return base64.encode(value)//base64Encode.encode(value)//base64.encode(value)
+        return base64.encode(value)
     return value
 };
 
 module.exports = {
-    sleep: sleep,
     cleanString: cleanString,
     cleanPair: cleanPair,
     cleanRow: cleanRow,
@@ -404,10 +431,11 @@ module.exports = {
     isFileWriterActive: isFileWriterActive,
     isOrionWriterActive: isOrionWriterActive,
     isWriterActive: isWriterActive,
+    isMinioWriterActive: isMinioWriterActive,
     isReadableFileStream: isReadableFileStream,
     isReadableStream: isReadableStream,
     promiseTimeout: promiseTimeout,
     restoreDefaultConfs: restoreDefaultConfs,
     encode: encode,
-    bodyMapper: bodyMapper
+    bodyMapper: bodyMapper,
 };

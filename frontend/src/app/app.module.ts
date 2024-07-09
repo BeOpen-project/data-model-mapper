@@ -31,13 +31,13 @@ import {
 import { ErrorDialogModule } from './pages/error-dialog/error-dialog.module';
 import { HttpConfigInterceptor } from './http.interceptor';
 import { ReactiveFormsModule } from '@angular/forms';
-//import { OidcUserInformationService } from './auth/services/oidc-user-information.service';
+import { OidcUserInformationService } from './auth/services/oidc-user-information.service';
 import { NbRoleProvider, NbSecurityModule } from '@nebular/security';
 
 import { NbAuthModule, NbOAuth2AuthStrategy } from '@nebular/auth';
-//import { OidcJWTToken } from './auth/model/oidc';
-//import { AuthGuard } from './auth/services/auth.guard';
-//import { LoginModule } from './auth/login/login.module';
+import { OidcJWTToken } from './auth/model/oidc';
+import { AuthGuard } from './auth/services/auth.guard';
+import { LoginModule } from './auth/login/login.module';
 
 export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -68,7 +68,7 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
     NbWindowModule.forRoot(),
     NbToastrModule.forRoot(),
     NgxConfigureModule.forRoot(),
-    //LoginModule,
+    LoginModule,
     NgbModule,
     ErrorDialogModule,
     NbBadgeModule,
@@ -85,22 +85,23 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
         NbOAuth2AuthStrategy.setup({
           name: 'oidc',
           clientId: '',
-          //token: {
-           // class: OidcJWTToken,
-          //},
+          token: {
+            class: OidcJWTToken,
+          },
         }),
       ],
     }),
   ],
   providers: [
     { provide: NgxConfigureOptions, useClass: AppOptions },
-    //{ provide: NbRoleProvider, useClass: OidcUserInformationService },
-    //AuthGuard,
+    { provide: NbRoleProvider, useClass: OidcUserInformationService },
+    AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpConfigInterceptor,
       multi: true,
-    },
+    }
+
   ],
   bootstrap: [AppComponent],
 })

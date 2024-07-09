@@ -19,3 +19,26 @@ label {
   top: 1rem;
   cursor: pointer;
 }
+
+pre {
+  background-color: #c0c0c0;
+  padding: 10px;
+  overflow-x: auto;
+  max-width: 80vw; /* Imposta la larghezza massima in percentuale rispetto alla larghezza dello schermo */
+}
+
+code {
+  font-family: 'Courier New', Courier, monospace;
+  color: #333;
+  white-space: pre-wrap; /* Per gestire i ritorni a capo */
+}
+
+#selectSource {
+  width:500px//fit-content
+}
+
+//@use '../../styles/themes' as *;
+
+.control-status-example {
+  color: nb-theme(color-basic-100);
+}

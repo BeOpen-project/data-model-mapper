@@ -7,6 +7,7 @@
     "cancel": "Cancel",
     "edit": "Edit",
     "errors": "Some errors occurred.",
+    "welcome": "Welcome to Data model mapper",
     "menu": {
       "home": "Home",
       "editor": "Mapper editor",
@@ -96,9 +97,9 @@
       "update_field_list" : "Update field list",
       "generate_mapper" : "Generate mapper"
     },
-    "adapters": {
+    "mapperRecords": {
       "name": "Name",
-      "adapterId": "Adapter ID",
+      "mapperRecordId": "MapperRecord ID",
       "status" : "Status",
       "description" : "Description",
       "validationErrors": "There are validation errors in the mapper description."
@@ -148,7 +149,8 @@
       "id" : "ID",
       "name" : "Name",
       "dataModel" : "Data model",
-      "view_editor" : "View on editor"
+      "view_editor" : "View on editor",
+      "update": "Update"
     }
   },
   "login": {
@@ -156,7 +158,7 @@
     "logout_button": "Logout",
     "logout_error": "There was an error while perfoming logout",
     "select_login": "Select your Digital Identity Provider",
-    "login_with_local_idm": "Login with DMM",
+    "login_with_local_idm": "Login with Data model mapper",
     "login_with_local_idm_description": "DMM uses natively the Keycloak IdM",
     "keycloak_idm_link": "Sign in with Keycloak IdM",
     "login_with_eidas": "Login with eIDAS",
@@ -167,7 +169,7 @@
       "new_account_use_data": "Cape will use your Email, First and Last Name, for more information see our ",
       "authorize_and_create": "Authorize and Create",
       "do_not_authorize_and_cancel": "Do not authorize and cancel",
-      "error_message": "An error occurred contacting CaPe!",
+      "error_message": "An error occurred contacting Data model mapper!",
       "no_cape_account": "Sorry! No Cape account associated with your email!"
     }
   }

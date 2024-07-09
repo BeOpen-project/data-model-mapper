@@ -7,6 +7,7 @@
     "cancel": "Annulla",
     "edit": "Modifica",
     "errors": "Si sono verificati degli errori.",
+    "welcome": "Benvenuto nel Data model mapper",
     "menu": {
       "home": "Home",
       "editor": "Mapper editor",
@@ -96,12 +97,12 @@
       "update_field_list" : "Aggiorna lista campi",
       "generate_mapper" : "Genera mapper"
     },
-    "adapters": {
+    "mapperRecords": {
       "name": "Nome",
-      "adapterId": "ID adattatore",
+      "mapperRecordId": "ID adattatore",
       "status" : "Stato",
       "description" : "Descrizione",
-      "validationErrors": "Ci sono degli errori di validazione nella descrizione dell'adapter inserito."
+      "validationErrors": "Ci sono degli errori di validazione nella descrizione dell'mapperRecord inserito."
     },
     "dmm": {
       "reset_config" : "Reset configurazione",
@@ -148,7 +149,8 @@
       "id" : "ID",
       "name" : "Nome",
       "dataModel" : "Data model",
-      "view_editor" : "Vedi nell'editor"
+      "view_editor" : "Vedi nell'editor",
+      "update": "Aggiorna"
     }
   },
   "login": {
@@ -167,7 +169,7 @@
       "new_account_use_data": "Cape userà la tua Email, il tuo Nome e Cognome, per ulteriori informazioni vedi la nostra ",
       "authorize_and_create": "Autorizza e Crea",
       "do_not_authorize_and_cancel": "Non autorizzo e annulla",
-      "error_message": "E' avvenuto un errore contattando CaPe!",
+      "error_message": "E' avvenuto un errore contattando Data model mapper!",
       "no_cape_account": "Spiacente! Nessun CaPe account associata alla tua mail!"
     }
   }

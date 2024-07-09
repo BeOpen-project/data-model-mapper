@@ -8,7 +8,7 @@ import { NbDialogRef } from '@nebular/theme';
 })
 export class ExportFileComponent implements OnInit {
   name
-  adapterId
+  mapperRecordId
   mode
 
   constructor(protected ref: NbDialogRef<ExportFileComponent>) { }

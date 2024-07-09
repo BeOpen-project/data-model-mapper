@@ -26,10 +26,16 @@ var config = {
     mode: 'commandLine', // commandLine or server 
     logLevel: 'debug', // error, warn, info, verbose, debug or silly
     httpPort: 8081, // PORT where the application will listen if ran in server mode
+    host: "",
+    externalPort: undefined, //use undefined if, in prod, you are exposing the data model mapper server with domain instead of IP:port
     modelSchemaFolder: path.join(__dirname, "dataModels"), // DO NOT TOUCH - Data Model schemas folder
-    NGSI_entity: true, // enable or disable ngsi entity source 
+    NGSI_entity: false, // enable or disable ngsi entity source 
     ignoreValidation: false, // ignore validation errors
+    disableAjv: false, // disable an external validator,
     mappingReport: false, // disable output mapping report
+    logSaveInterval: 30000, // log backup interval
+    idVersion: 2, // 1 for 2023 version compatibility mode, 2 for newest version
+    noSchema: false,
 
     /********************** 3 INPUTS CONFIGURATION ************************
     * Followings are related to Mapping MANDATORY inputs (source, map, data model).
@@ -42,18 +48,18 @@ var config = {
 
     /************************** Rows/Objects proccesing range *************
     * Following indicates the start and end row/object of the input file to be proccessed
-    * To indicate "until end", use Infinity in rowEnd
+    * To indicate "until end", use Number.MAX_VALUE in rowEnd
     **/
     rowStart: 0,
-    rowEnd: Infinity,
+    rowEnd: Number.MAX_VALUE,
 
     /************************** Output string clean ***********************
     * The regex to delete from the output string fields
     * **/
 
-    regexClean:{
-        custom : /\0/g, // the regex provided from the request in server mode
-        default : /\n|'|<|>|"|'|=|;|\(|\)/g // DO NOT TOUCH this is the default value for ngsi entity 
+    regexClean: {
+        custom: /\0/g, // the regex provided from the request in server mode
+        default: /\n|'|<|>|"|'|=|;|\(|\)/g // DO NOT TOUCH this is the default value for ngsi entity 
     },
 
     /************************* CSV Parser configuration *******************
@@ -64,9 +70,9 @@ var config = {
     deleteEmptySpaceAtBeginning: true, // If set as true, the empty space at the beginning of the string will be deleted
 
     /********************** OUTPUT/WRITERS CONFIGURATION ****************** 
-    * Following is related to writers which will handle mapped objects. Possible values: fileWriter, orionWriter
+    * Following is related to writers which will handle mapped objects. Possible values: fileWriter, orionWriter, minioWriter
     **/
-    writers: ["orionWriter", "fileWriter"],
+    writers: ["orionWriter", "fileWriter", "minioWriter"],
 
     /********************* OUTPUT ID PATTERN CONFIGURATION ****************
     * Following used for id pattern creation
@@ -115,7 +121,11 @@ config.orionWriter = {
     skipExisting: false, // Skip mapped entities (same ID) already existing in the CB, otherwise update them according to updateMode parameter
     updateMode: "APPEND", // Possible values: APPEND, REPLACE. If to append or replace attributes in the existing entities. Used only if skipExisting = false
     maxRetry: 5, // Max retry number per entity POST, until the entity is skipped and marked as NOT WRITTEN
-    parallelRequests: 30 // DO NOT TOUCH - Internal configuration for concurrent request parallelization
+    parallelRequests: 30, // DO NOT TOUCH - Internal configuration for concurrent request parallelization
+    keyValues: false, //If false, transforms Mapped object to an Orion Entity (explicit types in attributes)
+    keyValuesOption : '?options=keyValues',
+    relativeUrl : "/v2/entities",
+    protocol : "v1"
 };
 
 /*************** File Wirter CONFIGURATION *******************************/
@@ -123,5 +133,36 @@ config.fileWriter = {
     filePath: "./result.json",
     addBlankLine: true
 };
+
+/*************** Auth CONFIGURATION **************************************/
+config.authConfig = {
+    idmHost: "https://hostDomain/auth",
+    userInfoEndpoint : "",
+    clientId: "",
+    disableAuth: "false",
+    authProfile: "oidc",
+    authRealm: "",
+    introspect: false, // validate jwt with keycloak
+    publicKey: "", // keycloak public key if you want to validate jwt without keycloak call
+    secret: "" // don't push it
+}
+
+/*************** Minio writer CONFIGURATION *****************************/
+
+config.minioWriter = {
+    endPoint: '',
+    port: 9000,
+    useSSL: true,
+    accessKey: '',
+    secretKey: '',
+    location: 'eu',
+    defaultFileInput: '',
+    defaultInputFolderName: '',
+    defaultOutputFolderName: '',
+    subscribe: {
+        all: false,
+        buckets: []
+    }
+}
 
 module.exports = config;

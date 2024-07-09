@@ -1,17 +1,11 @@
-import { ConsentStatusEnum } from '../consents/consentStatusRecordPayload';
-import { UsageRules } from '../consents/usageRules';
 
-import { DataMapping } from '../services/dataMapping';
 
 export interface AuditLog {
   linkedServicesCount: number;
   givenConsentsCount: number;
   totalProcessedPersonalDataCount: number;
-  processedPersonalDataCount: Record<string, AuditDataMapping>;
-  processingCategoryPersonalData: Record<string, Record<string, AuditDataMapping>>;
   purposeCategoryCount: Record<string, number>;
   legalBasisCount: Record<string, number>;
-  storageLocationPersonalData: Record<string, Record<string, AuditDataMapping>>;
 }
 
 export interface EventLog {
@@ -36,18 +30,10 @@ export interface ServiceLinkEventLog extends EventLog {
 }
 
 export interface ConsentEventLog extends EventLog {
-  usageRules: UsageRules;
   sinkId: string;
   sourceId: string;
-  dataConcepts: DataMapping[];
-  previousDataConcepts: DataMapping[];
   action: ConsentActionType;
   consentRecordId: string;
-  previousStatus: ConsentStatusEnum;
-}
-
-export interface AuditDataMapping extends DataMapping {
-  count: number;
 }
 
 export enum ConsentActionType {

@@ -1,0 +1,11 @@
+FROM node:16-alpine
+WORKDIR /app
+COPY ./backend/dataModels ./dataModels
+COPY ./backend/docs ./docs
+COPY ./backend/src ./src
+COPY ./backend/config*.js ./
+COPY ./backend/mapper.js ./
+COPY ./backend/LICENSE ./
+COPY ./backend/package*.json ./
+RUN npm install
+CMD ["node", "mapper"]

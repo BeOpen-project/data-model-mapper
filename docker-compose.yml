@@ -1,0 +1,44 @@
+version: "3.8"
+services:
+  data-model-mapper-gui:
+    image: data-model-mapper-gui
+    build:
+      context: https://github.com/OPSILab/data-model-mapper.git#frontend_dev
+      dockerfile: ./gui
+      args:
+        BASE_HREF: /data-model-mapper-gui/
+    ports:
+      - "127.0.0.1:12345:12345"
+    volumes:
+      - ./config.prod.json:/app/assets/config.json
+      - ./config.prod.json:/app/data-model-mapper-gui/assets/config.json
+      - ./config.prod.json:/app/data-model-mapper-gui/pages/assets/config.json
+      - ./config.prod.json:/app/data-model-mapper-gui/pages/home/assets/config.json
+      - ./config.prod.json:/app/data-model-mapper-gui/pages/account/assets/config.json
+      - ./config.prod.json:/app/data-model-mapper-gui/pages/dmm-editor/assets/config.json
+      - ./config.prod.json:/app/data-model-mapper-gui/login/assets/config.json
+      - ./config.prod.json:/app/data-model-mapper-gui/login/loginPopup/assets/config.json
+  data-model-mapper-backend:
+    image: data-model-mapper-backend
+    build: 
+      context: https://github.com/OPSILab/data-model-mapper.git#frontend_dev
+      dockerfile: ./server
+    container_name: data-model-mapper-backend
+    depends_on:
+      - db     
+    ports:
+     - 127.0.0.1:5500:5500
+    restart: always
+    volumes:
+     - ./config.beopen.js:/app/config.js
+  db:
+    image: mongo:4.4
+    container_name: data-model-mapper-db
+       #ports:
+       #  - 27017:27017
+    volumes:
+         - db_data:/data/db
+    restart: unless-stopped
+
+volumes:
+  db_data:

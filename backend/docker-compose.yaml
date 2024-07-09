@@ -1,10 +1,10 @@
 version: '3'
 services:
   data_model_mapper:
-   image: data-model-mapper
+   image: data_model_mapper:2.4
    container_name: data_model_mapper
    depends_on:
-    - db
+    - db     
    ports:
      - 5500:5500
    restart: always

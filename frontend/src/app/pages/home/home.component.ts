@@ -8,7 +8,7 @@ import { takeUntil } from 'rxjs/operators';
 import { System, AppConfig } from '../../model/appConfig';
 import { ErrorDialogService } from '../error-dialog/error-dialog.service';
 import { DMMService } from '../data-model-mapper/dmm.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ActionsComponent } from './actions/actions.component';
 import { DetailsComponent } from './details/details.component';
 import { StatusComponent } from './status/status.component';
@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   @Output() updateResult = new EventEmitter<unknown>();
   schemaDir: string;
   loading = false;
-  public isNew = false;
+  public isNotNew = false;
   private systemConfig: System;
   private systemLocale: string;
   private config: AppConfig;
@@ -49,7 +49,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     private dmmService: DMMService,
     private translate: TranslateService,
     private configService: NgxConfigureService,
-    private dialogService: NbDialogService
+    private dialogService: NbDialogService,
+    public route: ActivatedRoute
   ) {
     this.config = this.configService.config as AppConfig;
     this.systemConfig = this.config.system;
@@ -67,6 +68,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit() {
+
     try {
       this.mapRecords = await this.dmmService.getMaps();
       void this.source.load(this.mapRecords);
