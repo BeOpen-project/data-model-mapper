@@ -1,6 +1,10 @@
 name: Sync Subtrees
 
 on:
+  push:
+    branches:
+      - frontend_dev
+      - frontend
   schedule:
     - cron: '*/5 * * * *'   
   workflow_dispatch:       
