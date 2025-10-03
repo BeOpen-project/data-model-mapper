@@ -1,0 +1,110 @@
+{
+  "type": "FeatureCollection",
+  "name": "bike_ciclabili",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id_amat": 9001,
+        "id_via": "1064",
+        "anagrafica": "PIAZZA VENTICINQUE APRILE",
+        "gerarchia": null,
+        "rete": "urbana",
+        "tipologia": "promiscuo pedoni",
+        "sede": "attraversamento",
+        "marcia": "bidirezionale",
+        "norma": "attraversamento - generico",
+        "lunghezza": "8"
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              9.187041165060219,
+              45.48102378570303
+            ],
+            [
+              9.187019872296773,
+              45.48095150859649
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id_amat": 9002,
+        "id_via": "3377",
+        "anagrafica": "VIA GIACOMO MEDICI DEL VASCELLO",
+        "gerarchia": null,
+        "rete": "ciclabile",
+        "tipologia": "ciclabile sede propria",
+        "sede": "marciapiede",
+        "marcia": "monodirezionale - concorde",
+        "norma": "ordinanza lavori stradali",
+        "lunghezza": "7"
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              9.241964191867783,
+              45.439243312783908
+            ],
+            [
+              9.241931630668621,
+              45.439284797854391
+            ],
+            [
+              9.24193884076076,
+              45.439301591687858
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id_amat": 9003,
+        "id_via": "3377",
+        "anagrafica": "VIA GIACOMO MEDICI DEL VASCELLO",
+        "gerarchia": null,
+        "rete": "ciclabile",
+        "tipologia": "ciclabile sede propria",
+        "sede": "marciapiede",
+        "marcia": "monodirezionale - concorde",
+        "norma": "ordinanza lavori stradali",
+        "lunghezza": "8"
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              9.239908263934836,
+              45.440013258058016
+            ],
+            [
+              9.239964410376654,
+              45.440018685548267
+            ],
+            [
+              9.240002867531052,
+              45.440032121444929
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+<nb-card style="height: max-content;" [hidden]="!card">
+  <ng-container *ngTemplateOutlet="cardContent"></ng-container>
+</nb-card>
+<div [hidden]="card">
+  <ng-container *ngTemplateOutlet="cardContent"></ng-container>
+</div>
+<ng-template #cardContent>
+  <nb-card-header class="h3">
+    {{ 'general.menu.map_records' | translate }}
+    <button *ngIf="test" style="float: right" nbButton appearance="outline" shape="semi-round" size="tiny" status="info"
+      (click)="automated()">
+      <i class="material-icons">star</i>
+    </button>
+  </nb-card-header>
+
+  <nb-card-body>
+    <div class="g-0 row mb-2">
+      <div class="col-6 col-md-6 text-left">
+        <button nbButton class="" shape="rectangle" size="medium" status="success" (click)="addNew()">
+          <i class="material-icons">add</i>&nbsp;{{ 'general.dmm.add_record' | translate }}
+        </button>
+        &nbsp;
+        <button nbButton class="" shape="rectangle" size="medium" status="info" (click)="ngOnInit()">
+          <i class="material-icons">refresh</i>
+          &nbsp; refresh
+        </button>
+      </div>
+
+      <div class="col-6 col-md-6 text-right">
+        <button nbButton ghost shape="rectangle" size="small" (click)="resetfilters()">
+          <i class="material-icons">cancel</i>&nbsp;{{ 'general.dmm.clear_filters' | translate }}
+        </button>
+      </div>
+    </div>
+    <ng2-smart-table [settings]="settings" [source]="source"> </ng2-smart-table>
+    <nb-select [(selected)]="pageSize" (selectedChange)="onPageSizeChange($event)">
+      <nb-option *ngFor="let size of [5, 7, 10, 20, 50]" [value]="size">{{ size }}</nb-option>
+    </nb-select>
+
+  </nb-card-body>
+</ng-template>

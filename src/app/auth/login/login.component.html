@@ -1,0 +1,74 @@
+<nb-layout>
+  <nb-layout-header fixed>
+    <div class="header-container">
+      <div class="ml-5 p-2 h2 text-right">{{ 'general.welcome' | translate }}</div>
+    </div>
+  </nb-layout-header>
+
+  <nb-layout-column class="">
+    <nb-card class="shadow" accent="info">
+      <nb-card-header class="h3 text-center">{{ 'login.select_login' | translate }}</nb-card-header>
+      <nb-card-body class="py-0">
+        <div class="row">
+          <nb-card class="col-lg-6 py-1">
+            <nb-card-header>
+              <h2 class="h3 mb-3 font-weight-bold text-center">{{ 'login.login_with_local_idm' | translate }}</h2>
+              <p class="text-center">{{ 'login.login_with_local_idm_description' | translate }}</p>
+              <br />
+            </nb-card-header>
+            <nb-card-body class="text-center">
+              <link type="text/css" rel="stylesheet" href="https://login.agid.gov.it/saml/spid-sp-access-button/css/spid-sp-access-button.min.css" />
+
+              <a
+                class="italia-it-button button-spid"
+                eidas-idp-button="#spid-idp-button-medium-post"
+                aria-haspopup="true"
+                aria-expanded="false"
+                (click)="login()"
+              >
+                <!--localIdM-button-size-l-->
+                <span class="italia-it-button-text">{{ 'login.login_with_local_idm' | translate }}</span>
+              </a>
+            </nb-card-body>
+            <div class="mb-2">
+              <p>
+                keycloak
+                <a target="_blank" href="https://www.keycloak.org/">{{ 'login.keycloak_idm_link' | translate }}</a>
+              </p>
+            </div>
+          </nb-card>
+
+          <nb-card class="col-lg-6 py-1">
+            <nb-card-header>
+              <h2 class="h3 mb-3 font-weight-bold text-center">{{ 'login.login_with_eidas' | translate }}</h2>
+              <p class="text-center">{{ 'login.login_with_eidas_description' | translate }}</p>
+            </nb-card-header>
+            <nb-card-body class="text-center">
+              <!-- EIDAS IDP BUTTON MEDIUM "ENTER WITH EIDAS" * begin * -->
+              <a
+                href="#"
+                class="italia-it-button italia-it-button-size-l button-spid"
+                eidas-idp-button="#spid-idp-button-medium-post"
+                aria-haspopup="false"
+                aria-expanded="false"
+              >
+                <span class="italia-it-button-icon"
+                  ><img
+                    src="assets\images\login-logo\ficep-it-eidas-ybw.svg"
+                    onerror="this.src='assets\img\login-logo\ficep-it-eidas-ybw.png'; this.onerror=null;"
+                    alt=""
+                /></span>
+                <span class="italia-it-button-text">{{ 'login.login_with_eidas' | translate }}</span>
+              </a>
+            </nb-card-body>
+            <div class="mb-2">
+              <p>
+                <a target="_blank" href="https://www.eid.gov.it/">{{ 'login.eidas_link' | translate }}</a>
+              </p>
+            </div>
+          </nb-card>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </nb-layout-column>
+</nb-layout>

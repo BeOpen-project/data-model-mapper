@@ -1,0 +1,264 @@
+<div class="story-container">
+  <!-- Header -->
+  <div class="story-header">
+    <h1 class="story-title">
+      Data model mapper
+    </h1>
+    <p class="story-subtitle">
+      Mappa i tuoi dati
+    </p>
+    <div class="story-meta">
+      Pubblicato il 24 Luglio 2025
+      <br />
+    </div>
+    <img src="assets/images/app/dmm-logo.png" alt="Data model mapper logo" style="zoom:85%" />
+  </div>
+
+  <!-- Introduzione -->
+  <div class="story-section" #storySection>
+    <h2 class="section-title">
+      Il Problema dei dati in strutture non standard
+    </h2>
+    <p class="section-text">
+      Nel panorama aziendale moderno, le aziende producono quotidianamente una quantità enorme di dati.
+      Tuttavia, questi dati sono spesso in formati o strutture <span class="highlight">ad hoc</span>,
+      impedendo la creazione di valore attraverso la collaborazione inter-aziendale.
+    </p>
+    <p class="section-text">
+      Il Data model mapper nasce per superare questa limitazione, consentendo agli utenti di mappare e trasformare i
+      dati in un formato <span class="highlight">standardizzato</span> e interoperabile.
+    </p>
+  </div>
+
+  <div class="story-section" #storySection>
+    <h2 class="section-title">Smart data model NGSI</h2>
+    <p class="section-text">
+      Il Data model mapper supporta il modello di dati <span class="highlight">NGSI</span>, un formato standard aperto
+      che consente la rappresentazione semantica dei dati. Questo modello è progettato per essere flessibile e
+      scalabile, facilitando l'integrazione e la condivisione dei dati tra diverse piattaforme e applicazioni.
+    </p>
+  </div>
+
+  <!-- Visualizzazione Network -->
+  <div class="story-section" #storySection>
+    <h2 class="section-title">Come Funziona il Data model mapper</h2>
+    <p class="section-text">
+      Il Data model mapper consente agli utenti di definire le regole di mappatura tra i loro dati e il modello
+      (eventualmente) NGSI. Attraverso un'interfaccia intuitiva, gli utenti possono selezionare le entità e gli
+      attributi
+      da mappare, definire le trasformazioni necessarie e generare l'output. I formati di input supportati includono
+      JSON, GEOJSON, CSV, rendendo il processo di integrazione dei dati semplice e veloce. I formati di output possono
+      essere JSON e GEOJSON. Gli input possono provenire dal suo DB
+      interno, da un file locale, da un URL esterno o da Minio. L'output può essere scaricato o inviato su Orion. Il
+      Data
+      model mapper supporta 3 modalità di funzionamento:
+    </p>
+
+    <ul>
+      <li><span class="highlight">Modalità web app</span>: gli utenti possono caricare i loro dati tramite una UI e
+        mappare le entità e gli attributi in modo interattivo.</li>
+      <li><span class="highlight">Modalità CLI</span>: gli utenti possono utilizzare NodeJS per invocare uno script
+        javascript di mappatura tramite prompt dei comandi</li>
+      <li><span class="highlight">Modalità API</span>:il Data model mapper offre un'API RESTful per il processo di
+        mappatura dati, a cui si appoggia la web app</li>
+    </ul>
+
+    <div class="visualization-container">
+      <div class="data-network2">
+        <div class="column2 left">
+          <div class="minio" id="minio">Minio</div>
+          <div class="db" id="db">DB</div>
+        </div>
+        <div class="column2 center">
+          <div class="company-node4" id="mapper">Data Model Mapper</div>
+        </div>
+        <div class="column2 right">
+          <div class="orion" id="orion">Orion</div>
+          <div class="client" id="client">Client</div>
+        </div>
+      </div>
+
+      <!-- SVG per connessioni (gestito da TS) -->
+      <svg #connectionsSvg id="connections" width="100%" height="100%" style="position:absolute; top:0; left:0; pointer-events:none; z-index:0; stroke: #3b82f6;
+  stroke-width: 2;
+  fill: none;
+  marker-end: url(#arrow);"></svg>
+    </div>
+  </div>
+
+  <div class="story-section" #storySection>
+    <h2 class="section-title">Tutte e 3 le modalità condividono il medesimo funzionamento</h2>
+    <div class="process-steps" style="display:flex; flex-wrap:wrap; gap:40px; align-items:flex-start;">
+      <div style="flex:1 1 320px;">
+        <div style="margin-top:20px; font-size:1.08rem;"></div>
+        <span class="highlight">Risultato:</span> scaricabile in <strong>JSON</strong> o <strong>GEOJSON</strong>,
+        oppure inviabile direttamente su <strong>Orion</strong>.<br />
+        <span class="highlight">Salvataggio:</span> tutti i dati e i passaggi possono essere salvati sul <strong>DB
+          interno</strong> o esportati in <strong>JSON</strong> per riprendere il lavoro.<br />
+        <span class="highlight">Condivisione:</span> il file di mappatura, caricato su <strong>Minio</strong>, è
+        condivisibile con altri utenti.<br />
+        <span class="highlight">Automazione:</span> la modalità UI genera automaticamente una richiesta
+        <strong>curl</strong> e il <strong>body</strong> per l’API, facilitando integrazione e automazione.
+      </div>
+    </div>
+
+    <div class="bucket-showcase">
+      <div class="bucket-main">
+        <div class="bucket-visual">
+          <div class="bucket-container">
+            <div class="bucket-item" data-type="squircle">Input</div>
+            <div class="bucket-item" data-type="private">Config</div>
+            <div class="bucket-item" data-type="shared">Schema</div>
+            <div class="bucket-item" data-type="analytics">Map</div>
+          </div>
+          <div class="bucket-flow">
+            <div class="flow-arrow"></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-arrow"></div>
+          </div>
+        </div>
+
+        <div class="bucket-features">
+          <div class="bucket-feature">
+            <div class="feature-icon">📂</div>
+            <div class="feature-content">
+              <h4>Input da più sorgenti</h4>
+              <p>File utente, URL, DB interno, Minio</p>
+            </div>
+          </div>
+          <div class="bucket-feature">
+            <div class="feature-icon">⚙️</div>
+            <div class="feature-content">
+              <h4>Configurazione</h4>
+              <p>Parametri che influenzano mappatura e flusso dati</p>
+            </div>
+          </div>
+          <div class="bucket-feature">
+            <div class="feature-icon">🧾</div>
+            <div class="feature-content">
+              <h4>Schema</h4>
+              <p>Definisce la struttura dell'output</p>
+            </div>
+          </div>
+          <div class="bucket-feature">
+            <div class="feature-icon">🔀</div>
+            <div class="feature-content">
+              <h4>Map</h4>
+              <p>Relazione tra proprietà di input e output</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="squircle-grid">
+    <div class="squircle-card">
+      <div class="squircle-icon">Minio</div>
+      <h3 class="squircle-title">Input da Minio</h3>
+      <p class="squircle-description">
+        Input da Minio per integrarlo con altri servizi e condividere file di mappatura.
+      </p>
+      <div class="squircle-stats">
+        <span class="squircle-stat">
+          API S3
+        </span>
+        <span class="squircle-stat">
+          Possibilità di sfruttare la UI di Minio
+        </span>
+      </div>
+    </div>
+
+    <div class="squircle-card">
+      <div class="squircle-icon">DB</div>
+      <h3 class="squircle-title">Input da DB interno</h3>
+      <p class="squircle-description">Possibilità di utilizzare i dati già presenti nel DB interno per la mappatura.</p>
+      <div class="squircle-stats">
+        <span class="squircle-stat">Salva dati di input direttamente nel DB per riutilizzarli in seguito</span>
+        <span class="squircle-stat">Formati CSV, JSON e GEOJSON</span>
+      </div>
+    </div>
+
+    <div class="squircle-card">
+      <div class="squircle-icon">API</div>
+      <h3 class="squircle-title">Modalità API RESTful</h3>
+      <p class="squircle-description">Possibilità di invocare il processo di mappatura tramite API RESTful per
+        integrazione
+        automatica.</p>
+      <div class="squircle-stats"><span class="squircle-stat">Da Postman</span><span class="squircle-stat">Da
+          Swagger</span></div>
+    </div>
+
+    <div class="squircle-card">
+      <div class="squircle-icon">CLI</div>
+      <h3 class="squircle-title">Modalità command line</h3>
+      <p class="squircle-description">Uso rapido del Data model mapper tramite NodeJS per eseguire script di mappatura
+        direttamente da terminale.</p>
+      <div class="squircle-stats"><span class="squircle-stat">Per utenti piu' tecnici</span><span
+          class="squircle-stat">Per mappature
+          piu' sbrigative</span>
+      </div>
+    </div>
+
+    <div class="squircle-card">
+      <div class="squircle-icon">UI</div>
+      <h3 class="squircle-title">Web app user friendly</h3>
+      <p class="squircle-description"> Interfaccia intuitiva per caricare file, definire mappature e scaricare risultati
+        in
+        pochi clic.</p>
+      <div class="squircle-stats"><span class="squircle-stat">Wizard per guidare l'utente passo passo</span><span
+          class="squircle-stat">Dashboard per visualizzare mapping precedenti</span></div>
+    </div>
+
+    <div class="squircle-card">
+      <div class="squircle-icon">Orion</div>
+      <h3 class="squircle-title">Condividi i dati su Orion</h3>
+      <p class="squircle-description"> Possibilità di inviare direttamente i dati mappati su Orion per una condivisione
+        immediata e sicura.</p>
+      <div class="squircle-stats"><span class="squircle-stat">Orion supporta la validazione geospaziale</span><span
+          class="squircle-stat">Orion supporta nativamente NGSI</span></div>
+    </div>
+  </div>
+
+  <!-- Demo Interattiva -->
+  <div class="interactive-demo">
+    <h2 class="section-title" style="color:white;">Prova il data model mapper</h2>
+    <p class="section-text" style="color:white; opacity:0.9;">Esplora come trasformare i tuoi dati in modo semplice e
+      veloce.</p>
+
+    <!-- Se usi Router: sostituisci href con routerLink -->
+    <a routerLink="/pages/mapper-records" class="demo-button">Vai alla home</a>
+    <a routerLink="/pages/dmm-editor" class="demo-button">Vedi editor</a>
+    <a href="http://localhost:5500/api-docs/" target="_blank" rel="noopener" class="demo-button">Esplora API</a>
+  </div>
+
+  <!-- Casi d'Uso -->
+  <div class="story-section" #storySection>
+    <h2 class="section-title">Casi d'Uso Reali</h2>
+    <p class="section-text">
+      <strong>Sviluppo software</strong> Un' azienda sviluppa software e necessita di file di configurazione per i
+      propri prodotti ma durante lo sviluppo i file di configurazione cambiano continuamente e necessita di un modo per
+      poter migrare i dati in modo automatizzato senza dover riscrivere tutto.
+    </p>
+    <p class="section-text">
+      <strong>Aziende diverse che lavorano nello stesso settore</strong> Aziende diverse che lavorano nello stesso
+      settore potrebbero impostare i propri dati in modo diverso e necessitano di un modo per poter condividere i dati
+      senza dover riscrivere tutto.
+    </p>
+  </div>
+
+  <!-- Call to Action -->
+  <div class="cta-section">
+    <h2 class="cta-title">Inizia la Tua Trasformazione Digitale</h2>
+    <p class="cta-text"> Scopri come il Data model mapper può rivoluzionare il modo in cui gestisci i tuoi dati.</p>
+    <a href="#" onclick="window.location.href=
+  'mailto:gabriele.percoco@demetrix.it?subject=' +
+  encodeURIComponent('Demo request Data model mapper') +
+  '&body=' +
+  encodeURIComponent('Hi, I am interested in Data model mapper and I want to request a demo.');
+  return false;" class="cta-button">
+      Richiedi una Demo
+    </a>
+
+  </div>
+</div>

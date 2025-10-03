@@ -1,0 +1,31 @@
+<nb-card style="width: 500px; height: 410px">
+  <nb-card-header class="d-flex align-content-center justify-content-between">
+    <div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div>
+    <div>
+      <h3>{{ 'general.dmm.add' | translate }}</h3>
+    </div>
+    <button nbButton appearance="outline" shape="semi-round" size="tiny" status="info" (click)="close()">
+      <i class="material-icons">close</i>
+    </button>
+  </nb-card-header>
+  <nb-card-body class="m-2 p-4">
+    <h6>
+      <form>
+        <label for="Mode" fullWidth>{{ 'general.dmm.mode' | translate }}</label>
+        <br />
+        <nb-select id="mode-select" fullWidth placeholder="Snippet" [(ngModel)]="mode" (click)="fixBrokenPageBug()" [ngModelOptions]="{ standalone: true }">
+          <nb-option value="snippet">Snippet</nb-option>
+          <nb-option value="file">File</nb-option>
+        </nb-select>
+      </form>
+    </h6>
+    <br />
+    <br />
+  </nb-card-body>
+  <div class="center">
+    <br />
+    <button id="export-save" nbButton appearance="outline" shape="semi-round" size="medium" status="info" (click)="save()">
+      <i class="mx-1">{{ 'general.dmm.confirmSave' | translate }}</i>
+    </button>
+  </div>
+</nb-card>

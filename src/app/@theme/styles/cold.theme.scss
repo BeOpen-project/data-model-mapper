@@ -1,0 +1,74 @@
+$nb-themes: nb-register-theme(( // Palette colori principali
+      color-primary: #0099cc, // celeste
+      color-success: #357c38,
+      color-info: #17a2b8,
+      color-warning: #ffc107,
+      color-danger: #dc3545,
+
+      //color-primary-100: #000000,
+      color-primary-500: #A5CA70, // colore delle pagine evidenziate e anche della pagina attuale evidenziata nella balle laterale sx, quindi deve essere diverso da quello della barra laterale sx
+      //color-primary-700: #000000,
+
+      color-success-500: #A5CA70,
+      color-info-500: #2d4256,
+      //color-warning-500: #FFAA00,
+      //color-danger-500: #FF3D71,
+
+      // Colori di sfondo
+      background-basic-color-1: #ffffff, // sfondo principale celeste chiaro
+      background-basic-color-2: #ffffff,
+      background-basic-color-3: #0000001f,
+      background-basic-color-4: #2d4256,
+
+      sidebar-background-color: #2d4256, // colore di sfondo della sidebar
+      header-background-color: #ffffff, // colore di sfondo dell'header
+
+      // Colore del testo
+      text-basic-color: #003344, // testo scuro su sfondo chiaro
+      text-control-color: #ffffff, // testo su elementi scuri (es. bottoni primari)
+
+      // Border radius e altro (opzionale)
+      border-radius: 0.5rem,
+
+      // NB: eredita valori dal tema 'default' se non specificati
+      card-background-color: #f1f1f1, // #ffffff,// #586A6A,
+      context-menu-background-color: #2d4256,
+      button-secondary-background-color: #e0f7fa,
+      tabset-tab-background-color: #e0f7fa,
+      background-alternative-color-1: #e0f7fa,
+      //table-header-background-color: #e0f7fa, // oppure altro colore a scelta
+      table-row-even-background-color: #ffffff,
+      table-row-odd-background-color: #f0fbff,
+      table-row-hover-background-color: #d9f2fb,
+      table-row-selected-background-color: #b3e5fc,
+      table-row-selected-text-color: #ffffff,
+      table-row-selected-hover-background-color: #81d4fa,
+      table-header-background-color: #2d4256, // colore della riga header (quella grigia)
+      table-header-text-color: #ffffff,
+      color-primary-400: #A5CA70,
+      /*
+      slide-out-background: linear-gradient(270deg, #222b45 0%, #151a30 100%),
+      slide-out-shadow-color: 0 4px 14px 0 #8f9bb3,
+      slide-out-shadow-color-rtl: 0 4px 14px 0 #8f9bb3,*/
+      /*sidebar-text-color: #ffffff, // colore del testo nella sidebar
+      menuTextActiveColor: #00ff0d,
+      sidebarDividerColor: #0000ff,
+      textControlColor: #00ff80,
+      menu-text-color: #ff00aa,
+      menu-text-hover-color: #ffffff,
+      menu-text-active-color: #00d68f,
+      menu-icon-color: #ff0000,
+      menu-icon-active-color: #00d68f,
+      menu-selected-icon-color: #00d68f,*/
+      menu-text-color: #ffffff,
+      //color-primary-100: #ff0000,
+      //color-primary-200: #ff7b00,
+      //color-primary-300: #d9ff00,
+      //color-primary-400: #00ff55,
+      //color-primary-500: #003050,
+      color-primary-600: #A5CA70,
+      //color-primary-700: #e100ff,
+      //color-primary-800: #ff0080,
+      //color-primary-900: #386483,
+
+    ), cold, default);
