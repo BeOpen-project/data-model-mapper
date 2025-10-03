@@ -1,0 +1,16 @@
+﻿{
+    "NGSI_entity": true,
+    "ignoreValidation": false,
+    "mappingReport": false,
+    "targetDataModel": "Data Model name, according to the related Schema contained in the DataModels folder",
+    "rowStart": 0,
+    "rowEnd": null,
+    "delimiter": ";",
+    "endLine": "\n",
+    "deleteEmptySpaceAtBeginning": true,
+    "site": "SomeRZ",
+    "service": "SomeService",
+    "group": "CSV",
+    "entityNameField": "entitySourceId",
+    "entityDefaultPrefix": "ds"
+}

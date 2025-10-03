@@ -1,0 +1,142 @@
+<nb-card style="width: 470px; min-height: 460px">
+  <nb-card-header class="d-flex align-content-center justify-content-between">
+    <h5 class="">{{ 'general.dmm.map' | translate }}</h5>
+    <button nbButton appearance="outline" shape="semi-round" size="tiny" status="info" (click)="cancel()">
+      <i class="material-icons">close</i>
+    </button>
+  </nb-card-header>
+  <nb-card-body class="m-2 p-4">
+    <div class="row justify-content-left p-3">Select encode option</div>
+    <nb-select (click)="fixBrokenPageBug()" [(ngModel)]="selectedItem.base64" (ngModelChange)="encodeChange($event)">
+      <nb-option [value]="true">
+        {{ 'base64' }}
+      </nb-option>
+      <nb-option [value]="false">
+        {{ 'none' }}
+      </nb-option>
+    </nb-select>
+    <div class="row justify-content-left p-3" *ngIf="!selectedItem.base64">Single or multi input</div>
+    <nb-select (click)="fixBrokenPageBug()" *ngIf="!selectedItem.base64" [(ngModel)]="selectedItem.concat" placeholder="single">
+      <nb-option [value]="true">
+        {{ 'multi' }}
+      </nb-option>
+      <nb-option [value]="false">
+        {{ 'single' }}
+      </nb-option>
+    </nb-select>
+    <div class="row justify-content-left p-3">Direct or static input</div>
+    <nb-select (click)="fixBrokenPageBug()" [(ngModel)]="selectedItem.direct" (ngModelChange)="selectedItem.static = !selectedItem.direct">
+      <nb-option [value]="true">
+        {{ 'direct' }}
+      </nb-option>
+      <nb-option [value]="false">
+        {{ 'static' }}
+      </nb-option>
+    </nb-select>
+    <div fullWidth *ngIf="selectedItem.static" style="width: 400px; clear: both; float: none">
+      <br /><br />
+      <p>Insert your static value</p>
+      <input
+        *ngIf="selectedItem.concat || selectedItem.array || (selectedItem.base64 && !selectedItem.direct)"
+        placeholder="Put static data"
+        [(ngModel)]="selectedProp"
+        nbInput
+        type="text"
+        style="width: 250px; clear: both; float: none"
+        [ngModelOptions]="{ standalone: true }"
+      />
+
+      <button
+        style="float: right"
+        *ngIf="selectedItem.concat || selectedItem.array || selectedItem.base64"
+        nbButton
+        appearance="outline"
+        shape="semi-round"
+        size="medium"
+        status="info"
+        (click)="concat()"
+      >
+        <i class="mx-1">{{ 'general.dmm.add_element' | translate }}</i>
+      </button>
+      <div *ngIf="selectedItem.concat || selectedItem.array || selectedItem.base64" style="padding-top: 20px"></div>
+      <p *ngIf="selectedItem.concat || selectedItem.array || selectedItem.base64">Values inserted</p>
+      <input
+        *ngIf="selectedItem.concat || selectedItem.array || selectedItem.base64"
+        fullWidth
+        style="width: 400px; clear: both"
+        [(ngModel)]="spreadProps"
+        nbInput
+        type="text"
+        [ngModelOptions]="{ standalone: true }"
+        disabled
+        placeholder="Insert your values above and click add element"
+      />
+
+      <input
+        *ngIf="!selectedItem.concat && !selectedItem.array && !selectedItem.base64"
+        fullWidth
+        style="width: 400px; clear: both; float: none"
+        [(ngModel)]="selectedProp"
+        nbInput
+        type="text"
+        [ngModelOptions]="{ standalone: true }"
+        placeholder="Put static value"
+      />
+    </div>
+    <div fullWidth *ngIf="selectedItem.direct" style="width: 400px; clear: both; float: none">
+      <br /><br />
+      <nb-select-label>Select the source key input from below</nb-select-label>
+      <div style="padding-top: 15px"></div>
+      <nb-select
+        *ngIf="selectedItem.concat || selectedItem.array || selectedItem.base64"
+        fullWidth
+        style="width: 250px; clear: both; float: none"
+        [(ngModel)]="selectedProp"
+      >
+        <nb-option *ngFor="let option of mapOptions" value="{{ option }}">{{ option }}</nb-option>
+      </nb-select>
+      <nb-select
+        *ngIf="!selectedItem.concat && !selectedItem.array && !selectedItem.base64"
+        fullWidth
+        style="width: 400px; clear: both; float: none"
+        [(ngModel)]="selectedProp"
+      >
+        <nb-option *ngFor="let option of mapOptions" value="{{ option }}">{{ option }}</nb-option>
+      </nb-select>
+      <button
+        style="float: right"
+        *ngIf="selectedItem.concat || selectedItem.array || selectedItem.base64"
+        nbButton
+        appearance="outline"
+        shape="semi-round"
+        size="medium"
+        status="info"
+        (click)="concat()"
+      >
+        <i class="mx-1">{{ 'general.dmm.add_element' | translate }}</i>
+      </button>
+      <div *ngIf="selectedItem.concat || selectedItem.array || selectedItem.base64" style="padding-top: 20px"></div>
+      <p *ngIf="selectedItem.concat || selectedItem.array || selectedItem.base64">Values inserted</p>
+      <input
+        *ngIf="selectedItem.concat || selectedItem.array || selectedItem.base64"
+        fullWidth
+        style="width: 400px; clear: both; float: none"
+        [(ngModel)]="spreadProps"
+        nbInput
+        type="text"
+        [ngModelOptions]="{ standalone: true }"
+        disabled
+        placeholder="Insert your values above and click add element"
+      />
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+    <button nbButton appearance="outline" shape="semi-round" size="medium" status="info" (click)="reset()">
+      <i class="mx-1">{{ 'general.dmm.reset' | translate }}</i>
+    </button>
+    &nbsp;
+    <button style="float: right" nbButton appearance="outline" shape="semi-round" size="medium" status="info" (click)="confirm()">
+      <i class="mx-1">{{ 'general.dmm.confirm' | translate }}</i>
+    </button>
+  </nb-card-footer>
+</nb-card>

@@ -1,0 +1,43 @@
+/*label {
+  width: 180px;
+  clear: left;
+  text-align: right;
+  padding-right: 10px;
+}
+
+.center {
+  margin-left: 30%;
+  //position: absolute;
+  //left: 50%;
+  //-ms-transform: translate(-50%, -50%);
+  //transform: translate(-50%, -50%);
+}
+
+.flip-icon {
+  position: absolute;
+  right: 0.625rem;
+  top: 1rem;
+  cursor: pointer;
+}*/
+pre {
+  background-color: #c0c0c0;
+  padding: 10px;
+  overflow-x: auto;
+  max-width: 80vw; /* Imposta la larghezza massima in percentuale rispetto alla larghezza dello schermo */
+}
+
+code {
+  font-family: 'Courier New', Courier, monospace;
+  color: #333;
+  white-space: pre-wrap; /* Per gestire i ritorni a capo */
+}
+
+nb-card {
+  width: 1100px;
+  //text-align: center;
+  //min-width: 40rem;
+  max-height: 96vh;
+  overflow-y: scroll;
+  //overflow: visible
+}
+

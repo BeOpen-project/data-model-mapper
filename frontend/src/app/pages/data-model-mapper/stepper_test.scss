@@ -1,0 +1,102 @@
+.stepper-container {
+  //max-width: 600px;
+  //margin: auto;
+  //padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  //background: #fff;
+  //border-radius: 16px;
+  //box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.stepper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.step {
+  text-align: center;
+  flex: 1;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 15px;
+    right: -50%;
+    width: 100%;
+    height: 2px;
+    background: #ddd;
+    z-index: 0;
+  }
+
+  &:last-child::after {
+    display: none;
+  }
+}
+
+.circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #ddd;
+  margin: 0 auto;
+  line-height: 30px;
+  color: white;
+  font-weight: bold;
+  z-index: 1;
+  position: relative;
+}
+
+.step.active .circle {
+  background: var(--color-info-500);
+}
+
+.step.completed .circle {
+  background: var(--color-success-500);
+}
+
+.label {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.step-content {
+  //min-height: 100px;
+  padding: 1rem;
+  //background: #f9f9f9;
+  //border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.step-panel {
+  display: none; // default hidden
+  //margin-bottom: 200px;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
+
+  button {
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    background: var(--color-info-500);
+    color: white;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+
+    &:hover:not(:disabled) {
+      background:  var(--color-info-500);
+    }
+  }
+}

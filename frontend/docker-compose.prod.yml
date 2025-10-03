@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+  data-model-mapper-gui:
+    image: engineeringopsilab/data-model-mapper-gui
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+      args:
+        BASE_HREF: /data-model-mapper-gui/
+    ports:
+      - "12345:12345"
+    volumes:
+      - ./src/assets/config.prod.json:/app/assets/config.json
+      - ./src/assets/config.prod.json:/app/data-model-mapper-gui/assets/config.json
+      - ./src/assets/config.prod.json:/app/data-model-mapper-gui/pages/assets/config.json
+      - ./src/assets/config.prod.json:/app/data-model-mapper-gui/pages/home/assets/config.json
+      - ./src/assets/config.prod.json:/app/data-model-mapper-gui/pages/account/assets/config.json
+      - ./src/assets/config.prod.json:/app/data-model-mapper-gui/pages/dmm-editor/assets/config.json
+      - ./src/assets/config.prod.json:/app/data-model-mapper-gui/login/assets/config.json
+      - ./src/assets/config.prod.json:/app/data-model-mapper-gui/login/loginPopup/assets/config.json
