@@ -1,0 +1,6 @@
+{
+    "sourceDataIn": "docs//test//NestedIntegerCSVFail//source.csv", 
+    "mapPathIn": "docs//test//NestedIntegerCSVFail//map.json", 
+    "dataModelIn": "Test",
+    "csvDelimiter": ";"
+}

@@ -1,0 +1,20 @@
+{ 
+    "name": "properties.BIKE_SH",
+	"location": "geometry",
+	"totalSlotNumber": "properties.STALLI",
+	"entitySourceId":["properties.BIKE_SH"],
+	"address": {
+			"streetAddress": "properties.INDIRIZZO"
+	 },
+	 "targetDataModel": "BikeHireDockingStation"
+}
+
+
+
+
+
+
+
+
+
+

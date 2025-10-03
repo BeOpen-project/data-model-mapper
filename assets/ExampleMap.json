@@ -1,0 +1,27 @@
+{
+    "Field 1": "Field 1",
+    "Field 2": "Field 2",
+    "Field 3": [
+        "Field 3 index 0",
+        "Field 3 index 1"
+    ],
+    "Field 31" : "Field 31",
+    "Field 32" : "Field 33",
+    "Field 33" : "Field 33",
+    "Field 4": {
+        "Field 4a": "Field 4a",
+        "Field 4b": "Field 4b",
+        "Field 4c": [
+            "Field 4c index 0",
+            "Field 4c index 1"
+        ],
+        "Field 4d": "Field 4d"
+    },
+    "Field 5": "Field 5",
+    "Field 6": "Field 6",
+    "Field 7": "Field 7",
+    "entitySourceId": [
+        "static:ExampleDataModel"
+    ],
+    "targetDataModel": "ExampleDataModel"
+}

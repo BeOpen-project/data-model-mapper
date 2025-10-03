@@ -1,0 +1,29 @@
+{
+  "Field 1": "Field 1",
+  "Field 2": {
+    "Field 2_1": "Field 2_1",
+    "Field 2_2": [
+      "static:Field static ",
+      "Field 1"
+    ],
+    "Field 2_3": "Field 2_3",
+    "Field 2_4": {
+      "Field 2_4_1": "Field 2_4_1",
+      "Field 2_4_2": [
+        "static:Field static ",
+        "Field 1"
+      ],
+      "Field 2_4_3": {
+        "Field 2_4_3_1": {
+          "Field 2_4_3_1_1": {
+            "Field 2_4_3_1_1_1": "Field 2_4_3_1_1_1",
+            "Field 2_4_3_1_1_2": ["static:static and concat with : ","Field 1"],
+            "Field 2_4_3_1_1_3": "Field 2_4_3_1_1_3"
+          }
+        }
+      }
+    }
+  },
+  "entitySourceId": "static:test",
+  "targetDataModel": "Test"
+}

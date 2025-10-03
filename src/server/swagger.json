@@ -1,0 +1,3664 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "2.1.0",
+    "title": "Data model mapper",
+    "description": "Data model mapper server mode. You can map and convert an input file (csv,geojson,json) to a json output",
+    "license": {
+      "name": "GNU AFFERO GENERAL PUBLIC LICENSE",
+      "url": "http://fsf.org/"
+    }
+  },
+  "host": "localhost:",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "Map",
+      "description": "API for retrieving converted and mapped json"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/map/transform": {
+      "post": {
+        "tags": [
+          "Mapper"
+        ],
+        "description": "Map and convert csv/json/geojson to json",
+        "parameters": [
+          {
+            "name": "Example 1",
+            "in": "body",
+            "description": "Example request for service model with path references",
+            "schema": {
+              "$ref": "#/definitions/Example Request 1"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "JSON output",
+            "schema": {
+              "$ref": "#/definitions/Example Response 1"
+            }
+          }
+        }
+      }
+    },
+    "/map/register": {
+      "post": {
+        "tags": [
+          "Insert map"
+        ],
+        "description": "Insert map in Mongo DB",
+        "parameters": [
+          {
+            "name": "Insert map example 1",
+            "in": "body",
+            "description": "Example request for inserting a json map document",
+            "schema": {
+              "$ref": "#/definitions/Insert Map"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "JSON output",
+            "schema": {
+              "$ref": "#/definitions/Insert Map response"
+            }
+          }
+        }
+      }
+    },
+    "/map": {
+      "get": {
+        "tags": [
+          "Get map by id"
+        ],
+        "description": "Get map by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Example request for getting a map document by id",
+            "schema": {
+              "type": "string",
+              "example": "map_1"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "JSON output",
+            "schema": {
+              "$ref": "#/definitions/Insert Map response"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Modify map"
+        ],
+        "description": "Modify map in Mongo DB",
+        "parameters": [
+          {
+            "name": "Modify map example 1",
+            "in": "body",
+            "description": "Example request for modifying a json map document",
+            "schema": {
+              "$ref": "#/definitions/Insert Map"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "JSON output",
+            "schema": {
+              "$ref": "#/definitions/Insert Map response"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Delete map"
+        ],
+        "description": "Delete map in Mongo DB",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Example request for inserting a json map document",
+            "schema": {
+              "type": "string",
+              "example": "map_1"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "JSON output",
+            "schema": {
+              "properties": {
+                "acknowledged": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "deletedCount": {
+                  "type": "number",
+                  "example": 1
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dataModel": {
+      "get": {
+        "tags": [
+          "Get dataModel by id"
+        ],
+        "description": "Get dataModel by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Example request for getting a dataModel document by id",
+            "schema": {
+              "type": "string",
+              "example": "service_1"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "JSON output",
+            "schema": {
+              "$ref": "#/definitions/Insert Model Schema response"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Insert dataModel"
+        ],
+        "description": "Insert dataModel in Mongo DB",
+        "parameters": [
+          {
+            "name": "Insert dataModel example 1",
+            "in": "body",
+            "description": "Example request for inserting a json dataModel document",
+            "schema": {
+              "$ref": "#/definitions/Insert Model Schema"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "JSON output",
+            "schema": {
+              "$ref": "#/definitions/Insert Model Schema response"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Modify dataModel"
+        ],
+        "description": "Modify dataModel in Mongo DB",
+        "parameters": [
+          {
+            "name": "Modify dataModel example 1",
+            "in": "body",
+            "description": "Example request for modifying a json dataModel document",
+            "schema": {
+              "$ref": "#/definitions/Insert Model Schema"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "JSON output",
+            "schema": {
+              "$ref": "#/definitions/Insert Model Schema response"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Delete dataModel"
+        ],
+        "description": "Delete dataModel in Mongo DB",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Example request for deleting a json dataModel document",
+            "schema": {
+              "type": "string",
+              "example": "service_1"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "JSON output",
+            "schema": {
+              "properties": {
+                "acknowledged": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "deletedCount": {
+                  "type": "number",
+                  "example": 1
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/maps": {
+      "get": {
+        "tags": [
+          "Get maps"
+        ],
+        "description": "Get all maps",
+        "parameters": [],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "JSON output",
+            "schema": {
+              "type": "array",
+              "example": [
+                {
+                  "_id": "6401c595f3f421ae0a41a1ef",
+                  "name": "Service Model map",
+                  "id": "map_1",
+                  "map": {
+                    "identifier": "identifier",
+                    "title": "title",
+                    "issued": "issued",
+                    "createdByUserId": "createdByUserId",
+                    "versionInfo": "versionInfo",
+                    "serviceIconUrl": "serviceIconUrl",
+                    "status": "status",
+                    "isPublicService": "isPublicService",
+                    "hasInfo": {
+                      "identifier": "hasInfoidentifier",
+                      "title": "hasInfotitle",
+                      "status": "hasInfostatus",
+                      "keyword": "hasInfokeyword",
+                      "sector": "hasInfosector",
+                      "thematicArea": "hasInfothematicArea",
+                      "type": "hasInfotype",
+                      "language": "hasInfolanguage",
+                      "description": {
+                        "locale": "hasInfodescriptionlocale",
+                        "description": "hasInfodescriptiondescription"
+                      },
+                      "isDescribedAt": "hasInfoisDescribedAt",
+                      "hasCost": "hasInfohasCost",
+                      "processingTime": "hasInfoprocessingTime",
+                      "isGroupedBy": "hasInfoisGroupedBy",
+                      "hasCompetentAuthority": {
+                        "identifier": "hasInfohasCompetentAuthorityidentifier",
+                        "title": "hasInfohasCompetentAuthoritytitle",
+                        "hasAddress": "hasInfohasCompetentAuthorityhasAddress",
+                        "prefLabel": "hasInfohasCompetentAuthorityprefLabel",
+                        "spatial": "hasInfohasCompetentAuthorityspatial"
+                      },
+                      "requires": "hasInforequires",
+                      "spatial": "hasInfospatial",
+                      "hasInput": "hasInfohasInput",
+                      "produces": "hasInfoproduces",
+                      "hasContactPoint": {
+                        "email": "hasInfohasContactPointemail",
+                        "faxNumber": "hasInfohasContactPointfaxNumber",
+                        "telephone": "hasInfohasContactPointtelephone",
+                        "identifier": "hasInfohasContactPointidentifier",
+                        "openingHours": "hasInfohasContactPointopeningHours",
+                        "hoursAvailable": "hasInfohasContactPointhoursAvailable",
+                        "url": "hasInfohasContactPointurl"
+                      },
+                      "hasChannel": "hasInfohasChannel"
+                    },
+                    "hasServiceInstance": {
+                      "serviceProvider": {
+                        "businessId": "hasServiceInstanceserviceProviderbusinessId",
+                        "name": "hasServiceInstanceserviceProvidername",
+                        "hasAddress": "hasServiceInstanceserviceProviderhasAddress",
+                        "postalcode": "hasServiceInstanceserviceProviderpostalcode",
+                        "city": "hasServiceInstanceserviceProvidercity",
+                        "state": "hasServiceInstanceserviceProviderstate",
+                        "country": "hasServiceInstanceserviceProvidercountry",
+                        "email": "hasServiceInstanceserviceProvideremail",
+                        "telephone": "hasServiceInstanceserviceProvidertelephone",
+                        "jurisdiction": "hasServiceInstanceserviceProviderjurisdiction"
+                      },
+                      "endpointConnector": {
+                        "endpoint": {
+                          "accessURL": "hasServiceInstanceendpointConnectorendpointaccessURL",
+                          "endpointInformation": "hasServiceInstanceendpointConnectorendpointendpointInformation",
+                          "endpointDocumentation": "hasServiceInstanceendpointConnectorendpointendpointDocumentation",
+                          "path": "hasServiceInstanceendpointConnectorendpointpath"
+                        },
+                        "connectorId": "hasServiceInstanceendpointConnectorconnectorId"
+                      },
+                      "dataset": "hasServiceInstancedataset",
+                      "serviceUrls": {
+                        "libraryDomain": "hasServiceInstanceserviceUrlslibraryDomain",
+                        "loginUri": "hasServiceInstanceserviceUrlsloginUri",
+                        "linkingRedirectUri": "hasServiceInstanceserviceUrlslinkingRedirectUri",
+                        "objectionUri": "hasServiceInstanceserviceUrlsobjectionUri",
+                        "notificationUri": "hasServiceInstanceserviceUrlsnotificationUri"
+                      },
+                      "dataController": {
+                        "piiController": "hasServiceInstancedataControllerpiiController",
+                        "organizationName": "hasServiceInstancedataControllerorganizationName",
+                        "hasContact": "hasServiceInstancedataControllerhasContact",
+                        "hasAddress": "hasServiceInstancedataControllerhasAddress",
+                        "email": "hasServiceInstancedataControlleremail",
+                        "telephone": "hasServiceInstancedataControllertelephone",
+                        "operatorName": "hasServiceInstancedataControlleroperatorName"
+                      }
+                    },
+                    "hasUsageRule": "hasUsageRule",
+                    "isPersonalDataHandling": "isPersonalDataHandling",
+                    "entitySourceId": "static:serviceModel",
+                    "targetDataModel": "ServiceModel"
+                  }
+                },
+                {
+                  "_id": "6401c597f3f421ae0a41a1f1",
+                  "name": "Bike",
+                  "id": "bike",
+                  "map": {
+                    "name": "properties.BIKE_SH",
+                    "location": "geometry",
+                    "totalSlotNumber": "properties.STALLI",
+                    "entitySourceId": [
+                      "properties.BIKE_SH"
+                    ],
+                    "address": {
+                      "streetAddress": "properties.INDIRIZZO"
+                    },
+                    "targetDataModel": "BikeHireDockingStation"
+                  }
+                },
+                {
+                  "_id": "6401f9d1fdbe1a17596d7144",
+                  "name": "Example",
+                  "id": "example",
+                  "map": {
+                    "Field 1": "Field 1",
+                    "targetDataModel": "Example"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/dataModels": {
+      "get": {
+        "tags": [
+          "Get dataModels"
+        ],
+        "description": "Get all data models",
+        "parameters": [],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "JSON output",
+            "schema": {
+              "type": "array",
+              "example": [
+                {
+                  "_id": "6401c59ff3f421ae0a41a1f5",
+                  "name": "Service Model",
+                  "id": "service_1",
+                  "dataModel": {
+                    "$schema": "http://json-schema.org/draft-04/schema#",
+                    "type": "object",
+                    "title": "ServiceModel",
+                    "properties": {
+                      "identifier": {
+                        "type": "string"
+                      },
+                      "title": {
+                        "type": "string",
+                        "title": "name"
+                      },
+                      "issued": {
+                        "type": "string"
+                      },
+                      "createdByUserId": {
+                        "type": "string"
+                      },
+                      "versionInfo": {
+                        "type": "string",
+                        "title": "Description Version"
+                      },
+                      "serviceIconUrl": {
+                        "type": "string"
+                      },
+                      "status": {
+                        "type": "string",
+                        "title": "Service Description status",
+                        "description": "Status of Service Description (Allowed values: *Completed*, *Deprecated*, *UnderDevelopment*, *Withdrawn*)",
+                        "default": "UnderDevelopment",
+                        "enum": [
+                          "Completed",
+                          "Deprecated",
+                          "UnderDevelopment",
+                          "WithDrawn"
+                        ]
+                      },
+                      "isPublicService": {
+                        "type": "boolean"
+                      },
+                      "hasInfo": {
+                        "type": "object",
+                        "properties": {
+                          "identifier": {
+                            "type": "string"
+                          },
+                          "title": {
+                            "type": "string",
+                            "title": "name"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "keyword": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "sector": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "thematicArea": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "type": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "language": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "description": {
+                            "type": "object",
+                            "properties": {
+                              "locale": {
+                                "type": "string"
+                              },
+                              "description": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "locale",
+                              "description"
+                            ]
+                          },
+                          "isDescribedAt": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "identifier": {
+                                  "type": "string"
+                                },
+                                "name": {
+                                  "type": "string"
+                                },
+                                "landingPage": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "hasCost": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "identifier": {
+                                  "type": "string"
+                                },
+                                "code": {
+                                  "type": "string"
+                                },
+                                "hasCost": {
+                                  "type": "string"
+                                },
+                                "description": {
+                                  "type": "object",
+                                  "properties": {
+                                    "locale": {
+                                      "type": "string"
+                                    },
+                                    "description": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "locale",
+                                    "description"
+                                  ]
+                                },
+                                "ifAccessedThrough": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "processingTime": {
+                            "type": "string"
+                          },
+                          "isGroupedBy": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "hasCompetentAuthority": {
+                            "type": "object",
+                            "properties": {
+                              "identifier": {
+                                "type": "string"
+                              },
+                              "title": {
+                                "type": "string",
+                                "title": "name"
+                              },
+                              "hasAddress": {
+                                "type": "string"
+                              },
+                              "prefLabel": {
+                                "type": "string"
+                              },
+                              "spatial": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "prefLabel",
+                              "spatial"
+                            ]
+                          },
+                          "requires": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "spatial": {
+                            "type": "string"
+                          },
+                          "hasInput": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "identifier": {
+                                  "type": "string"
+                                },
+                                "title": {
+                                  "type": "string",
+                                  "title": "name"
+                                },
+                                "description": {
+                                  "type": "object",
+                                  "properties": {
+                                    "locale": {
+                                      "type": "string"
+                                    },
+                                    "description": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "locale",
+                                    "description"
+                                  ]
+                                },
+                                "type": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                },
+                                "language": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                },
+                                "page": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                },
+                                "conformsTo": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "produces": {
+                            "title": "produces",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "identifier": {
+                                  "type": "string"
+                                },
+                                "title": {
+                                  "type": "string",
+                                  "title": "name"
+                                },
+                                "description": {
+                                  "type": "object",
+                                  "properties": {
+                                    "locale": {
+                                      "type": "string"
+                                    },
+                                    "description": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "locale",
+                                    "description"
+                                  ]
+                                },
+                                "type": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "hasContactPoint": {
+                            "type": "object",
+                            "properties": {
+                              "email": {
+                                "type": "string"
+                              },
+                              "faxNumber": {
+                                "type": "string"
+                              },
+                              "telephone": {
+                                "type": "string"
+                              },
+                              "identifier": {
+                                "type": "string"
+                              },
+                              "openingHours": {
+                                "type": "string"
+                              },
+                              "hoursAvailable": {
+                                "type": "string"
+                              },
+                              "url": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "hasChannel": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "identifier": {
+                                  "type": "string"
+                                },
+                                "type": {
+                                  "type": "string"
+                                },
+                                "openingHours": {
+                                  "type": "string"
+                                },
+                                "hoursAvailable": {
+                                  "type": "string"
+                                },
+                                "hasInput": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "required": [
+                                "identifier",
+                                "type",
+                                "openingHours"
+                              ]
+                            }
+                          }
+                        },
+                        "required": [
+                          "identifier",
+                          "title",
+                          "status",
+                          "keyword",
+                          "sector",
+                          "thematicArea",
+                          "type",
+                          "language",
+                          "description",
+                          "isDescribedAt",
+                          "hasCost",
+                          "processingTime",
+                          "isGroupedBy",
+                          "hasCompetentAuthority",
+                          "requires",
+                          "spatial",
+                          "hasInput",
+                          "produces",
+                          "hasContactPoint",
+                          "hasChannel"
+                        ]
+                      },
+                      "hasServiceInstance": {
+                        "type": "object",
+                        "properties": {
+                          "serviceProvider": {
+                            "type": "object",
+                            "properties": {
+                              "businessId": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "hasAddress": {
+                                "type": "string"
+                              },
+                              "postalcode": {
+                                "type": "string"
+                              },
+                              "city": {
+                                "type": "string"
+                              },
+                              "state": {
+                                "type": "string"
+                              },
+                              "country": {
+                                "type": "string"
+                              },
+                              "email": {
+                                "type": "string"
+                              },
+                              "telephone": {
+                                "type": "string"
+                              },
+                              "jurisdiction": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "businessId",
+                              "name",
+                              "hasAddress",
+                              "postalcode",
+                              "city",
+                              "state",
+                              "country",
+                              "email",
+                              "telephone",
+                              "jurisdiction"
+                            ]
+                          },
+                          "endpointConnector": {
+                            "type": "object",
+                            "properties": {
+                              "endpoint": {
+                                "type": "object",
+                                "properties": {
+                                  "accessURL": {
+                                    "type": "string"
+                                  },
+                                  "endpointInformation": {
+                                    "type": "string"
+                                  },
+                                  "endpointDocumentation": {
+                                    "type": "string"
+                                  },
+                                  "path": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "accessURL",
+                                  "endpointInformation",
+                                  "endpointDocumentation",
+                                  "path"
+                                ]
+                              },
+                              "connectorId": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "endpoint",
+                              "connectorId"
+                            ]
+                          },
+                          "dataset": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "identifier": {
+                                  "type": "string"
+                                },
+                                "description": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "locale": {
+                                        "type": "string"
+                                      },
+                                      "description": {
+                                        "type": "string"
+                                      },
+                                      "keywords": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    },
+                                    "required": [
+                                      "locale",
+                                      "description",
+                                      "keywords"
+                                    ]
+                                  }
+                                },
+                                "datasetSchema": {
+                                  "type": "object",
+                                  "properties": {
+                                    "context": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "type": "string"
+                                    },
+                                    "id": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "context",
+                                    "type",
+                                    "id"
+                                  ]
+                                },
+                                "dataStructureSpecification": {
+                                  "type": "string"
+                                },
+                                "distribution": {
+                                  "type": "array",
+                                  "items": {
+                                    "properties": {
+                                      "accessUrl": {
+                                        "type": "string"
+                                      },
+                                      "description": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "object",
+                                          "properties": {
+                                            "locale": {
+                                              "type": "string"
+                                            },
+                                            "description": {
+                                              "type": "string"
+                                            },
+                                            "keywords": {
+                                              "type": "array",
+                                              "items": {
+                                                "type": "string"
+                                              }
+                                            }
+                                          },
+                                          "required": [
+                                            "locale",
+                                            "description",
+                                            "keywords"
+                                          ]
+                                        }
+                                      },
+                                      "format": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "distributionId",
+                                      "accessUrl",
+                                      "description",
+                                      "format"
+                                    ]
+                                  }
+                                },
+                                "dataMapping": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "property": {
+                                        "type": "string"
+                                      },
+                                      "conceptId": {
+                                        "type": "string"
+                                      },
+                                      "name": {
+                                        "type": "string"
+                                      },
+                                      "type": {
+                                        "type": "string"
+                                      },
+                                      "inputType": {
+                                        "type": "string"
+                                      },
+                                      "required": {
+                                        "type": "boolean"
+                                      }
+                                    },
+                                    "required": [
+                                      "property",
+                                      "conceptId",
+                                      "name",
+                                      "type",
+                                      "required"
+                                    ]
+                                  }
+                                }
+                              },
+                              "required": [
+                                "datasetId",
+                                "description",
+                                "datasetSchema",
+                                "dataStructureSpecification",
+                                "distribution",
+                                "dataMapping"
+                              ]
+                            }
+                          },
+                          "serviceUrls": {
+                            "type": "object",
+                            "properties": {
+                              "libraryDomain": {
+                                "type": "string"
+                              },
+                              "loginUri": {
+                                "type": "string"
+                              },
+                              "linkingRedirectUri": {
+                                "type": "string"
+                              },
+                              "objectionUri": {
+                                "type": "string"
+                              },
+                              "notificationUri": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "libraryDomain",
+                              "loginUri",
+                              "linkingRedirectUri",
+                              "objectionUri",
+                              "notificationUri"
+                            ]
+                          },
+                          "dataController": {
+                            "type": "object",
+                            "properties": {
+                              "piiController": {
+                                "type": "string"
+                              },
+                              "organizationName": {
+                                "type": "string"
+                              },
+                              "hasContact": {
+                                "type": "string"
+                              },
+                              "hasAddress": {
+                                "type": "string"
+                              },
+                              "email": {
+                                "type": "string"
+                              },
+                              "telephone": {
+                                "type": "string"
+                              },
+                              "operatorName": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "piiController",
+                              "organizationName",
+                              "hasContact",
+                              "hasAddress",
+                              "email",
+                              "telephone",
+                              "operatorName"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "serviceProvider",
+                          "cert",
+                          "connector",
+                          "dataset",
+                          "serviceUrls",
+                          "dataController"
+                        ]
+                      },
+                      "hasUsageRule": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "usageId": {
+                              "type": "string"
+                            },
+                            "usageName": {
+                              "type": "string"
+                            },
+                            "usageType": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "usageId",
+                            "usageName",
+                            "usageType"
+                          ]
+                        }
+                      },
+                      "isPersonalDataHandling": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "purposeId": {
+                              "type": "string"
+                            },
+                            "purposeName": {
+                              "type": "string"
+                            },
+                            "legalBasis": {
+                              "type": "string"
+                            },
+                            "purposeCategory": {
+                              "type": "string"
+                            },
+                            "hasSector": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "hasContext": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "processingCategories": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "description": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "locale": {
+                                    "type": "string"
+                                  },
+                                  "title": {
+                                    "type": "string"
+                                  },
+                                  "description": {
+                                    "type": "string"
+                                  },
+                                  "descriptionUrl": {
+                                    "type": "string"
+                                  },
+                                  "iconUrl": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "locale",
+                                  "title",
+                                  "description",
+                                  "descriptionUrl",
+                                  "iconUrl"
+                                ]
+                              }
+                            },
+                            "hasPersonalDataCategory": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "requiredDatasets": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "storage": {
+                              "type": "object",
+                              "properties": {
+                                "location": {
+                                  "type": "string"
+                                },
+                                "duration": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "location",
+                                "duration"
+                              ]
+                            },
+                            "recipients": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "shareWith": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "orgName": {
+                                    "type": "string"
+                                  },
+                                  "orgUrl": {
+                                    "type": "string"
+                                  },
+                                  "businessType": {
+                                    "type": "string"
+                                  },
+                                  "required": {
+                                    "type": "boolean"
+                                  }
+                                },
+                                "required": [
+                                  "orgName",
+                                  "orgUrl",
+                                  "businessType",
+                                  "required"
+                                ]
+                              }
+                            },
+                            "obligations": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "event": {
+                                    "type": "string"
+                                  },
+                                  "activity": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "event",
+                                  "activity"
+                                ]
+                              }
+                            },
+                            "policyRef": {
+                              "type": "string"
+                            },
+                            "collectionMethod": {
+                              "type": "string"
+                            },
+                            "collectionOperator": {
+                              "type": "string"
+                            },
+                            "termination": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "purposeId",
+                            "purposeName",
+                            "legalBasis",
+                            "purposeCategory",
+                            "hasSector",
+                            "hasContext",
+                            "processingCategories",
+                            "description",
+                            "hasPersonalDataCategory",
+                            "requiredDatasets",
+                            "storage",
+                            "recipients",
+                            "shareWith",
+                            "obligations",
+                            "policyRef",
+                            "collectionMethod",
+                            "collectionOperator",
+                            "termination"
+                          ]
+                        }
+                      }
+                    },
+                    "required": [
+                      "serviceId",
+                      "title",
+                      "identifier",
+                      "issued",
+                      "createdByUserId",
+                      "serviceDescriptionVersion",
+                      "serviceIconUrl",
+                      "status",
+                      "isPublicService",
+                      "hasInfo",
+                      "hasServiceInstance",
+                      "hasUsageRule"
+                    ]
+                  }
+                },
+                {
+                  "_id": "6401f9d8fdbe1a17596d7146",
+                  "name": "Example Model",
+                  "id": "example_1"
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Example Request 1": {
+      "properties": {
+        "sourceDataIn": {
+          "type": "string",
+          "uniqueItems": true,
+          "example": "5. ServiceModel.csv"
+        },
+        "mapPathIn": {
+          "type": "string",
+          "uniqueItems": true,
+          "example": "5. ServiceModelMap.json"
+        },
+        "dataModelIn": {
+          "type": "string",
+          "uniqueItems": true,
+          "example": "ServiceModel"
+        },
+        "config": {
+          "type": "object",
+          "uniqueItems": true,
+          "example": {
+            "delimiter": ";",
+            "NGSI_entity": false
+          }
+        }
+      }
+    },
+    "Example Request 2": {
+      "properties": {
+        "sourceDataType": {
+          "type": "string",
+          "uniqueItems": true,
+          "example": "csv"
+        },
+        "sourceData": {
+          "type": "string",
+          "uniqueItems": true,
+          "example": "identifier;title;issued;createdByUserId;versionInfo;serviceIconUrl;status;isPublicService;hasInfoidentifier;hasInfotitle;hasInfostatus;hasInfokeyword;hasInfokeyword0;hasInfokeyword1;hasInfodescriptionlocale;hasInfodescriptiondescription;hasInfohasCost0identifier;hasInfohasCost0code;hasInfohasCost0hasCost0;hasInfohasCost0descriptionlocale;hasInfohasCost0descriptiondescription;hasInfohasCost0ifAccessedThrough;hasInfoprocessingTime;hasInfohasCompetentAuthorityidentifier;hasInfohasCompetentAuthoritytitle;hasInfohasCompetentAuthorityhasAddress;hasInfohasCompetentAuthorityprefLabel;hasInfohasCompetentAuthorityspatial;hasInfospatial;hasInfohasContactPointemail;hasInfohasContactPointfaxNumber;hasInfohasContactPointtelephone;hasInfohasContactPointidentifier;hasInfohasContactPointopeningHours;hasInfohasContactPointhoursAvailable;hasInfohasContactPointurl;hasServiceInstanceserviceProviderbusinessId;hasServiceInstanceserviceProvidername;hasServiceInstanceserviceProviderhasAddress;hasServiceInstanceserviceProviderpostalcode;hasServiceInstanceserviceProvidercity;hasServiceInstanceserviceProviderstate;hasServiceInstanceserviceProvidercountry;hasServiceInstanceserviceProvideremail;hasServiceInstanceserviceProvidertelephone;hasServiceInstanceserviceProviderjurisdiction;hasServiceInstanceendpointConnectorendpointaccessURL;hasServiceInstanceendpointConnectorendpointendpointInformation;hasServiceInstanceendpointConnectorendpointendpointDocumentation;hasServiceInstanceendpointConnectorendpointpath;hasServiceInstanceendpointConnectorconnectorId;hasServiceInstanceserviceUrlslibraryDomain;hasServiceInstanceserviceUrlsloginUri;hasServiceInstanceserviceUrlslinkingRedirectUri;hasServiceInstanceserviceUrlsobjectionUri;hasServiceInstanceserviceUrlsnotificationUri;hasServiceInstancedataControllerpiiController;hasServiceInstancedataControllerorganizationName;hasServiceInstancedataControllerhasContact;hasServiceInstancedataControllerhasAddress;hasServiceInstancedataControlleremail;hasServiceInstancedataControllertelephone;hasServiceInstancedataControlleroperatorName;hasUsageRule;isPersonalDataHandling0;isPersonalDataHandling1\r\nID;Title;;service.manager;;;;;ID;Title;;;;;;;;;;;;;P1Y1W1D\r\nserviceIdentifier;serviceTitle;issued;service.manager;1.0;\"http://www.example.com\";COMPLETED;true;serviceIdentifier;serviceTitle;COMPLETED;key;key0;key1;alb;albania;7;8;9;EUR;processingTime;identifier;processingTime;identifier;title;hasAddress;prefLabel;spatial;spatial;email@email.com;faxNumber;\"+01 123456789\";identifier;\"08:00-20:00\";12;\"http://www.example.com\";businessId;name;hasAddress;postalCode;city;state;country;email@email.com;\"+01 123456789\";jurisdiction;\"http://www.connector.com\";information;documentation;path;connectorID;libraryDomain;\"http://www.login.com\";\"http://www.logged.com\";\"http://www.objectionUri.com\";\"http://www.notificationUri.com\";piiController;organizationName;hasContact;hasAddress;email@email.com;\"+01 123456789\";operator;hasUsageRule;isPersonalDataHandling0;isPersonalDataHandling1"
+        },
+        "mapData": {
+          "type": "object",
+          "uniqueItems": true,
+          "example": {
+            "identifier": "identifier",
+            "title": "title",
+            "issued": "issued",
+            "createdByUserId": "createdByUserId",
+            "versionInfo": "versionInfo",
+            "serviceIconUrl": "serviceIconUrl",
+            "status": "status",
+            "isPublicService": "isPublicService",
+            "hasInfo": {
+              "identifier": "hasInfoidentifier",
+              "title": "hasInfotitle",
+              "status": "hasInfostatus",
+              "keyword": [
+                "hasInfokeyword",
+                "hasInfokeyword0"
+              ],
+              "sector": [
+                "hasInfosector"
+              ],
+              "thematicArea": [
+                "hasInfothematicArea"
+              ],
+              "type": [
+                "hasInfotype"
+              ],
+              "language": [
+                "hasInfolanguage"
+              ],
+              "description": {
+                "locale": "hasInfodescriptionlocale",
+                "description": "hasInfodescriptiondescription"
+              },
+              "isDescribedAt": [
+                "hasInfoisDescribedAt"
+              ],
+              "hasCost": [
+                "hasInfohasCost"
+              ],
+              "processingTime": "hasInfoprocessingTime",
+              "isGroupedBy": [
+                "hasInfoisGroupedBy"
+              ],
+              "hasCompetentAuthority": {
+                "identifier": "hasInfohasCompetentAuthorityidentifier",
+                "title": "hasInfohasCompetentAuthoritytitle",
+                "hasAddress": "hasInfohasCompetentAuthorityhasAddress",
+                "prefLabel": "hasInfohasCompetentAuthorityprefLabel",
+                "spatial": "hasInfohasCompetentAuthorityspatial"
+              },
+              "requires": [
+                "hasInforequires"
+              ],
+              "spatial": "hasInfospatial",
+              "hasInput": [
+                "hasInfohasInput"
+              ],
+              "produces": [
+                "hasInfoproduces"
+              ],
+              "hasContactPoint": {
+                "email": "hasInfohasContactPointemail",
+                "faxNumber": "hasInfohasContactPointfaxNumber",
+                "telephone": "hasInfohasContactPointtelephone",
+                "identifier": "hasInfohasContactPointidentifier",
+                "openingHours": "hasInfohasContactPointopeningHours",
+                "hoursAvailable": "hasInfohasContactPointhoursAvailable",
+                "url": "hasInfohasContactPointurl"
+              },
+              "hasChannel": [
+                "hasInfohasChannel"
+              ]
+            },
+            "hasServiceInstance": {
+              "serviceProvider": {
+                "businessId": "hasServiceInstanceserviceProviderbusinessId",
+                "name": "hasServiceInstanceserviceProvidername",
+                "hasAddress": "hasServiceInstanceserviceProviderhasAddress",
+                "postalcode": "hasServiceInstanceserviceProviderpostalcode",
+                "city": "hasServiceInstanceserviceProvidercity",
+                "state": "hasServiceInstanceserviceProviderstate",
+                "country": "hasServiceInstanceserviceProvidercountry",
+                "email": "hasServiceInstanceserviceProvideremail",
+                "telephone": "hasServiceInstanceserviceProvidertelephone",
+                "jurisdiction": "hasServiceInstanceserviceProviderjurisdiction"
+              },
+              "endpointConnector": {
+                "endpoint": {
+                  "accessURL": "hasServiceInstanceendpointConnectorendpointaccessURL",
+                  "endpointInformation": "hasServiceInstanceendpointConnectorendpointendpointInformation",
+                  "endpointDocumentation": "hasServiceInstanceendpointConnectorendpointendpointDocumentation",
+                  "path": "hasServiceInstanceendpointConnectorendpointpath"
+                },
+                "connectorId": "hasServiceInstanceendpointConnectorconnectorId"
+              },
+              "dataset": "hasServiceInstancedataset",
+              "serviceUrls": {
+                "libraryDomain": "hasServiceInstanceserviceUrlslibraryDomain",
+                "loginUri": "hasServiceInstanceserviceUrlsloginUri",
+                "linkingRedirectUri": "hasServiceInstanceserviceUrlslinkingRedirectUri",
+                "objectionUri": "hasServiceInstanceserviceUrlsobjectionUri",
+                "notificationUri": "hasServiceInstanceserviceUrlsnotificationUri"
+              },
+              "dataController": {
+                "piiController": "hasServiceInstancedataControllerpiiController",
+                "organizationName": "hasServiceInstancedataControllerorganizationName",
+                "hasContact": "hasServiceInstancedataControllerhasContact",
+                "hasAddress": "hasServiceInstancedataControllerhasAddress",
+                "email": "hasServiceInstancedataControlleremail",
+                "telephone": "hasServiceInstancedataControllertelephone",
+                "operatorName": "hasServiceInstancedataControlleroperatorName"
+              }
+            },
+            "hasUsageRule": [
+              "hasUsageRule"
+            ],
+            "isPersonalDataHandling": [
+              "isPersonalDataHandling0",
+              "isPersonalDataHandling1"
+            ],
+            "entitySourceId": [
+              "static:serviceModel"
+            ],
+            "targetDataModel": "ServiceModel"
+          }
+        },
+        "dataModelIn": {
+          "type": "string",
+          "uniqueItems": true,
+          "example": "ServiceModel"
+        },
+        "dataModel": {
+          "type": "string",
+          "uniqueItems": true,
+          "example": "Unfortunately swagger does not allow me to provide an example of a schema because it will show just the field 'properties' and it will cause errors in runtime. If you want to try this field, you can past here a schema like the ones present in the dataModels folder. If you do that, delete the field 'dataModelIn' in this example. However, this field is intended to be used if the data model is not present in the dataModels folder, instead it is recommended to use the field dataModelIn"
+        },
+        "config": {
+          "delimiter": {
+            "type": "string",
+            "uniqueItems": true,
+            "example": ";"
+          },
+          "NGSI_entity": {
+            "type": "boolean",
+            "uniqueItems": true,
+            "example": false
+          }
+        }
+      }
+    },
+    "Example Response 1": {
+      "type": "array",
+      "example": [
+        {
+          "identifier": "ID",
+          "title": "Title",
+          "issued": "",
+          "createdByUserId": "service.manager",
+          "versionInfo": "",
+          "serviceIconUrl": "",
+          "status": "",
+          "isPublicService": "",
+          "hasInfo": {
+            "identifier": "ID",
+            "title": "Title",
+            "status": "",
+            "description": {
+              "locale": "",
+              "description": ""
+            },
+            "processingTime": "P1Y1W1D",
+            "hasCompetentAuthority": {},
+            "hasContactPoint": {}
+          },
+          "hasServiceInstance": {
+            "serviceProvider": {},
+            "endpointConnector": {
+              "endpoint": {}
+            },
+            "serviceUrls": {},
+            "dataController": {}
+          },
+          "type": "identifier",
+          "id": "urn:ngsi-ld:identifier:SomeRZ:SomeService:CSV:serviceModel-1"
+        },
+        {
+          "identifier": "serviceIdentifier",
+          "title": "serviceTitle",
+          "issued": "issued",
+          "createdByUserId": "service.manager",
+          "versionInfo": "1.0",
+          "serviceIconUrl": "http://www.example.com",
+          "status": "COMPLETED",
+          "isPublicService": "true",
+          "hasInfo": {
+            "identifier": "serviceIdentifier",
+            "title": "serviceTitle",
+            "status": "COMPLETED",
+            "description": {
+              "locale": "alb",
+              "description": "albania"
+            },
+            "processingTime": "processingTime",
+            "hasCompetentAuthority": {
+              "identifier": "identifier",
+              "title": "title",
+              "hasAddress": "hasAddress",
+              "prefLabel": "prefLabel",
+              "spatial": "spatial"
+            },
+            "spatial": "spatial",
+            "hasContactPoint": {
+              "email": "email@email.com",
+              "faxNumber": "faxNumber",
+              "telephone": "+01 123456789",
+              "identifier": "identifier",
+              "openingHours": "08:00-20:00",
+              "hoursAvailable": "12",
+              "url": "http://www.example.com"
+            }
+          },
+          "hasServiceInstance": {
+            "serviceProvider": {
+              "businessId": "businessId",
+              "name": "name",
+              "hasAddress": "hasAddress",
+              "postalcode": "postalCode",
+              "city": "city",
+              "state": "state",
+              "country": "country",
+              "email": "email@email.com",
+              "telephone": "+01 123456789",
+              "jurisdiction": "jurisdiction"
+            },
+            "endpointConnector": {
+              "endpoint": {
+                "accessURL": "http://www.connector.com",
+                "endpointInformation": "information",
+                "endpointDocumentation": "documentation",
+                "path": "path"
+              },
+              "connectorId": "connectorID"
+            },
+            "serviceUrls": {
+              "libraryDomain": "libraryDomain",
+              "loginUri": "http://www.login.com",
+              "linkingRedirectUri": "http://www.logged.com",
+              "objectionUri": "http://www.objectionUri.com",
+              "notificationUri": "http://www.notificationUri.com"
+            },
+            "dataController": {
+              "piiController": "piiController",
+              "organizationName": "organizationName",
+              "hasContact": "hasContact",
+              "hasAddress": "hasAddress",
+              "email": "email@email.com",
+              "telephone": "+01 123456789",
+              "operatorName": "operator"
+            }
+          },
+          "hasUsageRule": [
+            "hasUsageRule"
+          ],
+          "isPersonalDataHandling": [
+            "isPersonalDataHandling0",
+            "isPersonalDataHandling1"
+          ],
+          "type": "identifier",
+          "id": "urn:ngsi-ld:identifier:SomeRZ:SomeService:CSV:serviceModel-2"
+        }
+      ]
+    },
+    "config": {
+      "properties": {
+        "delimiter": {
+          "type": "string"
+        },
+        "NGSI_entity": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Insert Map": {
+      "type": "object",
+      "example": {
+        "name": "Service Model map",
+        "id": "map_1",
+        "map": {
+          "identifier": "identifier",
+          "title": "title",
+          "issued": "issued",
+          "createdByUserId": "createdByUserId",
+          "versionInfo": "versionInfo",
+          "serviceIconUrl": "serviceIconUrl",
+          "status": "status",
+          "isPublicService": "isPublicService",
+          "hasInfo": {
+            "identifier": "hasInfoidentifier",
+            "title": "hasInfotitle",
+            "status": "hasInfostatus",
+            "keyword": "hasInfokeyword",
+            "sector": "hasInfosector",
+            "thematicArea": "hasInfothematicArea",
+            "type": "hasInfotype",
+            "language": "hasInfolanguage",
+            "description": {
+              "locale": "hasInfodescriptionlocale",
+              "description": "hasInfodescriptiondescription"
+            },
+            "isDescribedAt": "hasInfoisDescribedAt",
+            "hasCost": "hasInfohasCost",
+            "processingTime": "hasInfoprocessingTime",
+            "isGroupedBy": "hasInfoisGroupedBy",
+            "hasCompetentAuthority": {
+              "identifier": "hasInfohasCompetentAuthorityidentifier",
+              "title": "hasInfohasCompetentAuthoritytitle",
+              "hasAddress": "hasInfohasCompetentAuthorityhasAddress",
+              "prefLabel": "hasInfohasCompetentAuthorityprefLabel",
+              "spatial": "hasInfohasCompetentAuthorityspatial"
+            },
+            "requires": "hasInforequires",
+            "spatial": "hasInfospatial",
+            "hasInput": "hasInfohasInput",
+            "produces": "hasInfoproduces",
+            "hasContactPoint": {
+              "email": "hasInfohasContactPointemail",
+              "faxNumber": "hasInfohasContactPointfaxNumber",
+              "telephone": "hasInfohasContactPointtelephone",
+              "identifier": "hasInfohasContactPointidentifier",
+              "openingHours": "hasInfohasContactPointopeningHours",
+              "hoursAvailable": "hasInfohasContactPointhoursAvailable",
+              "url": "hasInfohasContactPointurl"
+            },
+            "hasChannel": "hasInfohasChannel"
+          },
+          "hasServiceInstance": {
+            "serviceProvider": {
+              "businessId": "hasServiceInstanceserviceProviderbusinessId",
+              "name": "hasServiceInstanceserviceProvidername",
+              "hasAddress": "hasServiceInstanceserviceProviderhasAddress",
+              "postalcode": "hasServiceInstanceserviceProviderpostalcode",
+              "city": "hasServiceInstanceserviceProvidercity",
+              "state": "hasServiceInstanceserviceProviderstate",
+              "country": "hasServiceInstanceserviceProvidercountry",
+              "email": "hasServiceInstanceserviceProvideremail",
+              "telephone": "hasServiceInstanceserviceProvidertelephone",
+              "jurisdiction": "hasServiceInstanceserviceProviderjurisdiction"
+            },
+            "endpointConnector": {
+              "endpoint": {
+                "accessURL": "hasServiceInstanceendpointConnectorendpointaccessURL",
+                "endpointInformation": "hasServiceInstanceendpointConnectorendpointendpointInformation",
+                "endpointDocumentation": "hasServiceInstanceendpointConnectorendpointendpointDocumentation",
+                "path": "hasServiceInstanceendpointConnectorendpointpath"
+              },
+              "connectorId": "hasServiceInstanceendpointConnectorconnectorId"
+            },
+            "dataset": "hasServiceInstancedataset",
+            "serviceUrls": {
+              "libraryDomain": "hasServiceInstanceserviceUrlslibraryDomain",
+              "loginUri": "hasServiceInstanceserviceUrlsloginUri",
+              "linkingRedirectUri": "hasServiceInstanceserviceUrlslinkingRedirectUri",
+              "objectionUri": "hasServiceInstanceserviceUrlsobjectionUri",
+              "notificationUri": "hasServiceInstanceserviceUrlsnotificationUri"
+            },
+            "dataController": {
+              "piiController": "hasServiceInstancedataControllerpiiController",
+              "organizationName": "hasServiceInstancedataControllerorganizationName",
+              "hasContact": "hasServiceInstancedataControllerhasContact",
+              "hasAddress": "hasServiceInstancedataControllerhasAddress",
+              "email": "hasServiceInstancedataControlleremail",
+              "telephone": "hasServiceInstancedataControllertelephone",
+              "operatorName": "hasServiceInstancedataControlleroperatorName"
+            }
+          },
+          "hasUsageRule": "hasUsageRule",
+          "isPersonalDataHandling": "isPersonalDataHandling",
+          "entitySourceId": "static:serviceModel",
+          "targetDataModel": "ServiceModel"
+        }
+      }
+    },
+    "Insert Map response": {
+      "type": "object",
+      "example": {
+        "name": "Service Model map",
+        "id": "map_1",
+        "map": {
+          "identifier": "identifier",
+          "title": "title",
+          "issued": "issued",
+          "createdByUserId": "createdByUserId",
+          "versionInfo": "versionInfo",
+          "serviceIconUrl": "serviceIconUrl",
+          "status": "status",
+          "isPublicService": "isPublicService",
+          "hasInfo": {
+            "identifier": "hasInfoidentifier",
+            "title": "hasInfotitle",
+            "status": "hasInfostatus",
+            "keyword": "hasInfokeyword",
+            "sector": "hasInfosector",
+            "thematicArea": "hasInfothematicArea",
+            "type": "hasInfotype",
+            "language": "hasInfolanguage",
+            "description": {
+              "locale": "hasInfodescriptionlocale",
+              "description": "hasInfodescriptiondescription"
+            },
+            "isDescribedAt": "hasInfoisDescribedAt",
+            "hasCost": "hasInfohasCost",
+            "processingTime": "hasInfoprocessingTime",
+            "isGroupedBy": "hasInfoisGroupedBy",
+            "hasCompetentAuthority": {
+              "identifier": "hasInfohasCompetentAuthorityidentifier",
+              "title": "hasInfohasCompetentAuthoritytitle",
+              "hasAddress": "hasInfohasCompetentAuthorityhasAddress",
+              "prefLabel": "hasInfohasCompetentAuthorityprefLabel",
+              "spatial": "hasInfohasCompetentAuthorityspatial"
+            },
+            "requires": "hasInforequires",
+            "spatial": "hasInfospatial",
+            "hasInput": "hasInfohasInput",
+            "produces": "hasInfoproduces",
+            "hasContactPoint": {
+              "email": "hasInfohasContactPointemail",
+              "faxNumber": "hasInfohasContactPointfaxNumber",
+              "telephone": "hasInfohasContactPointtelephone",
+              "identifier": "hasInfohasContactPointidentifier",
+              "openingHours": "hasInfohasContactPointopeningHours",
+              "hoursAvailable": "hasInfohasContactPointhoursAvailable",
+              "url": "hasInfohasContactPointurl"
+            },
+            "hasChannel": "hasInfohasChannel"
+          },
+          "hasServiceInstance": {
+            "serviceProvider": {
+              "businessId": "hasServiceInstanceserviceProviderbusinessId",
+              "name": "hasServiceInstanceserviceProvidername",
+              "hasAddress": "hasServiceInstanceserviceProviderhasAddress",
+              "postalcode": "hasServiceInstanceserviceProviderpostalcode",
+              "city": "hasServiceInstanceserviceProvidercity",
+              "state": "hasServiceInstanceserviceProviderstate",
+              "country": "hasServiceInstanceserviceProvidercountry",
+              "email": "hasServiceInstanceserviceProvideremail",
+              "telephone": "hasServiceInstanceserviceProvidertelephone",
+              "jurisdiction": "hasServiceInstanceserviceProviderjurisdiction"
+            },
+            "endpointConnector": {
+              "endpoint": {
+                "accessURL": "hasServiceInstanceendpointConnectorendpointaccessURL",
+                "endpointInformation": "hasServiceInstanceendpointConnectorendpointendpointInformation",
+                "endpointDocumentation": "hasServiceInstanceendpointConnectorendpointendpointDocumentation",
+                "path": "hasServiceInstanceendpointConnectorendpointpath"
+              },
+              "connectorId": "hasServiceInstanceendpointConnectorconnectorId"
+            },
+            "dataset": "hasServiceInstancedataset",
+            "serviceUrls": {
+              "libraryDomain": "hasServiceInstanceserviceUrlslibraryDomain",
+              "loginUri": "hasServiceInstanceserviceUrlsloginUri",
+              "linkingRedirectUri": "hasServiceInstanceserviceUrlslinkingRedirectUri",
+              "objectionUri": "hasServiceInstanceserviceUrlsobjectionUri",
+              "notificationUri": "hasServiceInstanceserviceUrlsnotificationUri"
+            },
+            "dataController": {
+              "piiController": "hasServiceInstancedataControllerpiiController",
+              "organizationName": "hasServiceInstancedataControllerorganizationName",
+              "hasContact": "hasServiceInstancedataControllerhasContact",
+              "hasAddress": "hasServiceInstancedataControllerhasAddress",
+              "email": "hasServiceInstancedataControlleremail",
+              "telephone": "hasServiceInstancedataControllertelephone",
+              "operatorName": "hasServiceInstancedataControlleroperatorName"
+            }
+          },
+          "hasUsageRule": "hasUsageRule",
+          "isPersonalDataHandling": "isPersonalDataHandling",
+          "entitySourceId": "static:serviceModel",
+          "targetDataModel": "ServiceModel"
+        },
+        "_id": "6401c595f3f421ae0a41a1ef"
+      }
+    },
+    "Insert Model Schema": {
+      "type": "object",
+      "example": {
+        "name": "Service Model",
+        "id": "service_1",
+        "dataModel": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "type": "object",
+          "title": "ServiceModel",
+          "properties": {
+            "identifier": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string",
+              "title": "name"
+            },
+            "issued": {
+              "type": "string"
+            },
+            "createdByUserId": {
+              "type": "string"
+            },
+            "versionInfo": {
+              "type": "string",
+              "title": "Description Version"
+            },
+            "serviceIconUrl": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string",
+              "title": "Service Description status",
+              "description": "Status of Service Description (Allowed values: *Completed*, *Deprecated*, *UnderDevelopment*, *Withdrawn*)",
+              "default": "UnderDevelopment",
+              "enum": [
+                "Completed",
+                "Deprecated",
+                "UnderDevelopment",
+                "WithDrawn"
+              ]
+            },
+            "isPublicService": {
+              "type": "boolean"
+            },
+            "hasInfo": {
+              "type": "object",
+              "properties": {
+                "identifier": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string",
+                  "title": "name"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "keyword": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "sector": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "thematicArea": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "type": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "language": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "description": {
+                  "type": "object",
+                  "properties": {
+                    "locale": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "locale",
+                    "description"
+                  ]
+                },
+                "isDescribedAt": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "identifier": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "landingPage": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "hasCost": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "identifier": {
+                        "type": "string"
+                      },
+                      "code": {
+                        "type": "string"
+                      },
+                      "hasCost": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "object",
+                        "properties": {
+                          "locale": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "locale",
+                          "description"
+                        ]
+                      },
+                      "ifAccessedThrough": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "processingTime": {
+                  "type": "string"
+                },
+                "isGroupedBy": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "hasCompetentAuthority": {
+                  "type": "object",
+                  "properties": {
+                    "identifier": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string",
+                      "title": "name"
+                    },
+                    "hasAddress": {
+                      "type": "string"
+                    },
+                    "prefLabel": {
+                      "type": "string"
+                    },
+                    "spatial": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "prefLabel",
+                    "spatial"
+                  ]
+                },
+                "requires": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "spatial": {
+                  "type": "string"
+                },
+                "hasInput": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "identifier": {
+                        "type": "string"
+                      },
+                      "title": {
+                        "type": "string",
+                        "title": "name"
+                      },
+                      "description": {
+                        "type": "object",
+                        "properties": {
+                          "locale": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "locale",
+                          "description"
+                        ]
+                      },
+                      "type": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "language": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "page": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "conformsTo": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "produces": {
+                  "title": "produces",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "identifier": {
+                        "type": "string"
+                      },
+                      "title": {
+                        "type": "string",
+                        "title": "name"
+                      },
+                      "description": {
+                        "type": "object",
+                        "properties": {
+                          "locale": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "locale",
+                          "description"
+                        ]
+                      },
+                      "type": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "hasContactPoint": {
+                  "type": "object",
+                  "properties": {
+                    "email": {
+                      "type": "string"
+                    },
+                    "faxNumber": {
+                      "type": "string"
+                    },
+                    "telephone": {
+                      "type": "string"
+                    },
+                    "identifier": {
+                      "type": "string"
+                    },
+                    "openingHours": {
+                      "type": "string"
+                    },
+                    "hoursAvailable": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "hasChannel": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "identifier": {
+                        "type": "string"
+                      },
+                      "type": {
+                        "type": "string"
+                      },
+                      "openingHours": {
+                        "type": "string"
+                      },
+                      "hoursAvailable": {
+                        "type": "string"
+                      },
+                      "hasInput": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "required": [
+                      "identifier",
+                      "type",
+                      "openingHours"
+                    ]
+                  }
+                }
+              },
+              "required": [
+                "identifier",
+                "title",
+                "status",
+                "keyword",
+                "sector",
+                "thematicArea",
+                "type",
+                "language",
+                "description",
+                "isDescribedAt",
+                "hasCost",
+                "processingTime",
+                "isGroupedBy",
+                "hasCompetentAuthority",
+                "requires",
+                "spatial",
+                "hasInput",
+                "produces",
+                "hasContactPoint",
+                "hasChannel"
+              ]
+            },
+            "hasServiceInstance": {
+              "type": "object",
+              "properties": {
+                "serviceProvider": {
+                  "type": "object",
+                  "properties": {
+                    "businessId": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "hasAddress": {
+                      "type": "string"
+                    },
+                    "postalcode": {
+                      "type": "string"
+                    },
+                    "city": {
+                      "type": "string"
+                    },
+                    "state": {
+                      "type": "string"
+                    },
+                    "country": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "telephone": {
+                      "type": "string"
+                    },
+                    "jurisdiction": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "businessId",
+                    "name",
+                    "hasAddress",
+                    "postalcode",
+                    "city",
+                    "state",
+                    "country",
+                    "email",
+                    "telephone",
+                    "jurisdiction"
+                  ]
+                },
+                "endpointConnector": {
+                  "type": "object",
+                  "properties": {
+                    "endpoint": {
+                      "type": "object",
+                      "properties": {
+                        "accessURL": {
+                          "type": "string"
+                        },
+                        "endpointInformation": {
+                          "type": "string"
+                        },
+                        "endpointDocumentation": {
+                          "type": "string"
+                        },
+                        "path": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "accessURL",
+                        "endpointInformation",
+                        "endpointDocumentation",
+                        "path"
+                      ]
+                    },
+                    "connectorId": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "endpoint",
+                    "connectorId"
+                  ]
+                },
+                "dataset": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "identifier": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "locale": {
+                              "type": "string"
+                            },
+                            "description": {
+                              "type": "string"
+                            },
+                            "keywords": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "required": [
+                            "locale",
+                            "description",
+                            "keywords"
+                          ]
+                        }
+                      },
+                      "datasetSchema": {
+                        "type": "object",
+                        "properties": {
+                          "context": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "context",
+                          "type",
+                          "id"
+                        ]
+                      },
+                      "dataStructureSpecification": {
+                        "type": "string"
+                      },
+                      "distribution": {
+                        "type": "array",
+                        "items": {
+                          "properties": {
+                            "accessUrl": {
+                              "type": "string"
+                            },
+                            "description": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "locale": {
+                                    "type": "string"
+                                  },
+                                  "description": {
+                                    "type": "string"
+                                  },
+                                  "keywords": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "required": [
+                                  "locale",
+                                  "description",
+                                  "keywords"
+                                ]
+                              }
+                            },
+                            "format": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "distributionId",
+                            "accessUrl",
+                            "description",
+                            "format"
+                          ]
+                        }
+                      },
+                      "dataMapping": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "property": {
+                              "type": "string"
+                            },
+                            "conceptId": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "type": {
+                              "type": "string"
+                            },
+                            "inputType": {
+                              "type": "string"
+                            },
+                            "required": {
+                              "type": "boolean"
+                            }
+                          },
+                          "required": [
+                            "property",
+                            "conceptId",
+                            "name",
+                            "type",
+                            "required"
+                          ]
+                        }
+                      }
+                    },
+                    "required": [
+                      "datasetId",
+                      "description",
+                      "datasetSchema",
+                      "dataStructureSpecification",
+                      "distribution",
+                      "dataMapping"
+                    ]
+                  }
+                },
+                "serviceUrls": {
+                  "type": "object",
+                  "properties": {
+                    "libraryDomain": {
+                      "type": "string"
+                    },
+                    "loginUri": {
+                      "type": "string"
+                    },
+                    "linkingRedirectUri": {
+                      "type": "string"
+                    },
+                    "objectionUri": {
+                      "type": "string"
+                    },
+                    "notificationUri": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "libraryDomain",
+                    "loginUri",
+                    "linkingRedirectUri",
+                    "objectionUri",
+                    "notificationUri"
+                  ]
+                },
+                "dataController": {
+                  "type": "object",
+                  "properties": {
+                    "piiController": {
+                      "type": "string"
+                    },
+                    "organizationName": {
+                      "type": "string"
+                    },
+                    "hasContact": {
+                      "type": "string"
+                    },
+                    "hasAddress": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "telephone": {
+                      "type": "string"
+                    },
+                    "operatorName": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "piiController",
+                    "organizationName",
+                    "hasContact",
+                    "hasAddress",
+                    "email",
+                    "telephone",
+                    "operatorName"
+                  ]
+                }
+              },
+              "required": [
+                "serviceProvider",
+                "cert",
+                "connector",
+                "dataset",
+                "serviceUrls",
+                "dataController"
+              ]
+            },
+            "hasUsageRule": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "usageId": {
+                    "type": "string"
+                  },
+                  "usageName": {
+                    "type": "string"
+                  },
+                  "usageType": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "usageId",
+                  "usageName",
+                  "usageType"
+                ]
+              }
+            },
+            "isPersonalDataHandling": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "purposeId": {
+                    "type": "string"
+                  },
+                  "purposeName": {
+                    "type": "string"
+                  },
+                  "legalBasis": {
+                    "type": "string"
+                  },
+                  "purposeCategory": {
+                    "type": "string"
+                  },
+                  "hasSector": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "hasContext": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "processingCategories": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "description": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "locale": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "descriptionUrl": {
+                          "type": "string"
+                        },
+                        "iconUrl": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "locale",
+                        "title",
+                        "description",
+                        "descriptionUrl",
+                        "iconUrl"
+                      ]
+                    }
+                  },
+                  "hasPersonalDataCategory": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "requiredDatasets": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "storage": {
+                    "type": "object",
+                    "properties": {
+                      "location": {
+                        "type": "string"
+                      },
+                      "duration": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "location",
+                      "duration"
+                    ]
+                  },
+                  "recipients": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "shareWith": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "orgName": {
+                          "type": "string"
+                        },
+                        "orgUrl": {
+                          "type": "string"
+                        },
+                        "businessType": {
+                          "type": "string"
+                        },
+                        "required": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "orgName",
+                        "orgUrl",
+                        "businessType",
+                        "required"
+                      ]
+                    }
+                  },
+                  "obligations": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "event": {
+                          "type": "string"
+                        },
+                        "activity": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "event",
+                        "activity"
+                      ]
+                    }
+                  },
+                  "policyRef": {
+                    "type": "string"
+                  },
+                  "collectionMethod": {
+                    "type": "string"
+                  },
+                  "collectionOperator": {
+                    "type": "string"
+                  },
+                  "termination": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "purposeId",
+                  "purposeName",
+                  "legalBasis",
+                  "purposeCategory",
+                  "hasSector",
+                  "hasContext",
+                  "processingCategories",
+                  "description",
+                  "hasPersonalDataCategory",
+                  "requiredDatasets",
+                  "storage",
+                  "recipients",
+                  "shareWith",
+                  "obligations",
+                  "policyRef",
+                  "collectionMethod",
+                  "collectionOperator",
+                  "termination"
+                ]
+              }
+            }
+          },
+          "required": [
+            "serviceId",
+            "title",
+            "identifier",
+            "issued",
+            "createdByUserId",
+            "serviceDescriptionVersion",
+            "serviceIconUrl",
+            "status",
+            "isPublicService",
+            "hasInfo",
+            "hasServiceInstance",
+            "hasUsageRule"
+          ]
+        }
+      }
+    },
+    "Insert Model Schema response": {
+      "type": "object",
+      "example": {
+        "name": "Service Model",
+        "id": "service_1",
+        "dataModel": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "type": "object",
+          "title": "ServiceModel",
+          "properties": {
+            "identifier": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string",
+              "title": "name"
+            },
+            "issued": {
+              "type": "string"
+            },
+            "createdByUserId": {
+              "type": "string"
+            },
+            "versionInfo": {
+              "type": "string",
+              "title": "Description Version"
+            },
+            "serviceIconUrl": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string",
+              "title": "Service Description status",
+              "description": "Status of Service Description (Allowed values: *Completed*, *Deprecated*, *UnderDevelopment*, *Withdrawn*)",
+              "default": "UnderDevelopment",
+              "enum": [
+                "Completed",
+                "Deprecated",
+                "UnderDevelopment",
+                "WithDrawn"
+              ]
+            },
+            "isPublicService": {
+              "type": "boolean"
+            },
+            "hasInfo": {
+              "type": "object",
+              "properties": {
+                "identifier": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string",
+                  "title": "name"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "keyword": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "sector": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "thematicArea": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "type": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "language": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "description": {
+                  "type": "object",
+                  "properties": {
+                    "locale": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "locale",
+                    "description"
+                  ]
+                },
+                "isDescribedAt": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "identifier": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "landingPage": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "hasCost": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "identifier": {
+                        "type": "string"
+                      },
+                      "code": {
+                        "type": "string"
+                      },
+                      "hasCost": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "object",
+                        "properties": {
+                          "locale": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "locale",
+                          "description"
+                        ]
+                      },
+                      "ifAccessedThrough": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "processingTime": {
+                  "type": "string"
+                },
+                "isGroupedBy": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "hasCompetentAuthority": {
+                  "type": "object",
+                  "properties": {
+                    "identifier": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string",
+                      "title": "name"
+                    },
+                    "hasAddress": {
+                      "type": "string"
+                    },
+                    "prefLabel": {
+                      "type": "string"
+                    },
+                    "spatial": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "prefLabel",
+                    "spatial"
+                  ]
+                },
+                "requires": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "spatial": {
+                  "type": "string"
+                },
+                "hasInput": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "identifier": {
+                        "type": "string"
+                      },
+                      "title": {
+                        "type": "string",
+                        "title": "name"
+                      },
+                      "description": {
+                        "type": "object",
+                        "properties": {
+                          "locale": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "locale",
+                          "description"
+                        ]
+                      },
+                      "type": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "language": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "page": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "conformsTo": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "produces": {
+                  "title": "produces",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "identifier": {
+                        "type": "string"
+                      },
+                      "title": {
+                        "type": "string",
+                        "title": "name"
+                      },
+                      "description": {
+                        "type": "object",
+                        "properties": {
+                          "locale": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "locale",
+                          "description"
+                        ]
+                      },
+                      "type": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "hasContactPoint": {
+                  "type": "object",
+                  "properties": {
+                    "email": {
+                      "type": "string"
+                    },
+                    "faxNumber": {
+                      "type": "string"
+                    },
+                    "telephone": {
+                      "type": "string"
+                    },
+                    "identifier": {
+                      "type": "string"
+                    },
+                    "openingHours": {
+                      "type": "string"
+                    },
+                    "hoursAvailable": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "hasChannel": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "identifier": {
+                        "type": "string"
+                      },
+                      "type": {
+                        "type": "string"
+                      },
+                      "openingHours": {
+                        "type": "string"
+                      },
+                      "hoursAvailable": {
+                        "type": "string"
+                      },
+                      "hasInput": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "required": [
+                      "identifier",
+                      "type",
+                      "openingHours"
+                    ]
+                  }
+                }
+              },
+              "required": [
+                "identifier",
+                "title",
+                "status",
+                "keyword",
+                "sector",
+                "thematicArea",
+                "type",
+                "language",
+                "description",
+                "isDescribedAt",
+                "hasCost",
+                "processingTime",
+                "isGroupedBy",
+                "hasCompetentAuthority",
+                "requires",
+                "spatial",
+                "hasInput",
+                "produces",
+                "hasContactPoint",
+                "hasChannel"
+              ]
+            },
+            "hasServiceInstance": {
+              "type": "object",
+              "properties": {
+                "serviceProvider": {
+                  "type": "object",
+                  "properties": {
+                    "businessId": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "hasAddress": {
+                      "type": "string"
+                    },
+                    "postalcode": {
+                      "type": "string"
+                    },
+                    "city": {
+                      "type": "string"
+                    },
+                    "state": {
+                      "type": "string"
+                    },
+                    "country": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "telephone": {
+                      "type": "string"
+                    },
+                    "jurisdiction": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "businessId",
+                    "name",
+                    "hasAddress",
+                    "postalcode",
+                    "city",
+                    "state",
+                    "country",
+                    "email",
+                    "telephone",
+                    "jurisdiction"
+                  ]
+                },
+                "endpointConnector": {
+                  "type": "object",
+                  "properties": {
+                    "endpoint": {
+                      "type": "object",
+                      "properties": {
+                        "accessURL": {
+                          "type": "string"
+                        },
+                        "endpointInformation": {
+                          "type": "string"
+                        },
+                        "endpointDocumentation": {
+                          "type": "string"
+                        },
+                        "path": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "accessURL",
+                        "endpointInformation",
+                        "endpointDocumentation",
+                        "path"
+                      ]
+                    },
+                    "connectorId": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "endpoint",
+                    "connectorId"
+                  ]
+                },
+                "dataset": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "identifier": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "locale": {
+                              "type": "string"
+                            },
+                            "description": {
+                              "type": "string"
+                            },
+                            "keywords": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "required": [
+                            "locale",
+                            "description",
+                            "keywords"
+                          ]
+                        }
+                      },
+                      "datasetSchema": {
+                        "type": "object",
+                        "properties": {
+                          "context": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "context",
+                          "type",
+                          "id"
+                        ]
+                      },
+                      "dataStructureSpecification": {
+                        "type": "string"
+                      },
+                      "distribution": {
+                        "type": "array",
+                        "items": {
+                          "properties": {
+                            "accessUrl": {
+                              "type": "string"
+                            },
+                            "description": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "locale": {
+                                    "type": "string"
+                                  },
+                                  "description": {
+                                    "type": "string"
+                                  },
+                                  "keywords": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "required": [
+                                  "locale",
+                                  "description",
+                                  "keywords"
+                                ]
+                              }
+                            },
+                            "format": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "distributionId",
+                            "accessUrl",
+                            "description",
+                            "format"
+                          ]
+                        }
+                      },
+                      "dataMapping": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "property": {
+                              "type": "string"
+                            },
+                            "conceptId": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "type": {
+                              "type": "string"
+                            },
+                            "inputType": {
+                              "type": "string"
+                            },
+                            "required": {
+                              "type": "boolean"
+                            }
+                          },
+                          "required": [
+                            "property",
+                            "conceptId",
+                            "name",
+                            "type",
+                            "required"
+                          ]
+                        }
+                      }
+                    },
+                    "required": [
+                      "datasetId",
+                      "description",
+                      "datasetSchema",
+                      "dataStructureSpecification",
+                      "distribution",
+                      "dataMapping"
+                    ]
+                  }
+                },
+                "serviceUrls": {
+                  "type": "object",
+                  "properties": {
+                    "libraryDomain": {
+                      "type": "string"
+                    },
+                    "loginUri": {
+                      "type": "string"
+                    },
+                    "linkingRedirectUri": {
+                      "type": "string"
+                    },
+                    "objectionUri": {
+                      "type": "string"
+                    },
+                    "notificationUri": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "libraryDomain",
+                    "loginUri",
+                    "linkingRedirectUri",
+                    "objectionUri",
+                    "notificationUri"
+                  ]
+                },
+                "dataController": {
+                  "type": "object",
+                  "properties": {
+                    "piiController": {
+                      "type": "string"
+                    },
+                    "organizationName": {
+                      "type": "string"
+                    },
+                    "hasContact": {
+                      "type": "string"
+                    },
+                    "hasAddress": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "telephone": {
+                      "type": "string"
+                    },
+                    "operatorName": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "piiController",
+                    "organizationName",
+                    "hasContact",
+                    "hasAddress",
+                    "email",
+                    "telephone",
+                    "operatorName"
+                  ]
+                }
+              },
+              "required": [
+                "serviceProvider",
+                "cert",
+                "connector",
+                "dataset",
+                "serviceUrls",
+                "dataController"
+              ]
+            },
+            "hasUsageRule": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "usageId": {
+                    "type": "string"
+                  },
+                  "usageName": {
+                    "type": "string"
+                  },
+                  "usageType": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "usageId",
+                  "usageName",
+                  "usageType"
+                ]
+              }
+            },
+            "isPersonalDataHandling": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "purposeId": {
+                    "type": "string"
+                  },
+                  "purposeName": {
+                    "type": "string"
+                  },
+                  "legalBasis": {
+                    "type": "string"
+                  },
+                  "purposeCategory": {
+                    "type": "string"
+                  },
+                  "hasSector": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "hasContext": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "processingCategories": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "description": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "locale": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "descriptionUrl": {
+                          "type": "string"
+                        },
+                        "iconUrl": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "locale",
+                        "title",
+                        "description",
+                        "descriptionUrl",
+                        "iconUrl"
+                      ]
+                    }
+                  },
+                  "hasPersonalDataCategory": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "requiredDatasets": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "storage": {
+                    "type": "object",
+                    "properties": {
+                      "location": {
+                        "type": "string"
+                      },
+                      "duration": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "location",
+                      "duration"
+                    ]
+                  },
+                  "recipients": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "shareWith": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "orgName": {
+                          "type": "string"
+                        },
+                        "orgUrl": {
+                          "type": "string"
+                        },
+                        "businessType": {
+                          "type": "string"
+                        },
+                        "required": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "orgName",
+                        "orgUrl",
+                        "businessType",
+                        "required"
+                      ]
+                    }
+                  },
+                  "obligations": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "event": {
+                          "type": "string"
+                        },
+                        "activity": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "event",
+                        "activity"
+                      ]
+                    }
+                  },
+                  "policyRef": {
+                    "type": "string"
+                  },
+                  "collectionMethod": {
+                    "type": "string"
+                  },
+                  "collectionOperator": {
+                    "type": "string"
+                  },
+                  "termination": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "purposeId",
+                  "purposeName",
+                  "legalBasis",
+                  "purposeCategory",
+                  "hasSector",
+                  "hasContext",
+                  "processingCategories",
+                  "description",
+                  "hasPersonalDataCategory",
+                  "requiredDatasets",
+                  "storage",
+                  "recipients",
+                  "shareWith",
+                  "obligations",
+                  "policyRef",
+                  "collectionMethod",
+                  "collectionOperator",
+                  "termination"
+                ]
+              }
+            }
+          },
+          "required": [
+            "serviceId",
+            "title",
+            "identifier",
+            "issued",
+            "createdByUserId",
+            "serviceDescriptionVersion",
+            "serviceIconUrl",
+            "status",
+            "isPublicService",
+            "hasInfo",
+            "hasServiceInstance",
+            "hasUsageRule"
+          ]
+        },
+        "_id": "6401c59ff3f421ae0a41a1f5"
+      }
+    }
+  }
+}

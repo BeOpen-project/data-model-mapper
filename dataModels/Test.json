@@ -1,0 +1,87 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "$id": "dataModels/Test.json",
+    "title": "Across / Service Model",
+    "description": "Service Model",
+    "type": "object",
+    "required": [],
+    "anyOf": [
+        {
+            "required": []
+        },
+        {
+            "required": []
+        }
+    ],
+    "allOf": [
+        {
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "Test"
+                    ],
+                    "description": "Across Entity type"
+                },
+                "Field 1": {
+                    "type": "integer"
+                },
+                "Field 2": {
+                    "type": "object",
+                    "properties": {
+                        "Field 2_1": {
+                            "type": "integer"
+                        },
+                        "Field 2_2": {
+                            "type": "string"
+                        },
+                        "Field 2_3": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "Field 2_4": {
+                            "type": "object",
+                            "properties": {
+                                "Field 2_4_1": {
+                                    "type": "integer"
+                                },
+                                "Field 2_4_2": {
+                                    "type": "string"
+                                },
+                                "Field 2_4_3": {
+                                    "type": "object",
+                                    "properties": {
+                                        "Field 2_4_3_1": {
+                                            "type": "object",
+                                            "properties": {
+                                                "Field 2_4_3_1_1": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "Field 2_4_3_1_1_1": {
+                                                            "type": "integer"
+                                                        },
+                                                        "Field 2_4_3_1_1_2": {
+                                                            "type": "string"
+                                                        },
+                                                        "Field 2_4_3_1_1_3": {
+                                                            "type": "array",
+                                                            "items": {
+                                                                "type": "integer"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}

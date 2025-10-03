@@ -1,0 +1,53 @@
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio 2015 cache/options directory
+.vs/
+
+# Specific
+node_modules/
+reports/
+logs/
+config.js
+result.json
+dataModels/DataModelTemp.json
+testing/
+input/
+output/
+
+# History
+.history/
+Funzionalità.docx
+Funzionalità.pdf
+dataModels/test_nested_datamodel.json
+debug.txt
+dataModels/schema.json
+dataModels/schema1.json
+dataModels/schema2.json
+.vscode/
+dataModels/nonNgsi.json
+docs/tests/NonNGSI/NonNGSI - Copia.bat
+mapper.bat
+sourceFileTemp.csv
+sourceFileTemp.json
+sourceFileTemp..json
+docs/tests/.history/
+backend/examples/
+src/validation.log
+log*.json
+log0.json
+log1.json
+log2.json
+log3.json
+*.sandbox
+src/utils/common_dev.js
+src/utils/threads.js
+src/writers/orionWriter.old.js

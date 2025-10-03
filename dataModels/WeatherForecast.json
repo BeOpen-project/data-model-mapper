@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "$id": "dataModels/WeatherForecast.json",
+  "title": "GSMA / FIWARE - Weather Forecast schema",
+  "description": "A harmonized description of a Weather Forecast",
+  "type": "object",
+  "required": ["id", "type", "dateIssued", "dateRetrieved", "validity"],
+  "anyOf": [{"required": ["location"]}, {"required": ["address"]}],
+  "allOf": [
+    { "$ref": "common-schema.json#/definitions/GSMA-Commons" },
+    { "$ref": "common-schema.json#/definitions/Location-Commons" },
+    { "$ref": "weather-schema.json#/definitions/Weather-Commons" },
+    {
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "WeatherForecast"
+          ],
+          "description": "NGSI Entity type"
+        },
+        "dateRetrieved": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "dateIssued": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "validity": {
+          "title": "ISO8601 Interval",
+          "type": "string"
+        },
+        "validFrom": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "validTo": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "dayMaximum": {
+          "type": "object",
+          "allOf": [
+            { "$ref": "weather-schema.json#/definitions/Weather-AirConditions" }
+          ]
+        },
+        "dayMinimum": {
+          "type": "object",
+          "allOf": [
+            { "$ref": "weather-schema.json#/definitions/Weather-AirConditions" }
+          ]
+        },
+        "uVIndexMax": {
+          "type": "number",
+          "minimum": 1
+        }
+      }
+    }
+  ]
+}

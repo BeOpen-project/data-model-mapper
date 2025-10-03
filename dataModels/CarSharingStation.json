@@ -1,0 +1,149 @@
+{
+   "$schema": "http://json-schema.org/schema#",
+   "id": "CarSharingStation/schema.json",
+   "title": "SynchroniCity - Car Sharing Station Model",
+   "description": "A site dedicated to car sharing with either direct access from a road or with suitable and clearly marked access points",
+   "type": "object",
+   "required": [
+      "id",
+      "type",
+      "name",
+      "providedVehicleType",
+      "category"
+   ],
+   "anyOf": [
+      {
+         "required": [
+            "location"
+         ]
+      },
+      {
+         "required": [
+            "address"
+         ]
+      }
+   ],
+   "allOf": [
+      {
+         "$ref": "common-schema.json#/definitions/GSMA-Commons"
+      },
+      {
+         "$ref": "common-schema.json#/definitions/Location-Commons"
+      },
+      {
+         "$ref": "common-schema.json#/definitions/PhysicalObject-Commons"
+      },
+      {
+         "properties": {
+            "type": {
+               "type": "string",
+               "enum": [
+                  "CarSharingStation"
+               ],
+               "description": "NGSI Entity type"
+            },
+            "category": {
+              "type": "array",
+              "items": {
+                 "type": "string",
+				 "enum": [
+					"onStreet",
+					"offStreet",
+					"unknown"
+				 ]
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "areaBordersMarked": {
+               "type": "boolean"
+            },
+            "totalSpotNumber": {
+               "type": "integer",
+               "minimum": 0
+            },
+            "totalSpotNumberForElectricVehicles": {
+               "type": "integer",
+               "minimum": 0
+            },
+            "totalSpotNumberForDisabledPeople": {
+               "type": "integer",
+               "minimum": 0
+            },
+            "totalAvailableSpotNumber ": {
+               "type": "integer",
+               "minimum": 0
+            },
+            "availableSpotNumberForDisabledPeople": {
+               "type": "integer",
+               "minimum": 0
+            },
+            "availableSpotNumberForElectricVehicles ": {
+               "type": "integer",
+               "minimum": 0
+            },
+            "totalAvailableVehicles": {
+               "type": "integer",
+               "minimum": 0
+            },
+            "totalAvailableVehiclesForDisabledPeople": {
+               "type": "integer",
+               "minimum": 0
+            },
+            "totalAvailableElectricVehicles": {
+               "type": "integer",
+               "minimum": 0
+            },
+            "parkingMode": {
+               "type": "array",
+               "items": {
+                  "type": "string",
+                  "enum": [
+                     "perpendicularParking",
+                     "parallelParking",
+                     "echelonParking"
+                  ]
+               },
+               "minItems": 1,
+               "uniqueItems": true
+            },
+            "refParkingSpot": {
+               "type": "array",
+               "items": {
+                  "$ref": "common-schema.json#/definitions/EntityIdentifierType"
+               }
+            },
+            "areaServed": {
+               "type": "string"
+            },
+            "providedVehicleType": {
+               "type": "array",
+               "items": {
+                  "type": "string",
+                  "enum": [
+                     "electricVehicle",
+                     "car"
+                  ]
+               }
+            },
+            "providers": {
+               "type": "array",
+               "items": {
+                  "type": "string"
+               }
+            },
+            "contactPoint": {
+               "type": "string"
+            },
+            "security": {
+               "type": "array",
+               "items": {
+                  "type": "string"
+               },
+               "minItems": 1,
+               "uniqueItems": true
+            }
+         }
+      }
+   ]
+}

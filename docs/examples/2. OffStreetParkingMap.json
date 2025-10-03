@@ -1,0 +1,26 @@
+{
+  "name": "properties.nome",
+  "category": [
+    "static:publicPrivate",
+    "properties.tipo"
+  ],
+  "location": "geometry",
+  "address": {
+    "addressCountry": "static:Italy",
+    "addressLocality": "properties.comune",
+    "streetAddress": "properties.indirizzo"
+  },
+  "allowedVehicleType": ["static:car"],
+  "chargeType": ["static:other"],
+  "requiredPermit": ["static:other"],
+  "occupancyDetectionType": [
+    "static:none",
+    "static:manual"
+  ],
+  "totalSpotNumber": "properties.n_posti",
+  "description": "properties.tipo",
+  "entitySourceId": [
+    "static:ds342-",
+    "properties.id"
+  ]
+}

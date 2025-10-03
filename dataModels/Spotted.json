@@ -1,0 +1,20 @@
+{
+	"$schema": "http://json-schema.org/schema#",
+	"$id": "dataModels/Spotted.json",
+	"title": "Spotted entity",
+	"description": "Spotted entity",
+	"type": "object",
+	"allOf": [
+		{
+			"properties": {
+				"type": {
+					"type": "string",
+					"enum": [
+						"Spotted"
+					],
+					"description": "NGSI Entity type"
+				}
+			}
+		}
+	]
+}

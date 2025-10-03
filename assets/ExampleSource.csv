@@ -1,0 +1,2 @@
+Field 1;Field 2;Field 3 index 0;Field 3 index 1;Field 31;Field 32;Field 33;Field 4a;Field 4b;Field 4c index 0;Field 4c index 1;Field 4d;Field 5;Field 6;Field 7
+ [Field 1 value 1,Field 1 value 2];[Field 2 value 1,Field 2 value 2];Field 3 value 1;Field 3 value 2;[{^Field 31a^ : ^Field 31a^, ^Field 31b^ : ^Field 31b^ }];32;33; [Field 4a value 1,Field 4a value 2];[Field 4b value 1,Field 4b value 2];Field 4c value 1;Field 4c value 1;[{^Field 4da^ : ^Field 4da^, ^Field 4db^ : ^Field 4db^ }, {^Field 4da1^ : ^Field 4da1^, ^Field 4db1^ : ^Field 4db1^ }];5;6;7

@@ -1,0 +1,519 @@
+{
+    "sourceDataType": "csv",
+    "sourceData": "identifier;title;issued;createdByUserId;versionInfo;serviceIconUrl;status;isPublicService;hasInfoidentifier;hasInfotitle;hasInfostatus;hasInfokeyword;hasInfodescriptionlocale;hasInfodescriptiondescription;hasInfohasCost0identifier;hasInfohasCost0code;hasInfohasCost0hasCost0;hasInfohasCost0descriptionlocale;hasInfohasCost0descriptiondescription;hasInfohasCost0ifAccessedThrough;hasInfoprocessingTime;hasInfohasCompetentAuthorityidentifier;hasInfohasCompetentAuthoritytitle;hasInfohasCompetentAuthorityhasAddress;hasInfohasCompetentAuthorityprefLabel;hasInfohasCompetentAuthorityspatial;hasInfospatial;hasInfohasContactPointemail;hasInfohasContactPointfaxNumber;hasInfohasContactPointtelephone;hasInfohasContactPointidentifier;hasInfohasContactPointopeningHours;hasInfohasContactPointhoursAvailable;hasInfohasContactPointurl;hasServiceInstanceserviceProviderbusinessId;hasServiceInstanceserviceProvidername;hasServiceInstanceserviceProviderhasAddress;hasServiceInstanceserviceProviderpostalcode;hasServiceInstanceserviceProvidercity;hasServiceInstanceserviceProviderstate;hasServiceInstanceserviceProvidercountry;hasServiceInstanceserviceProvideremail;hasServiceInstanceserviceProvidertelephone;hasServiceInstanceserviceProviderjurisdiction;hasServiceInstanceendpointConnectorendpointaccessURL;hasServiceInstanceendpointConnectorendpointendpointInformation;hasServiceInstanceendpointConnectorendpointendpointDocumentation;hasServiceInstanceendpointConnectorendpointpath;hasServiceInstanceendpointConnectorconnectorId;hasServiceInstanceserviceUrlslibraryDomain;hasServiceInstanceserviceUrlsloginUri;hasServiceInstanceserviceUrlslinkingRedirectUri;hasServiceInstanceserviceUrlsobjectionUri;hasServiceInstanceserviceUrlsnotificationUri;hasServiceInstancedataControllerpiiController;hasServiceInstancedataControllerorganizationName;hasServiceInstancedataControllerhasContact;hasServiceInstancedataControllerhasAddress;hasServiceInstancedataControlleremail;hasServiceInstancedataControllertelephone;hasServiceInstancedataControlleroperatorName;hasUsageRule;isPersonalDataHandling0;isPersonalDataHandling1\r\nID;Title;;service.manager;;;;;ID;Title;;;;;;;;;;;;;P1Y1W1D\r\nserviceIdentifier;serviceTitle;issued;service.manager;1.0;http://www.example.com;COMPLETED;true;serviceIdentifier;serviceTitle;COMPLETED;[key,key0,key1];alb;albania;7;8;9;EUR;processingTime;identifier;processingTime;identifier;title;hasAddress;prefLabel;spatial;spatial;email@email.com;faxNumber;+01 123456789;identifier;08:00-20:00;12;http://www.example.com;businessId;name;hasAddress;postalCode;city;state;country;email@email.com;+01 123456789;jurisdiction;http://www.connector.com;information;documentation;path;connectorID;libraryDomain;http://www.login.com;http://www.logged.com;http://www.objectionUri.com;http://www.notificationUri.com;piiController;organizationName;hasContact;hasAddress;email@email.com;+01 123456789;operator;hasUsageRule;isPersonalDataHandling0;isPersonalDataHandling1",
+    "mapData": {
+        "identifier": "identifier",
+        "title": "title",
+        "issued": "issued",
+        "createdByUserId": "createdByUserId",
+        "versionInfo": "versionInfo",
+        "serviceIconUrl": "serviceIconUrl",
+        "status": "status",
+        "isPublicService": "isPublicService",
+        "hasInfo": {
+            "identifier": "hasInfoidentifier",
+            "title": "hasInfotitle",
+            "status": "hasInfostatus",
+            "keyword": "hasInfokeyword",
+            "sector": "hasInfosector",
+            "thematicArea": "hasInfothematicArea",
+            "type": "hasInfotype",
+            "language": "hasInfolanguage",
+            "description": {
+                "locale": "hasInfodescriptionlocale",
+                "description": "hasInfodescriptiondescription"
+            },
+            "isDescribedAt": "hasInfoisDescribedAt",
+            "hasCost": "hasInfohasCost",
+            "processingTime": "hasInfoprocessingTime",
+            "isGroupedBy": "hasInfoisGroupedBy",
+            "hasCompetentAuthority": {
+                "identifier": "hasInfohasCompetentAuthorityidentifier",
+                "title": "hasInfohasCompetentAuthoritytitle",
+                "hasAddress": "hasInfohasCompetentAuthorityhasAddress",
+                "prefLabel": "hasInfohasCompetentAuthorityprefLabel",
+                "spatial": "hasInfohasCompetentAuthorityspatial"
+            },
+            "requires": "hasInforequires",
+            "spatial": "hasInfospatial",
+            "hasInput": "hasInfohasInput",
+            "produces": "hasInfoproduces",
+            "hasContactPoint": {
+                "email": "hasInfohasContactPointemail",
+                "faxNumber": "hasInfohasContactPointfaxNumber",
+                "telephone": "hasInfohasContactPointtelephone",
+                "identifier": "hasInfohasContactPointidentifier",
+                "openingHours": "hasInfohasContactPointopeningHours",
+                "hoursAvailable": "hasInfohasContactPointhoursAvailable",
+                "url": "hasInfohasContactPointurl"
+            },
+            "hasChannel": "hasInfohasChannel"
+        },
+        "hasServiceInstance": {
+            "serviceProvider": {
+                "businessId": "hasServiceInstanceserviceProviderbusinessId",
+                "name": "hasServiceInstanceserviceProvidername",
+                "hasAddress": "hasServiceInstanceserviceProviderhasAddress",
+                "postalcode": "hasServiceInstanceserviceProviderpostalcode",
+                "city": "hasServiceInstanceserviceProvidercity",
+                "state": "hasServiceInstanceserviceProviderstate",
+                "country": "hasServiceInstanceserviceProvidercountry",
+                "email": "hasServiceInstanceserviceProvideremail",
+                "telephone": "hasServiceInstanceserviceProvidertelephone",
+                "jurisdiction": "hasServiceInstanceserviceProviderjurisdiction"
+            },
+            "endpointConnector": {
+                "endpoint": {
+                    "accessURL": "hasServiceInstanceendpointConnectorendpointaccessURL",
+                    "endpointInformation": "hasServiceInstanceendpointConnectorendpointendpointInformation",
+                    "endpointDocumentation": "hasServiceInstanceendpointConnectorendpointendpointDocumentation",
+                    "path": "hasServiceInstanceendpointConnectorendpointpath"
+                },
+                "connectorId": "hasServiceInstanceendpointConnectorconnectorId"
+            },
+            "dataset": "hasServiceInstancedataset",
+            "serviceUrls": {
+                "libraryDomain": "hasServiceInstanceserviceUrlslibraryDomain",
+                "loginUri": "hasServiceInstanceserviceUrlsloginUri",
+                "linkingRedirectUri": "hasServiceInstanceserviceUrlslinkingRedirectUri",
+                "objectionUri": "hasServiceInstanceserviceUrlsobjectionUri",
+                "notificationUri": "hasServiceInstanceserviceUrlsnotificationUri"
+            },
+            "dataController": {
+                "piiController": "hasServiceInstancedataControllerpiiController",
+                "organizationName": "hasServiceInstancedataControllerorganizationName",
+                "hasContact": "hasServiceInstancedataControllerhasContact",
+                "hasAddress": "hasServiceInstancedataControllerhasAddress",
+                "email": "hasServiceInstancedataControlleremail",
+                "telephone": "hasServiceInstancedataControllertelephone",
+                "operatorName": "hasServiceInstancedataControlleroperatorName"
+            }
+        },
+        "hasUsageRule": "hasUsageRule",
+        "isPersonalDataHandling": "isPersonalDataHandling",
+        "entitySourceId": "static:serviceModel",
+        "targetDataModel": "DataModelTemp"
+    },
+    "dataModel": {
+        "$schema": "http://json-schema.org/schema#",
+        "$id": "dataModels/DataModelTemp.json",
+        "title": "Across / Service Model",
+        "description": "Service Model",
+        "type": "object",
+        "required": [],
+        "anyOf": [
+            {
+                "required": []
+            },
+            {
+                "required": []
+            }
+        ],
+        "allOf": [
+            {
+                "$ref": "common-schema.json#/definitions/GSMA-Commons"
+            },
+            {
+                "$ref": "common-schema.json#/definitions/Location-Commons"
+            },
+            {
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "identifier",
+                            "title",
+                            "issued",
+                            "createdByUserId",
+                            "versionInfo",
+                            "serviceIconUrl",
+                            "status",
+                            "isPublicService",
+                            "hasInfo",
+                            "hasServiceInstance",
+                            "hasUsageRule",
+                            "isPersonalDataHandling"
+                        ],
+                        "description": "Across Entity type"
+                    },
+                    "identifier": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "issued": {
+                        "type": "string"
+                    },
+                    "createdByUserId": {
+                        "type": "string"
+                    },
+                    "versionInfo": {
+                        "type": "string"
+                    },
+                    "serviceIconUrl": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "isPublicService": {
+                        "type": "boolean"
+                    },
+                    "hasInfo": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": [
+                                    "identifier",
+                                    "title",
+                                    "status",
+                                    "keyword",
+                                    "sector",
+                                    "thematicArea",
+                                    "type",
+                                    "language",
+                                    "description",
+                                    "isDescribedAt",
+                                    "hasCost",
+                                    "processingTime",
+                                    "isGroupedBy",
+                                    "hasCompetentAuthority",
+                                    "requires",
+                                    "spatial",
+                                    "hasInput",
+                                    "produces",
+                                    "hasContactPoint",
+                                    "hasChannel"
+                                ],
+                                "description": "serviceModel.hasInfo"
+                            },
+                            "identifier": {
+                                "type": "string"
+                            },
+                            "title": {
+                                "type": "string"
+                            },
+                            "status": {
+                                "type": "string"
+                            },
+                            "keyword": {
+                                "type": "array"
+                            },
+                            "sector": {
+                                "type": "array"
+                            },
+                            "thematicArea": {
+                                "type": "array"
+                            },
+                            "type": {
+                                "type": "array"
+                            },
+                            "language": {
+                                "type": "array"
+                            },
+                            "description": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "locale",
+                                            "description"
+                                        ]
+                                    },
+                                    "locale": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "isDescribedAt": {
+                                "type": "array"
+                            },
+                            "hasCost": {
+                                "type": "array"
+                            },
+                            "processingTime": {
+                                "type": "string"
+                            },
+                            "isGroupedBy": {
+                                "type": "array"
+                            },
+                            "hasCompetentAuthority": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "identifier",
+                                            "title",
+                                            "hasAddress",
+                                            "prefLabel",
+                                            "spatial"
+                                        ]
+                                    },
+                                    "identifier": {
+                                        "type": "string"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "hasAddress": {
+                                        "type": "string"
+                                    },
+                                    "prefLabel": {
+                                        "type": "string"
+                                    },
+                                    "spatial": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "requires": {
+                                "type": "array"
+                            },
+                            "spatial": {
+                                "type": "string"
+                            },
+                            "hasInput": {
+                                "type": "array"
+                            },
+                            "produces": {
+                                "type": "array"
+                            },
+                            "hasContactPoint": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "email",
+                                            "faxNumber",
+                                            "telephone",
+                                            "identifier",
+                                            "openingHours",
+                                            "hoursAvailable",
+                                            "url"
+                                        ]
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "faxNumber": {
+                                        "type": "string"
+                                    },
+                                    "telephone": {
+                                        "type": "string"
+                                    },
+                                    "identifier": {
+                                        "type": "string"
+                                    },
+                                    "openingHours": {
+                                        "type": "string"
+                                    },
+                                    "hoursAvailable": {
+                                        "type": "integer"
+                                    },
+                                    "url": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "hasChannel": {
+                                "type": "array"
+                            }
+                        }
+                    },
+                    "hasServiceInstance": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": [
+                                    "serviceProvider",
+                                    "endpointConnector",
+                                    "dataset",
+                                    "serviceUrls",
+                                    "dataController"
+                                ],
+                                "description": "Across Entity type"
+                            },
+                            "serviceProvider": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "businessId",
+                                            "name",
+                                            "hasAddress",
+                                            "postalcode",
+                                            "city",
+                                            "state",
+                                            "country",
+                                            "email",
+                                            "telephone",
+                                            "jurisdiction"
+                                        ],
+                                        "description": "Across Entity type"
+                                    },
+                                    "businessId": {
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "hasAddress": {
+                                        "type": "string"
+                                    },
+                                    "postalcode": {
+                                        "type": "string"
+                                    },
+                                    "city": {
+                                        "type": "string"
+                                    },
+                                    "state": {
+                                        "type": "string"
+                                    },
+                                    "country": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "telephone": {
+                                        "type": "string"
+                                    },
+                                    "jurisdiction": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "endpointConnector": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "endpoint",
+                                            "connectorId"
+                                        ],
+                                        "description": "Across Entity type"
+                                    },
+                                    "endpoint": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "accessURL",
+                                                    "endpointInformation",
+                                                    "endpointDocumentation",
+                                                    "path"
+                                                ],
+                                                "description": "Across Entity type"
+                                            },
+                                            "accessURL": {
+                                                "type": "string"
+                                            },
+                                            "endpointInformation": {
+                                                "type": "string"
+                                            },
+                                            "endpointDocumentation": {
+                                                "type": "string"
+                                            },
+                                            "path": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    "connectorId": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "dataset": {
+                                "type": "array"
+                            },
+                            "serviceUrls": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "libraryDomain",
+                                            "loginUri",
+                                            "linkingRedirectUri",
+                                            "objectionUri",
+                                            "notificationUri"
+                                        ],
+                                        "description": "Across Entity type"
+                                    },
+                                    "libraryDomain": {
+                                        "type": "string"
+                                    },
+                                    "loginUri": {
+                                        "type": "string"
+                                    },
+                                    "linkingRedirectUri": {
+                                        "type": "string"
+                                    },
+                                    "objectionUri": {
+                                        "type": "string"
+                                    },
+                                    "notificationUri": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "dataController": {
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "piiController",
+                                            "organizationName",
+                                            "hasContact",
+                                            "hasAddress",
+                                            "email",
+                                            "telephone",
+                                            "operatorName"
+                                        ],
+                                        "description": "Across Entity type"
+                                    },
+                                    "piiController": {
+                                        "type": "string"
+                                    },
+                                    "organizationName": {
+                                        "type": "string"
+                                    },
+                                    "hasContact": {
+                                        "type": "string"
+                                    },
+                                    "telephone": {
+                                        "type": "string"
+                                    },
+                                    "operatorName": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "hasUsageRule": {
+                        "type": "array"
+                    },
+                    "isPersonalDataHandling": {
+                        "type": "array"
+                    }
+                }
+            }
+        ]
+    },
+    "csvDelimiter": ";"
+}

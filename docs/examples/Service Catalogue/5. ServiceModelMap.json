@@ -1,0 +1,93 @@
+{
+  "identifier": "identifier",
+  "title": "title",
+  "issued": "issued",
+  "createdByUserId": "createdByUserId",
+  "versionInfo": "versionInfo",
+  "serviceIconUrl": "serviceIconUrl",
+  "status": "status",
+  "isPublicService": "isPublicService",
+  "hasInfo": {
+    "identifier": "hasInfoidentifier",
+    "title": "hasInfotitle",
+    "status": "hasInfostatus",
+    "keyword": "hasInfokeyword",
+    "sector": "hasInfosector",
+    "thematicArea": "hasInfothematicArea",
+    "type": "hasInfotype",
+    "language": "hasInfolanguage",
+    "description": {
+      "locale": "hasInfodescriptionlocale",
+      "description": "hasInfodescriptiondescription"
+    },
+    "isDescribedAt": "hasInfoisDescribedAt",
+    "hasCost": "hasInfohasCost",
+    "processingTime": "hasInfoprocessingTime",
+    "isGroupedBy": "hasInfoisGroupedBy",
+    "hasCompetentAuthority": {
+      "identifier": "hasInfohasCompetentAuthorityidentifier",
+      "title": "hasInfohasCompetentAuthoritytitle",
+      "hasAddress": "hasInfohasCompetentAuthorityhasAddress",
+      "prefLabel": "hasInfohasCompetentAuthorityprefLabel",
+      "spatial": "hasInfohasCompetentAuthorityspatial"
+    },
+    "requires": "hasInforequires",
+    "spatial": "hasInfospatial",
+    "hasInput": "hasInfohasInput",
+    "produces": "hasInfoproduces",
+    "hasContactPoint": {
+      "email": "hasInfohasContactPointemail",
+      "faxNumber": "hasInfohasContactPointfaxNumber",
+      "telephone": "hasInfohasContactPointtelephone",
+      "identifier": "hasInfohasContactPointidentifier",
+      "openingHours": "hasInfohasContactPointopeningHours",
+      "hoursAvailable": "hasInfohasContactPointhoursAvailable",
+      "url": "hasInfohasContactPointurl"
+    },
+    "hasChannel": "hasInfohasChannel"
+  },
+  "hasServiceInstance": {
+    "serviceProvider": {
+      "businessId": "hasServiceInstanceserviceProviderbusinessId",
+      "name": "hasServiceInstanceserviceProvidername",
+      "hasAddress": "hasServiceInstanceserviceProviderhasAddress",
+      "postalcode": "hasServiceInstanceserviceProviderpostalcode",
+      "city": "hasServiceInstanceserviceProvidercity",
+      "state": "hasServiceInstanceserviceProviderstate",
+      "country": "hasServiceInstanceserviceProvidercountry",
+      "email": "hasServiceInstanceserviceProvideremail",
+      "telephone": "hasServiceInstanceserviceProvidertelephone",
+      "jurisdiction": "hasServiceInstanceserviceProviderjurisdiction"
+    },
+    "endpointConnector": {
+      "endpoint": {
+        "accessURL": "hasServiceInstanceendpointConnectorendpointaccessURL",
+        "endpointInformation": "hasServiceInstanceendpointConnectorendpointendpointInformation",
+        "endpointDocumentation": "hasServiceInstanceendpointConnectorendpointendpointDocumentation",
+        "path": "hasServiceInstanceendpointConnectorendpointpath"
+      },
+      "connectorId": "hasServiceInstanceendpointConnectorconnectorId"
+    },
+    "dataset": "hasServiceInstancedataset",
+    "serviceUrls": {
+      "libraryDomain": "hasServiceInstanceserviceUrlslibraryDomain",
+      "loginUri": "hasServiceInstanceserviceUrlsloginUri",
+      "linkingRedirectUri": "hasServiceInstanceserviceUrlslinkingRedirectUri",
+      "objectionUri": "hasServiceInstanceserviceUrlsobjectionUri",
+      "notificationUri": "hasServiceInstanceserviceUrlsnotificationUri"
+    },
+    "dataController": {
+      "piiController": "hasServiceInstancedataControllerpiiController",
+      "organizationName": "hasServiceInstancedataControllerorganizationName",
+      "hasContact": "hasServiceInstancedataControllerhasContact",
+      "hasAddress": "hasServiceInstancedataControllerhasAddress",
+      "email": "hasServiceInstancedataControlleremail",
+      "telephone": "hasServiceInstancedataControllertelephone",
+      "operatorName": "hasServiceInstancedataControlleroperatorName"
+    }
+  },
+  "hasUsageRule": "hasUsageRule",
+  "isPersonalDataHandling": "isPersonalDataHandling",
+  "entitySourceId": "static:serviceModel",
+  "targetDataModel": "ServiceModel"
+}

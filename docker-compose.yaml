@@ -1,0 +1,25 @@
+version: '3'
+services:
+  data-model-mapper-backend:
+    image: engineeringopsilab/data-model-mapper-backend
+    build: 
+      context: .
+      #dockerfile: 
+    container_name: data-model-mapper-backend
+    depends_on:
+      - db     
+    ports:
+     - 127.0.0.1:5500:5500
+    restart: always
+    volumes:
+     - ./config.js:/app/config.js
+  db:
+       image: mongo:4.4
+       container_name: data-model-mapper-db
+       ports:
+         - 27017:27017
+       volumes:
+         - db_data:/data/db
+       restart: unless-stopped
+volumes:
+  db_data:

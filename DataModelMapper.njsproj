@@ -1,0 +1,84 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <Name>DataModelMapper</Name>
+    <RootNamespace>NodejsConsoleApp1</RootNamespace>
+    <ScriptArguments>
+    </ScriptArguments>
+    <SaveNodeJsSettingsInProjectFile>True</SaveNodeJsSettingsInProjectFile>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>d8445b59-9cad-4a13-b247-ee96a5c146b4</ProjectGuid>
+    <ProjectHome>
+    </ProjectHome>
+    <StartupFile>mapper.js</StartupFile>
+    <StartWebBrowser>False</StartWebBrowser>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <StartWebBrowser>False</StartWebBrowser>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="src\server\apiHandlers\getMappingStatus.js" />
+    <Compile Include="src\server\apiHandlers\startMapping.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\server\setup.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\writers\fileWriter.js" />
+    <Compile Include="src\writers\orionWriter.js" />
+    <Compile Include="src\utils\process.js" />
+    <Compile Include="src\cli\setup.js" />
+    <Compile Include="src\parsers\jsonParser.js" />
+    <Compile Include="src\parsers\geoJsonParser.js" />
+    <Compile Include="src\parsers\csvParser.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="config.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="mapper.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\schemaHandler.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\mapHandler.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\utils\confUtils.js" />
+    <Compile Include="src\utils\logger.js" />
+    <Compile Include="src\utils\utils.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Content Include="LICENSE" />
+    <Content Include="package.json" />
+    <Content Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\" />
+    <Folder Include="src\cli\" />
+    <Folder Include="src\parsers\" />
+    <Folder Include="src\server\apiHandlers\" />
+    <Folder Include="src\writers\" />
+    <Folder Include="src\server\" />
+    <Folder Include="src\utils\" />
+  </ItemGroup>
+  <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
+</Project>

@@ -1,0 +1,77 @@
+{
+	"$schema": "http://json-schema.org/schema#",
+	"id": "dataModels/GtfsTransitFeedFile.json",
+	"title": "GTFS Transit File Pointer Schema  ",
+	"description": "Pointer to GTFS Transit File",
+	"type": "object",
+	"allOf": [
+		{
+			"$ref": "common-schema.json#/definitions/GSMA-Commons"
+		},
+		{
+			"properties": {
+				"type": {
+					"type": "string",
+					"enum": [
+						"GtfsTransitFeedFile"
+					],
+					"description": "NGSI Entity type"
+				},
+				"publisher": {
+					"type": "object",
+					"properties": {
+						"name": { 
+							"type": "string"
+						},
+						"publisherURL": {
+							"type": "string",
+							"format": "uri"
+						}
+					},
+					"additionalProperties": false,
+					"minProperties": 1
+				},
+				"version": {
+					"type": "object",
+					"properties": {
+						"id": { 
+							"type": "string"
+						},
+						"dateReleased": {
+							"type": "string",
+							"format": "date-time"
+						}
+					},
+					"required": [ "id", "dateReleased"]
+				},
+				"referenceZone": {
+					"type": "string"
+				},
+				"startDate": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"endDate": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"feedFileURL": {
+					"type": "string"
+				},
+				"feedFileContent": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			}
+		}
+	],
+	"required": [
+		"id",
+		"type",
+		"startDate",
+		"endDate",
+		"feedFileURL"
+	]
+}

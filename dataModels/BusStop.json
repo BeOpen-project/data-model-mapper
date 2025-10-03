@@ -1,0 +1,39 @@
+{
+	"$schema": "http://json-schema.org/schema#",
+	"$id": "dataModels/BusStop.json",
+	"title": "SINCHRONICITY - BusStop schema",
+	"description": "Bus stop",
+	"required": ["id","type"],
+	"type": "object",
+	"allOf": [
+		{ "$ref": "common-schema.json#/definitions/GSMA-Commons" },
+		{ "$ref": "common-schema.json#/definitions/Location-Commons" },
+		{	
+			"properties": {
+				"type": {
+					"type": "string",
+					"enum": ["BusStop"],
+					"description": "NGSI Entity type"
+				},
+				"refBuses": {
+					"$ref": "common-schema.json#/definitions/EntityIdentifierType"
+				},
+				"shortID": {
+					"type": ["string", "number"]
+				},
+				"busStopCount": {
+					"type": "array",
+					"items": {
+						"type": "integer"
+					}
+				}, 
+				"refBusLines": {
+					"type": "array",
+					"items": {
+						"$ref": "common-schema.json#/definitions/EntityIdentifierType"
+					}
+				}
+			}
+		}
+	]
+}

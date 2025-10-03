@@ -1,0 +1,269 @@
+{
+	"$schema": "http://json-schema.org/schema#",
+	"$id": "dataModels/OnStreetParking.json",
+	"title": "SINCHRONICITY - OnStreetParking schema",
+	"description": "A surface parking",
+	"type": "object",
+	"required": [
+		"id",
+		"type",
+		"category",
+		"name",
+		"chargeType",
+		"requiredPermit",
+		"permitActiveHours",
+		"allowedVehicleType",
+		"occupancyDetectionType"
+	],
+	"anyOf": [
+		{
+			"required": [
+				"location"
+			]
+		},
+		{
+			"required": [
+				"address"
+			]
+		}
+	],
+	"allOf": [
+		{
+			"$ref": "common-schema.json#/definitions/GSMA-Commons"
+		},
+		{
+			"$ref": "common-schema.json#/definitions/Location-Commons"
+		},
+		{
+			"$ref": "common-schema.json#/definitions/PhysicalObject-Commons"
+		},
+		{
+			"properties": {
+				"type": {
+					"type": "string",
+					"enum": [
+						"OnStreetParking"
+					],
+					"description": "NGSI Entity type"
+				},
+				"category": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"enum": [
+							"forDisabled",
+							"forResidents",
+							"forLoadUnload",
+							"onlyWithPermit",
+							"forELectricalCharging",
+							"free",
+							"feeCharged",
+							"blueZone",
+							"greenZone",
+							"taxiStop",
+							"shortTerm",
+							"mediumTerm",
+							"other"
+						]
+					},
+					"minItems": 1,
+					"uniqueItems": true
+				},
+				"extCategory": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"minItems": 1,
+					"uniqueItems": true
+				},
+				"chargeType": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"enum": [
+							"flat",
+							"minimum",
+							"maximum",
+							"additionalIntervalPrice",
+							"seasonTicket",
+							"temporaryPrice",
+							"firstIntervalPrice",
+							"annualPayment",
+							"monthlyPayment",
+							"free",
+							"other",
+							"unknown",
+							"temporaryFee"
+						]
+					},
+					"minItems": 1,
+					"uniqueItems": true
+				},
+				"requiredPermit": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"enum": [
+							"fairPermit",
+							"governmentPermit",
+							"residentPermit",
+							"disabledPermit",
+							"blueZonePermit",
+							"careTakingPermit",
+							"carpoolingPermit",
+							"carSharingPermit",
+							"emergencyVehiclePermit",
+							"maintenanceVehiclePermit",
+							"roadWorksPermit",
+							"taxiPermit",
+							"transportationPermit",
+							"noPermitNeeded"
+						]
+					},
+					"minItems": 0,
+					"uniqueItems": true
+				},
+				"permitActiveHours": {
+					"type": "object",
+					"patternProperties": {
+						".*": {
+							"type": "string"
+						}
+					}
+				},
+				"allowedVehicleType": {
+					"type": "string",
+					"enum": [
+						"bicycle",
+						"bus",
+						"car",
+						"caravan",
+						"carWithCaravan",
+						"carWithTrailer",
+						"constructionOrMaintenanceVehicle",
+						"lorry",
+						"moped",
+						"motorcycle",
+						"motorcycleWithSideCar",
+						"motorscooter",
+						"tanker",
+						"trailer",
+						"van",
+						"anyVehicle"
+					]
+				},
+				"maximumParkingDuration": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"usageScenario": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"enum": [
+							"parkAndRide",
+							"parkAndCycle",
+							"parkAndWalk",
+							"kissAndRide",
+							"liftshare",
+							"carSharing",
+							"vehicleLift",
+							"loadingBay",
+							"dropOff",
+							"overnightParking",
+							"other"
+						]
+					},
+					"minItems": 1,
+					"uniqueItems": true
+				},
+				"areBordersMarked": {
+					"type": "boolean"
+				},
+				"totalSpotNumber": {
+					"type": "integer",
+					"minimum": 0
+				},
+				"availableSpotNumber": {
+					"type": "integer",
+					"minimum": 0
+				},
+				"extraSpotNumber": {
+					"type": "integer",
+					"minimum": 0
+				},
+				"occupancyDetectionType": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"enum": [
+							"none",
+							"balancing",
+							"singleSpaceDetection",
+							"modelBased",
+							"manual"
+						]
+					},
+					"minItems": 1,
+					"uniqueItems": true
+				},
+				"parkingMode": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"enum": [
+							"perpendicularParking",
+							"parallelParking",
+							"echelonParking"
+						]
+					},
+					"minItems": 1,
+					"uniqueItems": true
+				},
+				"averageSpotWidth": {
+					"type": "number",
+					"exclusiveMinimum": 0
+				},
+				"averageSpotLength": {
+					"type": "number",
+					"exclusiveMinimum": 0
+				},
+				"acceptedPaymentMethod": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"enum": [
+							"ByBankTransferInAdvance",
+							"ByInvoice",
+							"Cash",
+							"CheckInAdvance",
+							"COD",
+							"DirectDebit",
+							"GoogleCheckout",
+							"PayPal",
+							"PaySwarm"
+						]
+					},
+					"minItems": 1,
+					"uniqueItems": true
+				},
+				"refParkingSpot": {
+					"type": "array",
+					"items": {
+						"$ref": "common-schema.json#/definitions/EntityIdentifierType"
+					}
+				},
+				"refParkingGroup": {
+					"type": "array",
+					"items": {
+						"$ref": "common-schema.json#/definitions/EntityIdentifierType"
+					}
+				},
+				"areaServed": {
+					"type": "string"
+				}
+			}
+		}
+	]
+}

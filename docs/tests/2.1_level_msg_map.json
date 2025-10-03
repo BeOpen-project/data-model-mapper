@@ -1,0 +1,23 @@
+{
+  "firstname": "firstname",
+  "lastname": "lastname",
+  "houseNumber": "address.houseNumber",
+  "street": "address.street",
+  "zipCode": "address.zipCode",
+  "city": "address.city",
+  "state": "address.state",
+  "country": "address.country",
+  "semester": "semester",
+  "institution": "institution",
+  "course": "course",
+  "fixed": "static:" ,
+  "object": {
+    "subObject":{
+      "p1":"address.zipCode",
+      "p2":"address.houseNumber"
+    }
+  },
+  "array":[]
+}
+
+
