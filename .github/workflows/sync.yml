@@ -1,0 +1,37 @@
+name: Sync
+
+on:
+  push:
+    branches:
+      - frontend_dev
+      - frontend     
+
+jobs:
+  push-subtrees:
+    runs-on: ubuntu-latest
+    steps:
+    
+      - name: Checkout fullstack
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  
+
+      
+      - name: Set Git user
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+     
+      - name: Add frontend remote
+        run: git remote add frontend-remote https://github.com/OPSILab/Data-model-mapper-frontend.git || echo "Remote already exists"
+
+      - name: Add backend remote
+        run: git remote add backend-remote https://github.com/OPSILab/Data-model-mapper-backend.git || echo "Remote already exists"
+
+     
+      - name: Push frontend subtree
+        run: git subtree push --prefix=frontend frontend-remote main || echo "No changes"
+
+      - name: Push backend subtree
+        run: git subtree push --prefix=backend backend-remote main || echo "No changes"
