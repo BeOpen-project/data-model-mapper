@@ -5,6 +5,7 @@ on:
     branches:
       - frontend_dev
       - frontend
+      - fullstack
     paths:
       - 'backend/**'
       - 'server'

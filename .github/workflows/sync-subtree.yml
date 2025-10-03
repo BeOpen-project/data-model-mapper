@@ -3,8 +3,8 @@ name: Sync
 on:
   push:
     branches:
-      - frontend_dev
-      - frontend     
+      - fullstack 
+  workflow_dispatch: 
 
 jobs:
   push-subtrees:
