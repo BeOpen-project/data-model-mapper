@@ -1,0 +1,41 @@
+{
+	"$schema": "http://json-schema.org/schema#",
+	"$id": "dataModels/NoiseLevelObserved.json",
+	"title": "SINCHRONICITY - NoiseLevelObserved schema",
+	"description": "Observation of noise",
+	"type": "object",
+	"required": ["id","type", "dateObserved"],
+	"anyOf": [{"required": ["location"]}, {"required": ["address"]}],
+	"allOf": [
+		{ "$ref": "common-schema.json#/definitions/GSMA-Commons" },
+		{ "$ref": "common-schema.json#/definitions/Location-Commons" },
+		{	
+			"properties": {
+				"type": {
+					"type": "string",
+					"enum": ["NoiseLevelObserved"],
+					"description": "NGSI Entity type"
+				},
+				"dateObserved": {
+					"type": "string",
+					"format": "date-time"				
+				},
+				"dateObservedFrom": {
+					"type": "string",
+					"format": "date-time"				
+				}, 
+				"dateObservedTo": {
+					"type": "string",
+					"format": "date-time"
+				}, 
+				"refDevice": {
+					"$ref": "common-schema.json#/definitions/EntityIdentifierType"
+				},
+				"sonometerClass": {
+					"type": "string", 
+					"enum": ["0", "1", "2"]
+				}
+			}
+		}
+	]
+}

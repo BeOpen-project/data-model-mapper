@@ -1,0 +1,97 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "$id": "QueueMonitor/schema.json",
+  "title": "SynchroniCity - QueueMonitor schema",
+  "description": "An office counter queue system on a daily run",
+  "type": "object",
+  "required": [
+    "id",
+    "type",
+    "serviceName",
+    "serviceStatus",
+    "lastTicketIssued",
+    "ticketServed"
+  ],
+  "anyOf": [
+    {
+      "required": [
+        "location"
+      ]
+    },
+    {
+      "required": [
+        "address"
+      ]
+    }
+  ],
+  "allOf": [
+    {
+      "$ref": "common-schema.json#/definitions/GSMA-Commons"
+    },
+    {
+      "$ref": "common-schema.json#/definitions/Location-Commons"
+    },
+    {
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "QueueMonitor"
+          ],
+          "description": "NGSI Entity type"
+        },
+        "localId": {
+          "type": "string"
+        },
+        "officeName": {
+          "type": "string"
+        },
+        "serviceName": {
+          "type": "string"
+        },
+        "serviceId": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "serviceStatus": {
+          "type": "string",
+          "enum": [
+            "Open",
+            "Suspended",
+            "Closed"
+          ],
+          "description": "Status of the service"
+        },
+        "serviceStatusNote": {
+          "type": "string"
+        },
+        "scheduleTime": {
+          "type": "string"
+        },
+        "queueLine": {
+          "type": "string"
+        },
+        "linePriority": {
+          "type": "integer"
+        },
+        "lastTicketIssued": {
+          "type": "integer"
+        },
+        "lastTicketIssuedLabel": {
+          "type": "string"
+        },
+        "ticketServed": {
+          "type": "integer"
+        },
+        "ticketServedLabel": {
+          "type": "string"
+        },
+        "ticketsToServe": {
+          "type": "integer"
+        }
+      }
+    }
+  ]
+}

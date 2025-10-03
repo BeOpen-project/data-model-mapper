@@ -1,0 +1,5 @@
+{
+    "sourceDataIn": "1. BikeHireDockingStationSource.geojson", 
+    "mapPathIn": "1. BikeHireDockingStationMap.json", 
+    "dataModelIn": "BikeHireDockingStation"
+}

@@ -1,0 +1,6 @@
+{
+    "sourceDataIn": "docs//test//NonNGSI//nonNgsi.csv", 
+    "mapPathIn": "docs//test//NonNGSI//nonNgsi.json", 
+    "dataModelIn": "ExmpleNonNGSI",
+    "csvDelimiter": ";"
+}

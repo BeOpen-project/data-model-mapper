@@ -1,0 +1,70 @@
+{
+	"$schema": "http://json-schema.org/schema#",
+	"$id": "dataModels/TrafficFlowObserved.json",
+	"title": "SINCHRONICITY - TrafficFlowObserved schema",
+	"description": "Observation of traffic flow, in general",
+	"type": "object",
+	"required": ["id", "type", "dateModified", "laneId", "dateObserved"],
+	"anyOf": [{"required": ["location"]}, {"required": ["refRoadSegment"]}],
+	"allOf": [
+		{"$ref": "common-schema.json#/definitions/GSMA-Commons"},
+		{"$ref": "common-schema.json#/definitions/Location-Commons"},
+		{
+			"properties": {
+				"type": {
+					"type": "string",
+					"enum": ["TrafficFlowObserved"],
+					"description": "NGSI Entity type"
+				},
+				"refRoadSegment": {
+					"$ref": "common-schema.json#/definitions/EntityIdentifierType"
+				},
+				"laneId": {
+					"type": "integer"
+				},
+				"dateObserved": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"dateObservedFrom": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"dateObservedTo": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"intensity": {
+					"type": "integer"
+				},
+				"occupancy": {
+					"type": "number",
+					"minimum": 0,
+					"maximum": 1
+				},
+				"averageVehicleSpeed": {
+					"type": "number"
+				},
+				"averageVehicleLength": {
+					"type": "number"
+				},
+				"congested": {
+					"type": "boolean"
+				},
+				"averageHeadwayTime": {
+					"type": "number"
+				},
+				"averageGapDistance": {
+					"type": "number"
+				},
+				"laneDirection": {
+					"type": "string",
+					"enum": ["forward", "backward"]
+				},
+				"reversedLane": {
+					"type": "boolean"
+				}
+			}
+		}
+	]
+}

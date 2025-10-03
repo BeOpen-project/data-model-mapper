@@ -1,0 +1,99 @@
+{
+	"$schema": "http://json-schema.org/schema#",
+	"$id": "dataModels/Open311:ServiceRequest.json",
+	"title": "SINCHRONICITY - Open311_ServiceRequest schema",
+	"description": "Issues reported by citizens",
+	"required": ["id","type", "location"],
+	"type": "object",
+	"allOf": [
+		{ "$ref": "common-schema.json#/definitions/GSMA-Commons" },
+		{ "$ref": "common-schema.json#/definitions/Location-Commons" },
+		{	
+			"properties": {
+				"type": {
+					"type": "string",
+					"enum": ["Open311:ServiceRequest"],
+					"description": "NGSI Entity type"
+				},
+				"service_request_id": {
+					"type": ["integer", "string"]
+				},
+				"jurisdiction_id": {
+					"type": ["string", "integer" ]
+				}, 
+				"service_code": {
+					"type": ["string", "integer"]
+				}, 
+				"service_name": {
+					"type": "string"
+				}, 
+				"agency_responsible": {
+					"type": "string"
+				},
+				"service_notice": {
+					"type": "string"
+				},
+				"address_string": {
+					"type": "string"
+				}, 
+				"address_id": {
+					"type": ["string", "integer"]
+				},
+				"zipcode": {
+					"type": ["string", "integer"]
+				},
+				"status": {
+					"type": ["string", "integer"]
+				}, 
+				"status_notes": {
+					"type": "string"
+				}, 
+				"requested_datetime": {
+					"type": "string",
+					"format": "date-time"
+				}, 
+				"updated_datetime": {
+					"type": "string",
+					"format": "date-time"
+				}, 
+				"expected_datetime": {
+					"type": "string",
+					"format": "date-time"				
+				}, 
+				"lat": {
+					"type": "number"
+				},
+				"long": {
+					"type": "number"
+				}, 
+				"media_url": {
+					"type": "string",
+					"format": "url"
+				},
+				"email": {
+					"type": "string", 
+					"format": "email"
+				}, 
+				"first_name": {
+					"type": "string"
+				}, 
+				"last_name": {
+					"type": "string"
+				}, 
+				"phone": {
+					"type": "array",
+					"items": {
+						"type": "integer"
+					}
+				},
+				"device_id": {
+					"type": ["string", "number"]
+				},
+				"account_id": {
+					"type": ["string", "number"]
+				}
+				
+			}
+		}
+	]
+}

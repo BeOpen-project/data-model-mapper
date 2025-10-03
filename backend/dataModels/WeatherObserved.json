@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "$id": "dataModels/WeatherObserved.json",
+  "title": "GSMA / FIWARE - Weather Observed schema",
+  "description": "An observation of weather conditions at a certain place and time. This data model has been developed in cooperation with mobile operators and the GSMA.",
+  "type": "object",
+  "required": ["id", "type","dateObserved"],
+  "anyOf": [{"required": ["location"]}, {"required": ["address"]}],
+  "allOf": [
+    { "$ref": "common-schema.json#/definitions/GSMA-Commons" },
+    { "$ref": "common-schema.json#/definitions/Location-Commons" },
+    { "$ref": "weather-schema.json#/definitions/Weather-Commons" },
+    {
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "WeatherObserved"
+          ],
+          "description": "NGSI Entity type"
+        },
+        "dateObserved": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "precipitation": {
+          "type": "number",
+          "minimum": 0
+        },
+        "barometricPressure": {
+          "type": "number",
+          "minimum": 0
+        },
+        "solarRadiation": {
+          "type": "number",
+          "minimum": 0
+        },
+        "illuminance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "pressureTendency": {
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "raising",
+                "falling",
+                "steady"
+              ]
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "dewPoint": {
+          "type": "number"
+        },
+        "refDevice": {
+           "$ref": "common-schema.json#/definitions/EntityIdentifierType"
+        },
+        "streamGauge": {
+          "type": "number"
+        },
+        "snowHeight": {
+          "type": "number"
+        }
+      }
+    }
+  ]
+}

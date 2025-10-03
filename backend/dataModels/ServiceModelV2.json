@@ -1,0 +1,262 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "title": "ServiceModel",
+  "properties": {
+    "identifier": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "issued": {
+      "type": "string"
+    },
+    "createdByUserId": {
+      "type": "string"
+    },
+    "versionInfo": {
+      "type": "string"
+    },
+    "serviceIconUrl": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "isPublicService": {
+      "type": "boolean"
+    },
+    "hasInfo": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "keyword": {
+          "type": "array"
+        },
+        "sector": {
+          "type": "array"
+        },
+        "thematicArea": {
+          "type": "array"
+        },
+        "type": {
+          "type": "array"
+        },
+        "language": {
+          "type": "array"
+        },
+        "description": {
+          "type": "array"
+        },
+        "isDescribedAt": {
+          "type": "array"
+        },
+        "hasCost": {
+          "type": "array"
+        },
+        "processingTime": {
+          "type": "string"
+        },
+        "isGroupedBy": {
+          "type": "array"
+        },
+        "hasCompetentAuthority": {
+          "type": "object",
+          "properties": {
+            "identifier": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "hasAddress": {
+              "type": "string"
+            },
+            "prefLabel": {
+              "type": "string"
+            },
+            "spatial": {
+              "type": "string"
+            }
+          }
+        },
+        "requires": {
+          "type": "array"
+        },
+        "spatial": {
+          "type": "string"
+        },
+        "hasInput": {
+          "type": "array"
+        },
+        "produces": {
+          "type": "array"
+        },
+        "hasContactPoint": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string"
+            },
+            "faxNumber": {
+              "type": "string"
+            },
+            "telephone": {
+              "type": "string"
+            },
+            "identifier": {
+              "type": "string"
+            },
+            "openingHours": {
+              "type": "string"
+            },
+            "hoursAvailable": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string"
+            }
+          }
+        },
+        "hasChannel": {
+          "type": "array"
+        }
+      }
+    },
+    "hasServiceInstance": {
+      "type": "object",
+      "properties": {
+        "serviceProvider": {
+          "type": "object",
+          "properties": {
+            "businessId": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "hasAddress": {
+              "type": "string"
+            },
+            "postalcode": {
+              "type": "string"
+            },
+            "city": {
+              "type": "string"
+            },
+            "state": {
+              "type": "string"
+            },
+            "country": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "telephone": {
+              "type": "string"
+            },
+            "jurisdiction": {
+              "type": "string"
+            }
+          }
+        },
+        "endpointConnector": {
+          "type": "object",
+          "properties": {
+            "endpoint": {
+              "type": "object",
+              "properties": {
+                "accessURL": {
+                  "type": "string"
+                },
+                "endpointInformation": {
+                  "type": "string"
+                },
+                "endpointDocumentation": {
+                  "type": "string"
+                },
+                "path": {
+                  "type": "string"
+                },
+                "async": {
+                  "type": "boolean"
+                },
+                "callback": {
+                  "type": "string"
+                }
+              }
+            },
+            "connectorId": {
+              "type": "string"
+            }
+          }
+        },
+        "dataset": {
+          "type": "array"
+        },
+        "serviceUrls": {
+          "type": "object",
+          "properties": {
+            "libraryDomain": {
+              "type": "string"
+            },
+            "loginUri": {
+              "type": "string"
+            },
+            "linkingRedirectUri": {
+              "type": "string"
+            },
+            "objectionUri": {
+              "type": "string"
+            },
+            "notificationUri": {
+              "type": "string"
+            }
+          }
+        },
+        "dataController": {
+          "type": "object",
+          "properties": {
+            "piiController": {
+              "type": "string"
+            },
+            "organizationName": {
+              "type": "string"
+            },
+            "hasContact": {
+              "type": "string"
+            },
+            "hasAddress": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "telephone": {
+              "type": "string"
+            },
+            "operatorName": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "hasUsageRule": {
+      "type": "array"
+    },
+    "isPersonalDataHandling": {
+      "type": "array"
+    }
+  }
+}

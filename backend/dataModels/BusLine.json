@@ -1,0 +1,59 @@
+{
+	"$schema": "http://json-schema.org/schema#",
+	"$id": "dataModels/BusLine.json",
+	"title": "SINCHRONICITY - BusLine schema",
+	"description": "Bus line",
+	"required": ["id","type"],
+	"type": "object",
+	"allOf": [
+		{ "$ref": "common-schema.json#/definitions/GSMA-Commons" },
+		{ "$ref": "common-schema.json#/definitions/Location-Commons" },
+		{
+			"properties": {
+				"type": {
+					"type": "string",
+					"enum": ["BusLine"],
+					"description": "NGSI Entity type"
+				},
+				"refBusStops": {
+					"type": "array",
+					"items": {
+						"type": "object"
+					}
+				},
+				"localID": {
+					"type": ["string", "number"]
+				},
+				"shortID": {
+					"type": ["string", "number"]
+				},
+				"refStartBusStop": {
+					"$ref": "common-schema.json#/definitions/EntityIdentifierType"
+				},
+				"refEndBusStop": {
+					"$ref": "common-schema.json#/definitions/EntityIdentifierType"
+				},
+				"busLineType": {
+					"type": "string"
+				},
+				"startTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"endTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"intervalNorm": {
+					"type": "string"
+				},
+				"intervalHoli": {
+					"type": "string"
+				},
+				"intervalPeak": {
+					"type": "string"
+				}
+			}
+		}
+	]
+}

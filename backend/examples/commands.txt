@@ -1,0 +1,9 @@
+
+node mapper -s "examples\\1. BikeHireDockingStationSource.geojson" -m "examples\\1. BikeHireDockingStationMap.json" -d BikeHireDockingStation --rs 0 --re 3
+
+node mapper -s "examples\\2. OffStreetParkingSource.geojson" -m "examples\\2. OffStreetParkingMap.json" -d OffStreetParking --rs 0 --re 3
+
+node mapper -s "examples\\3. BikeHireDockingStationSource.csv" -m "examples\\3. BikeHireDockingStationMap.json" -d BikeHireDockingStation --rs 0 --re 3
+
+node mapper -s "examples\\4. PointOfInterestSource.json" -m "examples\\4. PointOfInterestMap.json" -d PointOfInterest --rs 0 --re 3
+

@@ -1,0 +1,6 @@
+{
+    "sourceDataIn": "5. ServiceModel.csv", 
+    "mapPathIn": "5. ServiceModelMap.json", 
+    "dataModelIn": "ServiceModel",
+    "csvDelimiter": ";"
+}

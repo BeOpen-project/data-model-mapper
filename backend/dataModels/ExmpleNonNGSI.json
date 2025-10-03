@@ -1,0 +1,46 @@
+{
+        "$schema": "http://json-schema.org/schema#",
+        "type": "object",
+        "properties": {
+            "Field 1": {
+                "type": "string"
+            },
+            "Field 2": {
+                "type": "integer"
+            },
+            "Field 3": {
+                "type": "array",
+                "items": {
+                    "type": "integer"
+                }
+            },
+            "Field 4": {
+                "type": "object",
+                "properties": {
+                    "Field 1": {
+                        "type": "string"
+                    },
+                    "Field 2": {
+                        "type": "integer"
+                    },
+                    "Field 3": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "required": [
+                    "Field 1",
+                    "Field 2",
+                    "Field 3"
+                ]
+            }
+        },
+        "required": [
+            "Field 1",
+            "Field 2",
+            "Field 3",
+            "Field 4"
+        ]
+    }

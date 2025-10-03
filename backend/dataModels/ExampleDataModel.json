@@ -1,0 +1,92 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "$id": "dataModels/ExampleDataModel.json",
+    "title": "Example Data Model",
+    "description": "Example Data Model",
+    "type": "object",
+    "anyOf": [
+        {
+            "required": []
+        },
+        {
+            "required": []
+        }
+    ],
+    "allOf": [
+        {
+            "$ref": "common-schema.json#/definitions/GSMA-Commons"
+        },
+        {
+            "$ref": "common-schema.json#/definitions/Location-Commons"
+        },
+        {
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": ["Example"],
+                    "description": "Example Data Model"
+                },
+                "Field 1": {
+                    "type": "string"
+                },
+                "Field 2": {
+                    "type": "array"
+                },
+                "Field 3": {
+                    "type": "array"
+                },
+                "Field 31": {
+                    "type": "array"
+                },
+                "Field 32": {
+                    "type": "number"
+                },
+                "Field 33": {
+                    "type": "integer"
+                },
+                "Field 4": {
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": ["Field 4"]
+                        },
+                        "Field 4a": {
+                            "type": "string"
+                        },
+                        "Field 4b": {
+                            "type": "array"
+                        },
+                        "Field 4c": {
+                            "type": "array"
+                        },
+                        "Field 4d": {
+                            "type": "array"
+                        },
+                        "Field 4e": {
+                            "type": "integer"
+                        },
+                        "Field 4f": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "Field 5": {
+                    "type": "number"
+                },
+                "Field 6": {
+                    "type": "integer"
+                },
+                "Field 7": {
+                    "type": "string"
+                },
+                "Field concatenated": {
+                    "type": "string"
+                }
+            }
+        }
+    ],
+    "required" : [
+        "Field 1"
+    ]
+}

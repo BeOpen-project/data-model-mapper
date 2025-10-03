@@ -1,0 +1,559 @@
+{
+    "paths": {
+        "/minio/getObject/{bucketName}/{objectName}": {
+            "get": {
+                "tags": [
+                    "Minio"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "description": "Get minio object",
+                "parameters": [
+                    {
+                        "name": "bucketName",
+                        "in": "path",
+                        "description": "Bucket name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "objectName",
+                        "in": "path",
+                        "description": "Object name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "JSON output",
+                        "schema": {
+                            "properties": {
+                                "key": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "NOT FOUND",
+                        "schema": {
+                            "$ref": "#/definitions/404"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/UNAUTHORIZED"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/FORBIDDEN"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/INTERNAL_SERVER_ERROR"
+                        }
+                    }
+                }
+            }
+        },
+        "/minio/insertObject/{bucketName}/{objectName}": {
+            "post": {
+                "tags": [
+                    "Minio"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "description": "Insert minio object",
+                "parameters": [
+                    {
+                        "name": "bucketName",
+                        "in": "path",
+                        "description": "Bucket name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "objectName",
+                        "in": "path",
+                        "description": "Object name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "object",
+                        "in": "body",
+                        "description": "Object you want to insert",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "JSON output",
+                        "schema": {
+                            "properties": {
+                                "key": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "NOT FOUND",
+                        "schema": {
+                            "$ref": "#/definitions/404"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/UNAUTHORIZED"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/FORBIDDEN"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/INTERNAL_SERVER_ERROR"
+                        }
+                    }
+                }
+            }
+        },
+        "/minio/listObjects/{bucketName}": {
+            "get": {
+                "tags": [
+                    "Minio"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "description": "Get minio object list of the selected bucket",
+                "parameters": [
+                    {
+                        "name": "bucketName",
+                        "in": "path",
+                        "description": "Bucket name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "JSON output",
+                        "schema": {
+                            "properties": {
+                                "key": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "NOT FOUND",
+                        "schema": {
+                            "$ref": "#/definitions/404"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/UNAUTHORIZED"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/FORBIDDEN"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/INTERNAL_SERVER_ERROR"
+                        }
+                    }
+                }
+            }
+        },
+        "/minio/listObjects": {
+            "get": {
+                "tags": [
+                    "Minio"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "description": "Get minio object list of all buckets",
+                "parameters": [],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "JSON output",
+                        "schema": {
+                            "properties": {
+                                "key": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "NOT FOUND",
+                        "schema": {
+                            "$ref": "#/definitions/404"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/UNAUTHORIZED"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/FORBIDDEN"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/INTERNAL_SERVER_ERROR"
+                        }
+                    }
+                }
+            }
+        },
+        "/minio/getObjects/{bucketName}": {
+            "get": {
+                "tags": [
+                    "Minio"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "description": "Get minio objects of the selected bucket",
+                "parameters": [
+                    {
+                        "name": "bucketName",
+                        "in": "path",
+                        "description": "Bucket name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "JSON output",
+                        "schema": {
+                            "properties": {
+                                "key": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "NOT FOUND",
+                        "schema": {
+                            "$ref": "#/definitions/404"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/UNAUTHORIZED"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/FORBIDDEN"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/INTERNAL_SERVER_ERROR"
+                        }
+                    }
+                }
+            }
+        },
+        "/minio/getObjects": {
+            "get": {
+                "tags": [
+                    "Minio"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "description": "Get minio objects all buckets",
+                "parameters": [],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "JSON output",
+                        "schema": {
+                            "properties": {
+                                "key": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "NOT FOUND",
+                        "schema": {
+                            "$ref": "#/definitions/404"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/UNAUTHORIZED"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/FORBIDDEN"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/INTERNAL_SERVER_ERROR"
+                        }
+                    }
+                }
+            }
+        },
+        "/minio/getBuckets": {
+            "get": {
+                "tags": [
+                    "Minio"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "description": "Get minio bucket list",
+                "parameters": [],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "JSON output",
+                        "schema": {
+                            "properties": {
+                                "key": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "NOT FOUND",
+                        "schema": {
+                            "$ref": "#/definitions/404"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/UNAUTHORIZED"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/FORBIDDEN"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/INTERNAL_SERVER_ERROR"
+                        }
+                    }
+                }
+            }
+        },
+        "/minio/createBucket/{bucketName}": {
+            "post": {
+                "tags": [
+                    "Minio"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "description": "Create a bucket in Minio with the name specified",
+                "parameters": [
+                    {
+                        "name": "bucketName",
+                        "in": "path",
+                        "description": "Bucket name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "JSON output",
+                        "schema": {
+                            "properties": {
+                                "key": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "NOT FOUND",
+                        "schema": {
+                            "$ref": "#/definitions/404"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/UNAUTHORIZED"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/FORBIDDEN"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/INTERNAL_SERVER_ERROR"
+                        }
+                    }
+                }
+            }
+        },
+        "/minio/subscribe/{bucketName}": {
+            "get": {
+                "tags": [
+                    "Minio"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "description": "Subscribe for notification of the selected bucket and insert in DB every new object inserted in that bucket",
+                "parameters": [
+                    {
+                        "name": "bucketName",
+                        "in": "path",
+                        "description": "Bucket name",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "JSON output",
+                        "schema": {
+                            "properties": {
+                                "key": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "NOT FOUND",
+                        "schema": {
+                            "$ref": "#/definitions/404"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/UNAUTHORIZED"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/FORBIDDEN"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/INTERNAL_SERVER_ERROR"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

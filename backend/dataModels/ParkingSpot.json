@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "$id": "dataModels/ParkingSpot.json",
+  "title": "FIWARE - Parking / Parking Spot",
+  "description": "A parking spot is an area well delimited where one vehicle can be parked. The aim of this entity type is to monitor the status of parking spots individually. Thus, an entity of type ParkingSpot cannot exist without a containing entity of type (OnStreetParking, OffStreetParking). A parking spot might belong to one group.",
+  "type": "object",
+  "required": ["id", "type", "status", "refParkingSite", "category"],
+  "anyOf": [{"required": ["location"]}, {"required": ["address"]}],
+  "allOf": [
+	{"$ref": "common-schema.json#/definitions/GSMA-Commons"},
+    {"$ref": "common-schema.json#/definitions/Location-Commons"},
+    {"$ref": "common-schema.json#/definitions/PhysicalObject-Commons"},
+    {
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "ParkingSpot"
+          ],
+          "description": "NGSI Entity type"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "occupied",
+            "free",
+            "closed",
+            "unknown"
+          ]
+        },
+        "width": {
+          "type": "number",
+          "minimum": 0
+        },
+        "length": {
+          "type": "number",
+          "minimum": 0
+        },
+        "refParkingGroup": {
+          "$ref": "common-schema.json#/definitions/EntityIdentifierType"
+        },
+        "refParkingSite": {
+          "$ref": "common-schema.json#/definitions/EntityIdentifierType"
+        },
+        "category": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "onstreet",
+              "offstreet"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "refDevice": {
+          "type": "array",
+          "items": {
+            "$ref": "common-schema.json#/definitions/EntityIdentifierType"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "TimeInstant": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  ]
+}

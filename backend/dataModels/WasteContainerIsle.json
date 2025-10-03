@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "$id": "dataModels/WasteContainerIsle.json",
+  "title": "FIWARE - Waste Management / Waste Container Isle",
+  "description": "A waste container isle",
+  "type": "object",
+  "required": ["id", "type", "location"],
+  "allOf": [
+    { "$ref": "common-schema.json#/definitions/GSMA-Commons" },
+    { "$ref": "common-schema.json#/definitions/Location-Commons" },
+    {
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "WasteContainerIsle"
+          ],
+          "description": "NGSI Entity type"
+        },
+        "features": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "containerFix",
+              "underground",
+              "fenced",
+              "other"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "insertHolesNumber": {
+          "type": "number",
+          "minimum": 0
+        },
+        "refWasteContainer": {
+          "type": "array",
+          "items": { "$ref": "common-schema.json#/definitions/EntityIdentifierType" },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      }
+    }
+  ]
+}

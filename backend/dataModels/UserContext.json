@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "$id": "dataModels/UserContext.json",
+  "title": "FIWARE - User Context schema",
+  "description": "Information on the context of an anonymized in a given point in time",
+  "type": "object",
+  "required": ["id", "type", "refUser"],
+  "anyOf": [{"required": ["location"]}, {"required": ["address"]}, {"required": ["refActivity"]}],
+  "allOf": [
+    {"$ref": "common-schema.json#/definitions/GSMA-Commons"},
+    {"$ref": "common-schema.json#/definitions/Location-Commons"},
+    {
+      "properties": {
+        "refActivity": {
+          "oneOf": [
+            {
+              "$ref": "common-schema.json#/definitions/EntityIdentifierType"
+            },
+            {
+              "type": "string",
+              "format": "uri"
+            }
+          ]
+        },
+        "refUserDevice": {
+          "oneOf": [
+            {
+              "$ref": "common-schema.json#/definitions/EntityIdentifierType"
+            },
+            {
+              "type": "string",
+              "format": "uri"
+            }
+          ]
+        },
+        "refUser": {
+          "oneOf": [
+            {
+              "$ref": "common-schema.json#/definitions/EntityIdentifierType"
+            },
+            {
+              "type": "string",
+              "format": "uri"
+            }
+          ]
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "UserContext"
+          ],
+          "description": "NGSI Entity type"
+        }
+      }
+    }
+  ]
+}

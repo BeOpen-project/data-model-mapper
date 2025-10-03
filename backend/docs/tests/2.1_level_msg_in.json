@@ -1,0 +1,23 @@
+[
+    {
+        "firstname": "string",
+        "lastname": "string",
+        "address": {
+          "street": "string",
+          "houseNumber": "string",
+          "zipCode": "string",
+          "city": "string",
+          "state": "string",
+          "country": "string"
+        },
+        "consent": {
+          "privacy": true,
+          "personalData": true,
+          "allowContact": true
+        },
+        "semester": "string",
+        "institution": "string",
+        "course": "string"
+      }
+      
+]

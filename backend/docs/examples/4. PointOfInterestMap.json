@@ -1,0 +1,41 @@
+{
+  "name": "FIELD13",
+  "description": [
+    "FIELD13",
+    "static: (",
+    "FIELD20",
+    "static:sq) - ",
+    "FIELD14",
+    "static:, ",
+    "FIELD14",
+    "static:, ",
+    "FIELD15",
+    "static:, ",
+    "FIELD16",
+    "static:, ",
+    "FIELD17",
+    "static:, ",
+    "FIELD18",
+    "static:, ",
+    "FIELD19"
+  ],
+  "address": {
+    "addressLocality": "static:Milan",
+    "addressRegion": "static:Lombardia",
+    "streetAddress": [
+      "FIELD3",
+      "static: ",
+      "FIELD4",
+      "static:, ",
+      "FIELD5",
+      "FIELD6"
+    ]
+  },
+  "category": [
+    "static:123"
+  ],
+  "source": "static:http://dati.comune.milano.it/dataset/ds49_economia_esercizi_vicinato_sede_fissa_2015",
+  "entitySourceId": [
+    "static:ds49"
+  ]
+}

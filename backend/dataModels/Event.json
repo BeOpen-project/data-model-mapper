@@ -1,0 +1,53 @@
+{
+	"$schema": "http://json-schema.org/schema#",
+	"$id": "dataModels/Event.json",
+	"title": "SINCHRONICITY - Event schema",
+	"description": "A city event",
+	"required": ["id","type"],
+	"type": "object",
+	"allOf": [
+		{ "$ref": "common-schema.json#/definitions/GSMA-Commons" },
+		{ "$ref": "common-schema.json#/definitions/Location-Commons" },
+		{	
+			"properties": {
+				"type": {
+					"type": "string",
+					"enum": ["Event"],
+					"description": "NGSI Entity type"
+				},
+				"about": {},
+				"actor": {},
+				"aggregateRating": {},
+				"attendee": {},
+				"audience": {},
+				"composer": {},
+				"contributor": {},
+				"director": {},
+				"doorTime": {},
+				"duration": {},
+				"endDate": {},
+				"eventStatus": {},
+				"funder": {},
+				"inLanguag": {},
+				"isAccessibleForFree": {},
+				"location": {},
+				"maximumAttendeeCapacity": {},
+				"offers": {},
+				"organizer": {},
+				"performer": {},
+				"previousStartDate": {},
+				"recordedIn": {},
+				"remainingAttendeeCapacit": {},
+				"review": {},
+				"sponsor": {},
+				"startDate": {},
+				"subEvent": {},
+				"superEvent": {},
+				"translator": {},
+				"typicalAgeRange": {},
+				"workFeatured": {},
+				"workPerformed": {}
+			}
+		}
+	]
+}
